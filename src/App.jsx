@@ -7,6 +7,7 @@ import {
   Github, 
   Twitter, 
   Mail, 
+  Linkedin,
   ChevronRight, 
   X, 
   ExternalLink,
@@ -15,15 +16,16 @@ import {
   Layers,
   Zap, // Use Zap for more impact
   Shield, // Use Shield for 'emblem/crest' look
-} from 'lucide-react';
+} from 'lucide-react'; 
+import ItchIcon from './assets/itchio.svg';
 
 // --- 模拟数据 (Mock Data) ---
 
 const personalInfo = {
   name: "Cecilia Xu",
   title: "Game Developer & Digital Artist",
-  bio: "致力于创造沉浸式交互体验。热衷于计算机图形学、游戏开发以及数字艺术创作。我相信代码是骨架，而艺术是灵魂。",
-  skills: ["Unity / C#", "OpenGL / GLSL", "React / WebGL", "Blender", "Photoshop/CSP/SAI/Procreate/Aseprite"]
+  bio: "Dedicated to creating immersive interactive experiences.",
+  skills: ["Unity / C#", "OpenGL / GLSL", "React", "MySQL","Blender", "Photoshop"]
 };
 
 const gamesData = [
@@ -31,33 +33,33 @@ const gamesData = [
     id: 1,
     title: "TimeLoopForest",
     category: "Puzzle",
-    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800",
-    description: "一款高节奏的复古未来主义赛博朋克竞速游戏。玩家需要在霓虹闪烁的城市中极速穿梭，同时躲避执法无人机的追捕。",
-    details: "Solo Developer",
-    tech: ["Unity", "C#", "HLSL Shader", "FMOD"],
-    link: "#"
+    image: "timeloopforest.png",
+    description: "A mini-game combining card-flipping memory and path exploration, submitted for GMTK 2025.",
+    details: "Individual Project",
+    tech: ["Unity", "C#","Aseprite"],
+    link: "https://ceramicwitch.itch.io/time-loop-forest"
   },
   {
     id: 2,
     title: "Escape.exe",
     category: "Click Point Adventure",
-    image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit:crop&q=80&w=800",
-    description: "在神秘的森林中醒来，通过控制风和光线来解开古老的谜题。",
-    details: "Programmer/Gameplay Designer/ Artist",
-    tech: ["Unreal Engine 5", "Blueprints", "Niagara VFX"],
-    link: "#"
+    image: "EndRoom.png",
+    description: "A traditional point-and-click escape room game infused with meta elements, offering players a surprising and unexpected experience.",
+    details: "Producer/Programmer/Gameplay Designer/Technical Artist",
+    tech: ["Unity", "C#", "Shader"],
+    link: "https://www.taptap.cn/app/781649?os=pc"
   }
 ];
 
 const graphicsData = [
   {
     id: 1,
-    title: "Silh",
-    category: "渲染引擎",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit:crop&q=80&w=800",
-    description: "基于 C++ 从零编写的光线追踪渲染器，支持软阴影、反射和折射。",
-    details: "这是一个用于学习计算机图形学底层原理的项目。实现了 BVH 加速结构，支持 Monte Carlo 路径追踪，以及多种材质模型（Lambertian, Metal, Dielectric）。",
-    tech: ["C++", "Multi-threading", "Math"],
+    title: "Silhouette Shader",
+    category: "Shader",
+    image: "/silh.png",
+    description: "Automatically generates 3D model contours and occlusions. Users can choose whether to display the model’s surfaces, laying the foundation for flat rendering or “ghost” effects.",
+    details: "Coursework",
+    tech: ["OpenGL", "GLSL","C++"],
     link: "#"
   }
 ];
@@ -65,31 +67,24 @@ const graphicsData = [
 const artData = [
   {
     id: 1,
-    title: "Cyber Skull",
-    description: "探索机械与骨骼的结合。",
-    src: "https://images.unsplash.com/photo-1531297461136-82lw9z0u?auto=format&fit:crop&q=80&w=800",
-    year: "2023"
+    title: "Betrayal",
+    description: "A fan work inspired by Elden Ring.This painting is not yet finished.",
+    src: "/rose.png",
+    year: "2025"
   },
   {
     id: 2,
-    title: "Abstract Waves",
-    description: "情绪的数字化表达。",
-    src: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit:crop&q=80&w=800",
-    year: "2023"
+    title: "Rest",
+    description: "A fan work inspired by Elden Ring.",
+    src: "/rest.png",
+    year: "2025"
   },
   {
     id: 3,
-    title: "Lost City",
-    description: "概念场景设计。",
-    src: "https://images.unsplash.com/photo-1515462277126-2dd0c162007a?auto=format&fit:crop&q=80&w=800",
-    year: "2022"
-  },
-  {
-    id: 4,
-    title: "Glitch Portrait",
-    description: "故障艺术实验。",
-    src: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit:crop&q=80&w=800",
-    year: "2024"
+    title: "Untitled",
+    description: "They are my friend’s original characters — I imagined what their everyday interactions might look like.",
+    src: "/girls.png",
+    year: "2025"
   }
 ];
 
@@ -158,7 +153,7 @@ const ProjectDetail = ({ project, onBack }) => (
       onClick={onBack}
       className={`mb-8 flex items-center gap-2 text-black font-black bg-yellow-400 px-4 py-2 rounded-none border-2 border-black ${HARD_SHADOW_SM} transition-all hover:bg-red-500 hover:text-white hover:shadow-none`}
     >
-      <ArrowLeft size={20} /> 返回列表
+      <ArrowLeft size={20} /> GO BACK
     </button>
     
     {/* Hero Image with Heavy Border */}
@@ -174,7 +169,7 @@ const ProjectDetail = ({ project, onBack }) => (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
       <div className="lg:col-span-2 space-y-6">
         <h3 className="text-2xl font-black text-gray-900 flex items-center gap-2 border-b-4 border-red-500 pb-2">
-          <Layers size={24} className="text-red-500" /> 项目详情
+          <Layers size={24} className="text-red-500" /> Project Details
         </h3>
         {/* Detail Box with Halftone Background */}
         <p className="text-gray-800 leading-relaxed text-lg font-medium p-4 rounded-lg border-2 border-black bg-yellow-100">
@@ -189,7 +184,7 @@ const ProjectDetail = ({ project, onBack }) => (
         {/* Tech Box with Hard Shadow */}
         <div className={`bg-white p-6 rounded-lg border-2 border-black ${HARD_SHADOW_SM}`}>
           <h3 className="text-lg font-black text-gray-800 mb-4 flex items-center gap-2">
-             <Code size={20} className="text-red-500" /> 技术栈
+             <Code size={20} className="text-red-500" /> Skill
           </h3>
           <div className="flex flex-wrap gap-2">
             {project.tech.map((t, index) => (
@@ -201,9 +196,18 @@ const ProjectDetail = ({ project, onBack }) => (
         </div>
         
         {/* Call to Action Button */}
-        <button className={`w-full py-4 bg-red-500 text-white font-black text-lg rounded-none border-4 border-black ${HARD_SHADOW_SM} hover:bg-red-600 transition-all hover:shadow-none`}>
-          <ExternalLink size={20} className="inline mr-2" /> 访问项目 / 源码
-        </button>
+        <a 
+          href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full block"
+>
+          <button
+            className={`w-full py-4 bg-red-500 text-white font-black text-lg rounded-none border-4 border-black ${HARD_SHADOW_SM} hover:bg-red-600 transition-all hover:shadow-none`}
+          >
+            <ExternalLink size={20} className="inline mr-2" /> Play Now!
+          </button>
+        </a>
       </div>
     </div>
   </div>
@@ -286,10 +290,10 @@ export default function App() {
               <div className="relative z-10">
                 <div className="mb-12">
                   <span className={`inline-block px-3 py-1 mb-4 text-xs font-black tracking-wider text-black uppercase bg-teal-400 border-2 border-black ${HARD_SHADOW_SM}`}>
-                    SYSTEM READY
+                    ABOUT ME
                   </span>
                   <h1 className="text-5xl md:text-7xl font-black text-black mb-6 leading-none">
-                    <span className="bg-red-500 text-white px-3 py-1 inline-block whitespace-nowrap">INIT</span> {personalInfo.name}
+                 {personalInfo.name}
                   </h1>
                   <p className="text-xl md:text-2xl text-gray-800 leading-relaxed font-black bg-yellow-200 p-4 border-2 border-black">
                     {personalInfo.bio}
@@ -300,7 +304,7 @@ export default function App() {
                   {/* Skills Block */}
                   <div className={`bg-white p-6 border-4 border-black ${HARD_SHADOW_SM}`}>
                     <h3 className="text-gray-900 font-black mb-4 flex items-center gap-2">
-                      <Zap size={20} className="text-red-500" /> SKILL LEVEL
+                      <Zap size={20} className="text-red-500" /> SKILLS
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {personalInfo.skills.map(skill => (
@@ -312,11 +316,11 @@ export default function App() {
                   </div>
                   {/* Contact Block */}
                   <div className={`bg-white p-6 border-4 border-black ${HARD_SHADOW_SM}`}>
-                    <h3 className="text-gray-900 font-black mb-4">CONTACT</h3>
+                    <h3 className="text-gray-900 font-black mb-4">LINKS</h3>
                     <div className="flex gap-4">
-                      <a href="#" className="p-2 bg-black text-white rounded-none border-2 border-white hover:bg-red-500"><Github size={20}/></a>
-                      <a href="#" className="p-2 bg-black text-white rounded-none border-2 border-white hover:bg-yellow-400 hover:text-black"><Twitter size={20}/></a>
-                      <a href="#" className="p-2 bg-black text-white rounded-none border-2 border-white hover:bg-teal-500"><Mail size={20}/></a>
+                      <a href="https://github.com/CiciriaXXX" className="p-2 bg-black text-white rounded-none border-2 border-white hover:bg-red-500"><Github size={20}/></a>
+                      <a href="https://ceramicwitch.itch.io/" className="p-2 bg-black text-white rounded-none border-2 border-white hover:bg-yellow-400 hover:text-black"> <img src={ItchIcon} alt="Itch.io" className="w-5 h-5" /></a>
+                      <a href="https://www.linkedin.com/in/shichun-xu-661a27298/" className="p-2 bg-black text-white rounded-none border-2 border-white hover:bg-teal-500"><Linkedin size={20}/></a>
                     </div>
                   </div>
                 </div>
@@ -329,8 +333,7 @@ export default function App() {
         return (
           <div className="animate-fade-in">
             <header className="mb-12">
-              <h2 className="text-4xl font-black text-black mb-2 inline-block border-b-4 border-red-500">GAME PROJECT</h2>
-              <p className="text-gray-700 font-black">Level Select: Retro Arcade</p>
+              <h2 className="text-4xl font-black text-black mb-2 inline-block border-b-4 border-red-500">GAME PROJECTS</h2>
             </header>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {gamesData.map(game => (
@@ -344,8 +347,7 @@ export default function App() {
         return (
           <div className="animate-fade-in">
             <header className="mb-12">
-              <h2 className="text-4xl font-black text-black mb-2 inline-block border-b-4 border-red-500">GRAPHICS ENGINE</h2>
-              <p className="text-gray-700 font-black">Code Collage: GPU Experiments</p>
+              <h2 className="text-4xl font-black text-black mb-2 inline-block border-b-4 border-red-500">SHADER & GRAPHICS LAB</h2>
             </header>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {graphicsData.map(proj => (
@@ -359,8 +361,7 @@ export default function App() {
         return (
           <div className="animate-fade-in">
              <header className="mb-12">
-              <h2 className="text-4xl font-black text-black mb-2 inline-block border-b-4 border-red-500">DIGITAL ART</h2>
-              <p className="text-gray-700 font-black">Visual Transmission</p>
+             <h2 className="text-4xl font-black text-black mb-2 inline-block border-b-4 border-red-500">ART & SKETCHES</h2>
             </header>
             <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
               {artData.map(art => (
@@ -401,15 +402,14 @@ export default function App() {
         </div>
 
         <div className="flex-1 py-4 px-0 space-y-0 border-b-4 border-black">
-          <NavItem icon={Home} label="HOME BASE" active={activeTab === 'home'} onClick={() => setActiveTab('home')} />
-          <NavItem icon={Gamepad2} label="ARCADE ZONE" active={activeTab === 'game'} onClick={() => setActiveTab('game')} />
-          <NavItem icon={Cpu} label="CODE LAB" active={activeTab === 'graphics'} onClick={() => setActiveTab('graphics')} />
-          <NavItem icon={Palette} label="VISUAL ASSETS" active={activeTab === 'art'} onClick={() => setActiveTab('art')} />
+          <NavItem icon={Home} label="HOME" active={activeTab === 'home'} onClick={() => setActiveTab('home')} />
+          <NavItem icon={Gamepad2} label="GAME" active={activeTab === 'game'} onClick={() => setActiveTab('game')} />
+          <NavItem icon={Cpu} label="GRAPHICS" active={activeTab === 'graphics'} onClick={() => setActiveTab('graphics')} />
+          <NavItem icon={Palette} label="ART" active={activeTab === 'art'} onClick={() => setActiveTab('art')} />
         </div>
 
         <div className="p-8 text-black font-black text-sm bg-teal-400 border-t-2 border-black">
-           <p className="mb-1">STATUS: OPERATIONAL</p>
-           <p>MODE: CREATION</p>
+           <p className="mb-1">*THIS SITE IS A WORK IN PROGRESS</p>
         </div>
       </nav>
 
