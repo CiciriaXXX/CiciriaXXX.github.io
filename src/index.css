@@ -1,19 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Stack+Sans+Text:ital,wght@0,200..700;1,200..700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Global design tokens, font imports, and app-wide browser defaults. */
 @layer base {
+  @font-face {
+    font-display: swap;
+    font-family: 'Noto Serif';
+    font-style: normal;
+    font-weight: 100 900;
+    src: url('/fonts/NotoSerif-VariableFont_wdth,wght.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-display: swap;
+    font-family: 'Noto Serif';
+    font-style: italic;
+    font-weight: 100 900;
+    src: url('/fonts/NotoSerif-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-display: swap;
+    font-family: 'Pirata One';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/PirataOne-Regular.ttf') format('truetype');
+  }
+
   :root {
     --color-hero: rgba(255, 255, 255, 0.16);
     --color-accent: #ffffff;
     --color-accent-hover: #fff0bd;
     --color-ink: #ffffff;
     --color-paper: #ffffff;
-    --font-display: 'Jersey 10', monospace;
-    --font-body: 'Stack Sans Text', Arial, Helvetica, sans-serif;
+    --font-display: 'Pirata One';
+    --font-body: 'Noto Serif';
   }
 
   html {

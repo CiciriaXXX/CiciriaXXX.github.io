@@ -65,10 +65,11 @@ export const styles = {
 
   section: {
     root: 'scroll-mt-28 space-y-12',
-    header: 'space-y-3',
+    header: 'space-y-4',
     eyebrow: 'text-xs font-black uppercase text-[var(--color-ink)]',
     title:
-      'border-b-2 border-[var(--color-accent)] pb-2 font-display text-5xl font-normal leading-none text-[var(--color-accent)] md:text-7xl',
+      'font-display text-5xl font-normal leading-none text-[var(--color-accent)] md:text-7xl',
+    divider: 'block h-9 w-full select-none object-fill',
   },
 
   projectCard: {
