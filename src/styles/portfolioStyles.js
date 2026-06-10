@@ -39,9 +39,9 @@ export const styles = {
 
   hero: {
     imageLayers: [
-      'left-0 top-0 z-[1]',
-      'left-[9%] top-[7%] z-[2]',
-      'left-[18%] top-[14%] z-[3]',
+      'left-0 top-0 z-[1] brightness-[0.42]',
+      'left-[9%] top-[7%] z-[2] brightness-[0.68]',
+      'left-[18%] top-[14%] z-[3] brightness-100',
     ],
     section: 'scroll-mt-28 bg-transparent',
     inner: cx(
@@ -49,10 +49,11 @@ export const styles = {
       'grid min-h-[760px] items-center gap-12 pb-24 pt-40 md:grid-cols-[0.92fr_1.08fr] xl:gap-20',
     ),
     imageStage: 'relative mx-auto h-[500px] w-full max-w-[540px] xl:h-[580px]',
-    imageFrame: (layerClass) => cx('absolute aspect-[4/5] w-[78%] overflow-hidden bg-[var(--color-paper)]', layerClass),
+    imageFrame: (layerClass) => cx('absolute aspect-[4/5] w-[78%] overflow-hidden rounded-md bg-[var(--color-paper)]', layerClass),
     image: 'h-full w-full object-cover',
     copy: 'relative px-0 py-0 text-center md:text-left',
-    title: 'relative font-display text-6xl font-normal leading-none text-[var(--color-accent)] md:text-8xl',
+    title:
+      'relative font-display text-6xl font-normal leading-none text-[var(--color-accent)] [text-shadow:0_0_14px_rgba(255,255,255,0.62),0_0_32px_rgba(255,255,255,0.28)] md:text-8xl',
     subtitle: 'mt-1 text-xl font-black uppercase text-[var(--color-ink)]',
     body: 'mt-12 space-y-5 text-lg leading-relaxed text-[var(--color-ink)]',
     bodySmall: 'text-base',
@@ -68,8 +69,9 @@ export const styles = {
     header: 'space-y-4',
     eyebrow: 'text-xs font-black uppercase text-[var(--color-ink)]',
     title:
-      'font-display text-5xl font-normal leading-none text-[var(--color-accent)] md:text-7xl',
-    divider: 'block h-9 w-full select-none object-fill',
+      'font-display text-5xl font-normal leading-none text-[var(--color-accent)] [text-shadow:0_0_12px_rgba(255,255,255,0.58),0_0_28px_rgba(255,255,255,0.24)] md:text-7xl',
+    divider:
+      'block h-9 w-full select-none object-fill drop-shadow-[0_0_10px_rgba(255,255,255,0.7)] [filter:drop-shadow(0_0_10px_rgba(255,255,255,0.7))_drop-shadow(0_0_24px_rgba(255,255,255,0.32))]',
   },
 
   projectCard: {
@@ -80,14 +82,14 @@ export const styles = {
         : 'md:grid-cols-[1.15fr_0.85fr] xl:grid-cols-[1.22fr_0.78fr]',
     ),
     mediaButton: (isReversed) => cx(
-      'group flex aspect-video items-center justify-center overflow-hidden bg-transparent text-left',
+      'group flex aspect-video w-full items-center justify-center overflow-hidden rounded-md bg-white/[0.055] text-left shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)]',
       isReversed && 'md:order-2',
     ),
-    mediaImage: 'h-full w-full object-contain transition duration-500 group-hover:scale-[1.03]',
+    mediaImage: 'h-full w-full rounded-md object-cover transition duration-500 group-hover:scale-[1.03]',
     content: (isReversed) => cx('space-y-7', isReversed && 'md:order-1 md:text-right'),
     titleButton: (isReversed) => cx('block text-left', isReversed && 'md:ml-auto md:text-right'),
     title:
-      'border-b-2 border-[var(--color-accent)] pb-1 font-display text-5xl font-normal leading-none text-[var(--color-accent)] transition hover:text-[var(--color-accent-hover)] md:text-6xl',
+      'border-b-2 border-[var(--color-accent)] pb-1 font-display text-5xl font-normal leading-none text-[var(--color-accent)] [text-shadow:0_0_11px_rgba(255,255,255,0.5),0_0_24px_rgba(255,255,255,0.2)] transition hover:text-[var(--color-accent-hover)] md:text-6xl',
     body: 'space-y-4',
     role: 'text-2xl font-black uppercase text-[var(--color-accent)]',
     category: 'text-lg font-black text-[var(--color-ink)]',
@@ -103,11 +105,11 @@ export const styles = {
     grid: 'grid gap-8 md:grid-cols-3',
     card: 'group',
     previewButton:
-      'mb-4 flex aspect-[4/5] w-full items-center justify-center overflow-hidden bg-transparent text-left',
-    thumbnail: 'h-full w-full object-contain transition duration-500 group-hover:scale-[1.03]',
+      'mb-4 flex aspect-[4/5] w-full items-center justify-center overflow-hidden rounded-md bg-white/[0.055] text-left shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)]',
+    thumbnail: 'h-full w-full rounded-md object-cover transition duration-500 group-hover:scale-[1.03]',
     year: 'text-xs font-black uppercase text-[var(--color-ink)]',
     titleButton: 'mt-1 block text-left',
-    title: 'font-display text-3xl font-normal text-[var(--color-accent)] transition hover:text-[var(--color-accent-hover)]',
+    title: 'font-display text-3xl font-normal text-[var(--color-accent)] [text-shadow:0_0_9px_rgba(255,255,255,0.44),0_0_18px_rgba(255,255,255,0.18)] transition hover:text-[var(--color-accent-hover)]',
     description: 'mt-2 text-sm leading-relaxed text-[var(--color-ink)]',
   },
 
@@ -118,7 +120,7 @@ export const styles = {
     image: 'max-h-screen max-w-screen object-contain',
     caption: 'hidden',
     year: 'text-xs font-black uppercase text-[var(--color-paper)]',
-    title: 'mt-1 font-display text-2xl font-normal text-[var(--color-accent)]',
+    title: 'mt-1 font-display text-2xl font-normal text-[var(--color-accent)] [text-shadow:0_0_9px_rgba(255,255,255,0.44),0_0_18px_rgba(255,255,255,0.18)]',
   },
 
   detail: {
@@ -127,14 +129,16 @@ export const styles = {
       'inline-flex items-center gap-2 text-sm font-black text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]',
     header: 'grid gap-8 border-b-2 border-[var(--color-accent)] py-10 md:grid-cols-[0.9fr_1.1fr]',
     category: 'text-sm font-black uppercase text-[var(--color-ink)]',
-    title: 'mt-3 font-display text-5xl font-normal leading-none text-[var(--color-accent)] md:text-7xl',
+    title:
+      'mt-3 font-display text-5xl font-normal leading-none text-[var(--color-accent)] [text-shadow:0_0_12px_rgba(255,255,255,0.58),0_0_28px_rgba(255,255,255,0.24)] md:text-7xl',
     intro: 'space-y-5 md:pt-8',
     description: 'text-xl leading-relaxed text-[var(--color-ink)]',
     role: 'font-black uppercase text-[var(--color-accent)]',
     externalLink:
       'inline-flex items-center gap-2 border border-[var(--color-accent)] bg-white/10 px-8 py-3 text-sm font-black uppercase text-[var(--color-accent)] transition hover:border-[var(--color-accent-hover)] hover:text-[var(--color-accent-hover)]',
-    mediaFrame: 'flex items-center justify-center overflow-hidden bg-transparent',
-    mediaImage: 'max-h-[70vh] w-full object-contain',
+    mediaFrame:
+      'flex items-center justify-center overflow-hidden rounded-md bg-white/[0.055] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)]',
+    mediaImage: 'max-h-[70vh] w-full rounded-md object-contain',
     skills: 'grid gap-8 border-t-2 border-[var(--color-accent)] pt-10 md:grid-cols-[0.35fr_0.65fr]',
     skillsTitle: 'font-display text-2xl font-normal text-[var(--color-ink)]',
     skillList: 'flex flex-wrap gap-x-10 gap-y-3 text-base font-black text-[var(--color-ink)]',

@@ -1,6 +1,12 @@
 import { styles } from '../../styles/portfolioStyles';
 import { SectionHeader } from '../home/SectionHeader';
 
+function fitFrameToImage(event) {
+  const { naturalWidth, naturalHeight, parentElement } = event.currentTarget;
+  if (!naturalWidth || !naturalHeight || !parentElement) return;
+  parentElement.style.aspectRatio = `${naturalWidth} / ${naturalHeight}`;
+}
+
 // 2D art grid; thumbnails crop to fill their preview frame and open the lightbox.
 export function ArtworkGallery({ artworks, onPreview }) {
   return (
@@ -15,7 +21,7 @@ export function ArtworkGallery({ artworks, onPreview }) {
               className={styles.artwork.previewButton}
               aria-label={`Preview ${artwork.title}`}
             >
-              <img src={artwork.src} alt={artwork.title} className={styles.artwork.thumbnail} />
+              <img src={artwork.src} alt={artwork.title} onLoad={fitFrameToImage} className={styles.artwork.thumbnail} />
             </button>
             <p className={styles.artwork.year}>{artwork.year}</p>
             <button type="button" onClick={() => onPreview(artwork)} className={styles.artwork.titleButton}>

@@ -1,6 +1,12 @@
 import { styles } from '../../styles/portfolioStyles';
 import { useFallbackProjectImage } from './imageFallback';
 
+function fitFrameToImage(event) {
+  const { naturalWidth, naturalHeight, parentElement } = event.currentTarget;
+  if (!naturalWidth || !naturalHeight || !parentElement) return;
+  parentElement.style.aspectRatio = `${naturalWidth} / ${naturalHeight}`;
+}
+
 // Large alternating preview row used on the home page project sections.
 export function ProjectPreviewCard({ project, onOpen }) {
   const isReversed = project.index % 2 === 1;
@@ -16,6 +22,7 @@ export function ProjectPreviewCard({ project, onOpen }) {
         <img
           src={project.image}
           alt={project.title}
+          onLoad={fitFrameToImage}
           onError={useFallbackProjectImage}
           className={styles.projectCard.mediaImage}
         />
