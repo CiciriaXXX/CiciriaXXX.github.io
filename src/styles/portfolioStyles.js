@@ -21,14 +21,14 @@ export const styles = {
   },
 
   nav: {
-    header: 'site-nav fixed left-0 right-0 top-0 z-40 border-b border-white/25 bg-white/15 shadow-[0_18px_60px_rgba(24,22,88,0.18)] backdrop-blur-2xl',
+    header: 'site-nav fixed left-0 right-0 top-0 z-40 bg-[linear-gradient(180deg,#303059_0%,#05051A_100%)]',
     inner: cx(layout.container, 'flex items-center justify-between gap-6 py-6'),
     brandButton: 'text-left',
-    brandName: 'block font-display text-base font-normal text-[var(--color-accent)] transition hover:text-[var(--color-accent-hover)]',
+    brandName: 'block font-display text-3xl font-normal leading-none text-[var(--color-accent)] transition hover:text-[var(--color-accent-hover)] md:text-4xl',
     brandTitle: 'hidden text-xs font-semibold text-[var(--color-ink)] sm:block',
-    links: 'flex flex-wrap justify-end gap-x-8 gap-y-2 text-sm font-semibold',
+    links: 'flex flex-wrap justify-end gap-x-8 gap-y-2 text-lg font-semibold md:text-xl',
     link: (isActive) => cx(
-      'transition',
+      'text-lg transition md:text-xl',
       isActive ? 'text-[var(--color-accent)]' : 'text-[var(--color-ink)] hover:text-[var(--color-accent-hover)]',
     ),
   },
@@ -51,7 +51,7 @@ export const styles = {
     imageStage: 'relative mx-auto h-[500px] w-full max-w-[540px] xl:h-[580px]',
     imageFrame: (layerClass) => cx('absolute aspect-[4/5] w-[78%] overflow-hidden bg-[var(--color-paper)]', layerClass),
     image: 'h-full w-full object-cover',
-    copy: 'relative rounded-2xl border border-white/25 bg-white/[0.16] px-6 py-8 text-center shadow-[0_28px_90px_rgba(24,22,88,0.22)] backdrop-blur-2xl md:px-9 md:py-10 md:text-left',
+    copy: 'relative px-0 py-0 text-center md:text-left',
     title: 'relative font-display text-6xl font-normal leading-none text-[var(--color-accent)] md:text-8xl',
     subtitle: 'mt-1 text-xl font-black uppercase text-[var(--color-ink)]',
     body: 'mt-12 space-y-5 text-lg leading-relaxed text-[var(--color-ink)]',
@@ -60,7 +60,7 @@ export const styles = {
     strong: 'font-black',
     links: 'mt-8 flex flex-wrap justify-center gap-4 md:justify-start',
     iconLink:
-      'inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/35 bg-white/15 text-[var(--color-paper)] shadow-[0_14px_40px_rgba(24,22,88,0.16)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-[var(--color-accent-hover)] hover:bg-white/25 hover:text-[var(--color-accent-hover)] focus:outline-none focus:ring-2 focus:ring-white/70',
+      'inline-flex h-10 w-10 items-center justify-center text-[var(--color-paper)] transition hover:-translate-y-0.5 hover:text-[var(--color-accent-hover)] focus:outline-none focus:ring-2 focus:ring-white/70',
   },
 
   section: {
@@ -79,10 +79,10 @@ export const styles = {
         : 'md:grid-cols-[1.15fr_0.85fr] xl:grid-cols-[1.22fr_0.78fr]',
     ),
     mediaButton: (isReversed) => cx(
-      'group aspect-video overflow-hidden rounded-xl bg-[var(--color-hero)] text-left',
+      'group flex aspect-video items-center justify-center overflow-hidden bg-transparent text-left',
       isReversed && 'md:order-2',
     ),
-    mediaImage: 'h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]',
+    mediaImage: 'h-full w-full object-contain transition duration-500 group-hover:scale-[1.03]',
     content: (isReversed) => cx('space-y-7', isReversed && 'md:order-1 md:text-right'),
     titleButton: (isReversed) => cx('block text-left', isReversed && 'md:ml-auto md:text-right'),
     title:
@@ -102,8 +102,8 @@ export const styles = {
     grid: 'grid gap-8 md:grid-cols-3',
     card: 'group',
     previewButton:
-      'mb-4 aspect-[4/5] w-full overflow-hidden rounded-xl bg-[var(--color-hero)] text-left',
-    thumbnail: 'h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]',
+      'mb-4 flex aspect-[4/5] w-full items-center justify-center overflow-hidden bg-transparent text-left',
+    thumbnail: 'h-full w-full object-contain transition duration-500 group-hover:scale-[1.03]',
     year: 'text-xs font-black uppercase text-[var(--color-ink)]',
     titleButton: 'mt-1 block text-left',
     title: 'font-display text-3xl font-normal text-[var(--color-accent)] transition hover:text-[var(--color-accent-hover)]',
@@ -132,8 +132,8 @@ export const styles = {
     role: 'font-black uppercase text-[var(--color-accent)]',
     externalLink:
       'inline-flex items-center gap-2 border border-[var(--color-accent)] bg-white/10 px-8 py-3 text-sm font-black uppercase text-[var(--color-accent)] transition hover:border-[var(--color-accent-hover)] hover:text-[var(--color-accent-hover)]',
-    mediaFrame: 'overflow-hidden rounded-xl bg-[var(--color-hero)]',
-    mediaImage: 'max-h-[70vh] w-full object-cover',
+    mediaFrame: 'flex items-center justify-center overflow-hidden bg-transparent',
+    mediaImage: 'max-h-[70vh] w-full object-contain',
     skills: 'grid gap-8 border-t-2 border-[var(--color-accent)] pt-10 md:grid-cols-[0.35fr_0.65fr]',
     skillsTitle: 'font-display text-2xl font-normal text-[var(--color-ink)]',
     skillList: 'flex flex-wrap gap-x-10 gap-y-3 text-base font-black text-[var(--color-ink)]',

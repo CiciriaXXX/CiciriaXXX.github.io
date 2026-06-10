@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@400&family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Stack+Sans+Text:ital,wght@0,200..700;1,200..700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -12,8 +12,8 @@
     --color-accent-hover: #fff0bd;
     --color-ink: #ffffff;
     --color-paper: #ffffff;
-    --font-display: 'Bitcount Grid Double', monospace;
-    --font-body: 'Elms Sans', Arial, Helvetica, sans-serif;
+    --font-display: 'Jersey 10', monospace;
+    --font-body: 'Stack Sans Text', Arial, Helvetica, sans-serif;
   }
 
   html {

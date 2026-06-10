@@ -10,7 +10,6 @@ export function TopNav({ personalInfo, activeRouteId, onNavigate }) {
           <span className={styles.nav.brandName}>
             {personalInfo.name}
           </span>
-          <span className={styles.nav.brandTitle}>{personalInfo.title}</span>
         </button>
 
         <div className={styles.nav.links}>
