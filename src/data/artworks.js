@@ -1,3 +1,4 @@
+// 2D artwork metadata used by the gallery and full-screen preview.
 export const artworks = [
   {
     id: 1,

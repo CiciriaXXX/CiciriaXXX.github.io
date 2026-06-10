@@ -2,6 +2,7 @@ import { ProjectPreviewCard } from '../projects/ProjectPreviewCard';
 import { styles } from '../../styles/portfolioStyles';
 import { SectionHeader } from './SectionHeader';
 
+// Reusable project section renderer for Tech Art and Game Projects.
 export function PortfolioSection({ id, eyebrow, title, items, onOpen }) {
   return (
     <section id={id} className={styles.section.root}>

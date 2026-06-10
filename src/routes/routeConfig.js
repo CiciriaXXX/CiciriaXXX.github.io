@@ -1,3 +1,4 @@
+// Top navigation metadata shared by the nav component and route helpers.
 export const navRoutes = [
   { id: 'home', path: '#home', label: 'Home' },
   { id: 'tech-art', path: '#tech-art', label: 'Tech Art' },
@@ -5,6 +6,7 @@ export const navRoutes = [
   { id: '2d-art', path: '#2d-art', label: '2D Art' },
 ];
 
+// Keeps hash anchors and detail routes in one canonical format.
 export const normalizePath = (path) => {
   if (!path || path === '#') return '/';
   const cleanPath = path.replace(/^#/, '').split('?')[0];
@@ -12,6 +14,7 @@ export const normalizePath = (path) => {
   return cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
 };
 
+// Maps the current route to the navigation item that should appear active.
 export const getActiveRouteId = (path) => {
   if (path === '#home') return 'home';
   if (path === '#games' || path.startsWith('/games')) return 'game';

@@ -10,9 +10,11 @@ import { styles } from '../styles/portfolioStyles';
 
 const homeAnchors = ['tech-art', 'games', '2d-art'];
 
+// Home page composes the hero, project sections, 2D gallery, and artwork preview overlay.
 export function HomePage({ personalInfo, onNavigate }) {
   const [previewArtwork, setPreviewArtwork] = useState(null);
 
+  // Re-run anchor scrolling after the home page has mounted and section nodes exist.
   useEffect(() => {
     const anchor = window.location.hash.slice(1);
     if (homeAnchors.includes(anchor)) scrollToAnchor(anchor);

@@ -1,14 +1,14 @@
-import { ExternalLink } from 'lucide-react';
+import { Gamepad2, Github, Linkedin } from 'lucide-react';
 import { styles } from '../../styles/portfolioStyles';
 import { HeroImage } from './HeroImage';
 
+// Opening section with author identity, short bio, and icon-only social links.
 export function HeroSection({ personalInfo }) {
   return (
     <section id="home" className={styles.hero.section}>
       <div className={styles.hero.inner}>
         <HeroImage />
         <div className={styles.hero.copy}>
-          <p className={styles.hero.ghostName}>{personalInfo.name}</p>
           <h1 className={styles.hero.title}>{personalInfo.name}</h1>
           <p className={styles.hero.subtitle}>Shichun Xu</p>
           <div className={styles.hero.body}>
@@ -23,14 +23,14 @@ export function HeroSection({ personalInfo }) {
             </p>
           </div>
           <div className={styles.hero.links}>
-            <a className={styles.hero.primaryLink} href={personalInfo.links.itch}>
-              Itch.io
+            <a className={styles.hero.iconLink} href={personalInfo.links.itch} aria-label="Open Itch.io">
+              <Gamepad2 size={22} />
             </a>
-            <a className={styles.hero.secondaryLink} href={personalInfo.links.github}>
-              GitHub <ExternalLink size={14} />
+            <a className={styles.hero.iconLink} href={personalInfo.links.github} aria-label="Open GitHub">
+              <Github size={22} />
             </a>
-            <a className={styles.hero.secondaryLink} href={personalInfo.links.linkedin}>
-              LinkedIn <ExternalLink size={14} />
+            <a className={styles.hero.iconLink} href={personalInfo.links.linkedin} aria-label="Open LinkedIn">
+              <Linkedin size={22} />
             </a>
           </div>
         </div>

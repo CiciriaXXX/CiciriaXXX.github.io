@@ -1,6 +1,7 @@
 import { styles } from '../../styles/portfolioStyles';
 import { useFallbackProjectImage } from './imageFallback';
 
+// Large alternating preview row used on the home page project sections.
 export function ProjectPreviewCard({ project, onOpen }) {
   const isReversed = project.index % 2 === 1;
 

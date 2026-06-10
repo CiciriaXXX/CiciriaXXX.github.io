@@ -1,6 +1,7 @@
 import { styles } from '../../styles/portfolioStyles';
 import { SectionHeader } from '../home/SectionHeader';
 
+// 2D art grid; thumbnails crop to fill their preview frame and open the lightbox.
 export function ArtworkGallery({ artworks, onPreview }) {
   return (
     <section id="2d-art" className={styles.artwork.section}>

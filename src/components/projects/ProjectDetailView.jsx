@@ -2,6 +2,7 @@ import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { styles } from '../../styles/portfolioStyles';
 import { useFallbackProjectImage } from './imageFallback';
 
+// Full project detail layout with overview, media, skills, and optional external link.
 export function ProjectDetailView({ project, onBack }) {
   return (
     <article className={styles.detail.root}>

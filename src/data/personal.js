@@ -1,3 +1,4 @@
+// Personal profile and outbound links displayed in the hero and navigation.
 export const personalInfo = {
   name: 'Cecilia Xu',
   title: 'Tech Artist / Game Developer / 2D Artist',

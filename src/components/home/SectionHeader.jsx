@@ -1,5 +1,6 @@
 import { styles } from '../../styles/portfolioStyles';
 
+// Shared section title pattern used to keep portfolio sections visually consistent.
 export function SectionHeader({ eyebrow, title }) {
   return (
     <header className={styles.section.header}>

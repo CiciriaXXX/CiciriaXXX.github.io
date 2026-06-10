@@ -1,13 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./index.html",
-    // 确保扫描所有 src 目录下的 .js, .jsx, .ts, .tsx 文件
-    "./src/**/*.{js,jsx,ts,tsx}", 
+    './index.html',
+    // Scan every React source file so Tailwind keeps component classes in the build.
+    './src/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      // Project fonts are defined as CSS variables in src/index.css.
+      fontFamily: {
+        body: ['var(--font-body)'],
+        display: ['var(--font-display)'],
+      },
+    },
   },
   plugins: [],
-}
-
+};

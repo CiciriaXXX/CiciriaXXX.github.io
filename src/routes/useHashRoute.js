@@ -2,13 +2,16 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { normalizePath } from './routeConfig';
 import { scrollAnimationDelay, scrollToAnchor } from './scrollToAnchor';
 
+// Reads the current hash route and normalizes it before React state sees it.
 const readPath = () => normalizePath(window.location.hash.slice(1));
 
+// Updates the URL without triggering the browser's default jump-to-anchor behavior.
 const updateHashPath = (path) => {
   const nextUrl = `${window.location.pathname}${window.location.search}${path}`;
   window.history.pushState(null, '', nextUrl);
 };
 
+// Small hash router used by this static portfolio instead of a full routing library.
 export function useHashRoute() {
   const [path, setPath] = useState(readPath);
   const pendingHashUpdate = useRef(null);

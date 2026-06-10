@@ -1,18 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@400&family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Global design tokens, font imports, and app-wide browser defaults. */
 @layer base {
   :root {
-    --color-hero: #eaf8fc;
-    --color-accent: #ff2b08;
-    --color-ink: #07153f;
+    --color-hero: rgba(255, 255, 255, 0.16);
+    --color-accent: #ffffff;
+    --color-accent-hover: #fff0bd;
+    --color-ink: #ffffff;
     --color-paper: #ffffff;
-    --font-display: Arial, Helvetica, sans-serif;
-    --font-body: Arial, Helvetica, sans-serif;
+    --font-display: 'Bitcount Grid Double', monospace;
+    --font-body: 'Elms Sans', Arial, Helvetica, sans-serif;
+  }
+
+  html {
+    min-height: 100%;
+    background: #00000f;
   }
 
   body {
+    min-height: 100%;
+    margin: 0;
+    background: #00000f;
     font-family: var(--font-body);
+  }
+}
+
+/* Cross-component state hooks that are easier to express globally than with component props. */
+@layer components {
+  .glsl-background {
+    height: 100vh;
+    inset: 0;
+    pointer-events: none;
+    position: fixed;
+    width: 100vw;
+    z-index: 0;
+  }
+
+  .artwork-lightbox-open .site-nav {
+    display: none;
   }
 }

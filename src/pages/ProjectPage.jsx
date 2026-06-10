@@ -1,6 +1,7 @@
 import { ProjectDetailView } from '../components/projects/ProjectDetailView';
 import { styles } from '../styles/portfolioStyles';
 
+// Route-level wrapper for project detail pages, including the not-found fallback.
 export function ProjectPage({ project, fallbackPath, onNavigate }) {
   if (!project) {
     return (

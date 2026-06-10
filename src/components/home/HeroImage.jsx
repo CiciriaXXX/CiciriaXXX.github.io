@@ -1,5 +1,6 @@
 import { styles } from '../../styles/portfolioStyles';
 
+// Layered hero artwork treatment on the left side of the home page.
 export function HeroImage() {
   return (
     <div className={styles.hero.imageStage}>

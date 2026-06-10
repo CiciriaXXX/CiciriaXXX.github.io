@@ -1,3 +1,4 @@
+// Project data is grouped by section so the home page and detail routes share one source.
 export const projectSections = [
   {
     id: 'game',
@@ -7,7 +8,7 @@ export const projectSections = [
       {
         id: 1,
         slug: 'time-loop-forest',
-        title: 'TimeLoopForest',
+        title: 'Time Loop Forest',
         category: 'Puzzle',
         image: '/timeloopforest.png',
         description:
@@ -63,10 +64,12 @@ export const projectSections = [
   },
 ];
 
+// Fast lookup table for detail routes such as /games/time-loop-forest.
 export const projectsBySlug = projectSections
   .flatMap((section) => section.projects.map((project) => ({ ...project, sectionId: section.id })))
   .reduce((index, project) => ({ ...index, [project.slug]: project }), {});
 
+// Section lookup table used by the home page renderer.
 export const sectionsById = projectSections.reduce(
   (index, section) => ({ ...index, [section.id]: section }),
   {},

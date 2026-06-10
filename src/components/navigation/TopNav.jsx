@@ -1,6 +1,7 @@
 import { navRoutes } from '../../routes/routeConfig';
 import { styles } from '../../styles/portfolioStyles';
 
+// Fixed glass navigation shared by all normal portfolio views.
 export function TopNav({ personalInfo, activeRouteId, onNavigate }) {
   return (
     <header className={styles.nav.header}>

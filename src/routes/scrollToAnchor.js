@@ -1,15 +1,18 @@
+// Anchors that participate in the home page's smooth scrolling navigation.
 const anchorIds = new Set(['home', 'tech-art', 'games', '2d-art']);
 const navOffset = 112;
 const scrollDuration = 520;
 
 let activeAnimation = null;
 
+// Easing keeps anchor jumps feeling softer than the browser default.
 const easeOutCubic = (progress) => 1 - (1 - progress) ** 3;
 
 const getTargetY = (element) => (
   Math.max(0, element.getBoundingClientRect().top + window.scrollY - navOffset)
 );
 
+// Manual scroll animation so hash updates and fixed-nav offsets stay predictable.
 const animateScroll = (targetY) => {
   if (activeAnimation) window.clearTimeout(activeAnimation);
 
@@ -33,6 +36,7 @@ const animateScroll = (targetY) => {
   activeAnimation = window.setTimeout(step, 0);
 };
 
+// Scrolls to a known home section while accounting for the fixed navigation bar.
 export function scrollToAnchor(anchor, behavior = 'smooth') {
   if (!anchorIds.has(anchor)) return;
 
