@@ -10,8 +10,8 @@ export const palette = {
 
 // Shared page width and padding rules for home and detail layouts.
 export const layout = {
-  container: 'mx-auto max-w-[1400px] px-4 md:px-6 xl:px-8',
-  detailContainer: 'mx-auto max-w-[1400px] px-4 pb-24 pt-36 md:px-6 xl:px-8',
+  container: 'mx-auto max-w-[1560px] px-3 md:px-4 xl:px-4',
+  detailContainer: 'mx-auto max-w-[1560px] px-3 pb-24 pt-36 md:px-4 xl:px-4',
 };
 
 // Central Tailwind class map keeps JSX components focused on structure and content.
@@ -21,8 +21,8 @@ export const styles = {
   },
 
   nav: {
-    header: 'site-nav fixed left-0 right-0 top-0 z-40 bg-[linear-gradient(180deg,#303059_0%,#05051A_100%)]',
-    inner: cx(layout.container, 'flex items-center justify-between gap-6 py-6'),
+    header: 'site-nav fixed left-0 right-0 top-0 z-40 border-b border-white/15 bg-[#05051A]/45 backdrop-blur-xl',
+    inner: 'mx-auto flex max-w-[1560px] items-center justify-between gap-6 px-3 py-3 md:px-4',
     brandButton: 'text-left',
     brandName: 'block font-display text-3xl font-normal leading-none text-[var(--color-accent)] transition hover:text-[var(--color-accent-hover)] md:text-4xl',
     brandTitle: 'hidden text-xs font-semibold text-[var(--color-ink)] sm:block',
@@ -61,7 +61,7 @@ export const styles = {
     strong: 'font-black',
     links: 'mt-8 flex flex-wrap justify-center gap-4 md:justify-start',
     iconLink:
-      'inline-flex h-10 w-10 items-center justify-center text-[var(--color-paper)] transition hover:-translate-y-0.5 hover:text-[var(--color-accent-hover)] focus:outline-none focus:ring-2 focus:ring-white/70',
+      'inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/10 text-[var(--color-paper)] shadow-[0_10px_26px_rgba(0,0,0,0.18),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/15 hover:text-[var(--color-accent-hover)] focus:outline-none focus:ring-2 focus:ring-white/70',
   },
 
   section: {
