@@ -16,60 +16,90 @@ const fragmentShaderSource = `
   uniform vec2 iResolution;
   uniform float iTime;
 
-  #define PHI 1.61803398874989484820459
+  const int NS = 100;
+  const float CI = 0.3;
 
-  float rand_with_seed(int i) {
-    return fract(sin(float(i) * 12.9898 + 78.233) * 43758.5453);
+  float N21(vec2 p) {
+    return fract(sin(p.x * 100.0 + p.y * 7446.0) * 8345.0);
   }
 
-  float gold_noise(in vec2 xy, in float seed) {
-    return fract(tan(distance(xy * PHI, xy) * seed) * xy.x);
+  float SS(vec2 uv) {
+    vec2 lv = fract(uv);
+    lv = lv * lv * (3.0 - 2.0 * lv);
+    vec2 id = floor(uv);
+
+    float bl = N21(id);
+    float br = N21(id + vec2(1.0, 0.0));
+    float b = mix(bl, br, lv.x);
+
+    float tl = N21(id + vec2(0.0, 1.0));
+    float tr = N21(id + vec2(1.0, 1.0));
+    float t = mix(tl, tr, lv.x);
+
+    return mix(b, t, lv.y);
+  }
+
+  float L(vec2 uv, vec2 ofs, float b, float l) {
+    return smoothstep(
+      0.0,
+      1000.0,
+      b * max(0.1, l) / pow(max(0.0000000000001, length(uv - ofs)), 1.0 / max(0.1, l))
+    );
+  }
+
+  vec2 H12(float s) {
+    vec2 p = vec2(s * 127.1 + 311.7, s * 269.5 + 183.3);
+    return fract(sin(p) * 43758.5453123) - 0.5;
   }
 
   void main() {
-    vec2 fragCoord = gl_FragCoord.xy;
-    const int STARS_SIZE = 400;
+    vec2 uv = gl_FragCoord.xy / iResolution.xy;
 
-    vec2 uv;
-    if (iResolution.x > iResolution.y) {
-      uv = fragCoord.xy * 2.0 / iResolution.x - 1.0;
-      uv.y += (iResolution.x - iResolution.y) / iResolution.x;
-    } else {
-      uv = fragCoord.xy * 2.0 / iResolution.y - 1.0;
-      uv.x += (iResolution.y - iResolution.x) / iResolution.y;
-    }
+    uv -= 0.5;
+    uv.x *= iResolution.x / iResolution.y;
 
-    vec2 uv2 = fragCoord.xy / 1000.0 - iResolution.xy / 2000.0;
-    vec3 col = mix(vec3(0.0, 0.0, 0.1), vec3(0.0, 0.0, 0.0), (uv.x * uv.x + uv.y * uv.y) / 2.0);
+    vec4 col = vec4(0.0);
 
-    float noise = gold_noise(uv.xy / 2.0, 10000000.0) / 30.0;
-    col += noise;
+    vec4 b = vec4(0.01176470588, 0.05098039215, 0.14117647058, 1.0);
+    vec4 p = vec4(0.13333333333, 0.07843137254, 0.13725490196, 1.0);
+    vec4 lb = vec4(0.10196078431, 0.21568627451, 0.33333333333, 1.0);
 
-    for(int i = 0; i < STARS_SIZE; i++) {
-      float r1 = rand_with_seed(i);
-      float r2 = rand_with_seed(i + 1);
-      float r3 = rand_with_seed(i + 2);
-      float r4 = rand_with_seed(i + 3);
+    vec4 blb = mix(b, lb, -uv.x * 0.2 - (uv.y * 0.5));
 
-      vec2 star_pos = vec2(r1 * 2.0 - 1.0, r2 * 2.0 - 1.0);
-      float brightness = (sin(iTime / 5.0 + r3 * 12.9898) - 0.9) * 10.0;
+    col += mix(blb, p, uv.x - (uv.y * 1.5));
 
-      if (brightness > 0.0) {
-        float to_star = sqrt(abs(uv2.x - star_pos.x)) + sqrt(abs(uv2.y - star_pos.y));
-        float star_size = r4;
-        if (to_star <= 0.1 * star_size) {
-          col += mix(vec3(0.0), vec3(1.5, 1.5, 1.0), brightness);
-        }
+    for (int i = 0; i < NS; i++) {
+      float fi = float(i);
+      vec2 ofs = H12(fi + 1.0);
+      ofs *= vec2(1.8, 1.1);
+
+      float r = 0.25;
+      if (mod(fi, 20.0) == 0.0) {
+        r = 0.5 + abs(sin(fi / 50.0));
       }
+
+      col += vec4(L(uv, ofs, r + (sin(fract(iTime) * 0.5 * fi) + 1.0) * 0.02, 1.0));
     }
 
-    gl_FragColor = vec4(col, 1.0);
+    uv.x += iTime * 0.03;
+    uv.y += sin(iTime * 0.03);
+
+    float c = 0.0;
+
+    for (int i = 1; i < 8; i++) {
+      float fi = float(i);
+      c += SS(uv * pow(2.0, fi)) * pow(0.5, fi);
+    }
+
+    col = col + c * CI;
+
+    gl_FragColor = col;
   }
 `;
 
 // Keep the background intentionally cheaper than the foreground UI: FPS is capped while resolution stays crisp.
 const targetFrameMs = 1000 / 15;
-const renderScale = 1;
+const renderScale = 0.8;
 
 function createShader(gl, type, source) {
   const shader = gl.createShader(type);
