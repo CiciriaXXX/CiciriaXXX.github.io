@@ -9,6 +9,7 @@ export function AppShell({ children, path, personalInfo, onNavigate }) {
 
   return (
     <div className={styles.app.root}>
+      <div className="mobile-static-background" aria-hidden="true" />
       <GlslBackground />
       <TopNav personalInfo={personalInfo} activeRouteId={activeRouteId} onNavigate={onNavigate} />
       <main className="relative z-10">{children}</main>
