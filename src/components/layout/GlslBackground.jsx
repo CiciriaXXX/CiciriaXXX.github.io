@@ -73,9 +73,9 @@ const fragmentShaderSource = `
       vec2 ofs = H12(fi + 1.0);
       ofs *= vec2(1.8, 1.1);
 
-      float r = 0.25;
-      if (mod(fi, 20.0) == 0.0) {
-        r = 0.5 + abs(sin(fi / 50.0));
+      float r = 0.18;
+      if (mod(fi, 10.0) == 0.0) {
+        r = 0.7 + abs(sin(fi / 31.0)) * 0.6;
       }
 
       col += vec4(L(uv, ofs, r + (sin(fract(iTime) * 0.5 * fi) + 1.0) * 0.02, 1.0));
@@ -100,6 +100,7 @@ const fragmentShaderSource = `
 // Keep the background intentionally cheaper than the foreground UI: FPS is capped while resolution stays crisp.
 const targetFrameMs = 1000 / 15;
 const renderScale = 0.8;
+const staticBackgroundQuery = '(max-width: 767px), (pointer: coarse), (prefers-reduced-motion: reduce)';
 
 function createShader(gl, type, source) {
   const shader = gl.createShader(type);
@@ -143,6 +144,7 @@ export function GlslBackground() {
 
     let animationFrameId = 0;
     let lastRenderedAt = 0;
+    const staticBackground = window.matchMedia(staticBackgroundQuery).matches;
     const program = createProgram(gl);
     const positionLocation = gl.getAttribLocation(program, 'aPosition');
     const resolutionLocation = gl.getUniformLocation(program, 'iResolution');
@@ -197,6 +199,22 @@ export function GlslBackground() {
 
     resize();
     drawFrame(startedAt);
+
+    if (staticBackground) {
+      const handleResize = () => {
+        resize();
+        drawFrame(startedAt);
+      };
+
+      window.addEventListener('resize', handleResize);
+
+      return () => {
+        window.removeEventListener('resize', handleResize);
+        gl.deleteBuffer(positionBuffer);
+        gl.deleteProgram(program);
+      };
+    }
+
     animationFrameId = window.requestAnimationFrame(render);
 
     return () => {

@@ -22,14 +22,18 @@ export const styles = {
 
   nav: {
     header: 'site-nav fixed left-0 right-0 top-0 z-40 border-b border-white/15 bg-[#05051A]/45 backdrop-blur-xl',
-    inner: 'mx-auto flex max-w-[1560px] items-center justify-between gap-6 px-3 py-3 md:px-4',
+    inner: 'mx-auto flex max-w-[1560px] flex-col items-start gap-2 px-3 py-2 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:py-3 md:px-4',
     brandButton: 'text-left',
-    brandName: 'block font-display text-3xl font-normal leading-none text-[var(--color-accent)] transition hover:text-[var(--color-accent-hover)] md:text-4xl',
+    brandName: 'block font-display text-2xl font-normal leading-none text-[var(--color-accent)] transition hover:text-[var(--color-accent-hover)] sm:text-3xl md:text-4xl',
     brandTitle: 'hidden text-xs font-semibold text-[var(--color-ink)] sm:block',
-    links: 'flex flex-wrap justify-end gap-x-8 gap-y-2 text-lg font-semibold md:text-xl',
+    links: 'flex w-full flex-nowrap justify-start gap-1.5 overflow-x-auto pb-1 text-[13px] font-semibold [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:w-auto sm:flex-wrap sm:justify-end sm:gap-2 sm:overflow-visible sm:pb-0 sm:text-lg md:text-xl',
     link: (isActive) => cx(
-      'text-lg transition md:text-xl',
-      isActive ? 'text-[var(--color-accent)]' : 'text-[var(--color-ink)] hover:text-[var(--color-accent-hover)]',
+      'shrink-0 rounded-full border px-2.5 py-1 text-[13px] transition duration-200 sm:px-4 sm:py-1.5 sm:text-lg md:text-xl',
+      'hover:-translate-y-0.5 hover:bg-white/[0.08] hover:text-[var(--color-accent-hover)]',
+      'focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60',
+      isActive
+        ? 'border-white/25 bg-white/[0.16] text-[var(--color-accent)] shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_8px_26px_rgba(0,0,0,0.22)]'
+        : 'border-transparent text-[var(--color-ink)]',
     ),
   },
 
@@ -46,19 +50,19 @@ export const styles = {
     section: 'scroll-mt-28 bg-transparent',
     inner: cx(
       layout.container,
-      'grid min-h-[760px] items-center gap-12 pb-24 pt-40 md:grid-cols-[0.92fr_1.08fr] xl:gap-20',
+      'grid min-h-[760px] items-center gap-12 pb-24 pt-36 sm:pt-40 md:grid-cols-[0.92fr_1.08fr] xl:gap-20',
     ),
     imageStage: 'relative mx-auto h-[500px] w-full max-w-[540px] xl:h-[580px]',
     imageFrame: (layerClass) => cx('absolute aspect-[4/5] w-[78%] overflow-hidden rounded-md bg-[var(--color-paper)]', layerClass),
     image: 'h-full w-full object-cover',
     copy: 'relative px-0 py-0 text-center md:text-left',
     title:
-      'relative font-display text-6xl font-normal leading-none text-[var(--color-accent)] [text-shadow:0_0_14px_rgba(255,255,255,0.62),0_0_32px_rgba(255,255,255,0.28)] md:text-8xl',
+      'relative font-display text-6xl font-normal leading-none text-[var(--color-accent)] [text-shadow:0_0_14px_rgba(255,240,189,0.62),0_0_32px_rgba(255,240,189,0.28)] md:text-8xl',
     subtitle: 'mt-1 text-xl font-black uppercase text-[var(--color-ink)]',
     body: 'mt-12 space-y-5 text-lg leading-relaxed text-[var(--color-ink)]',
     bodySmall: 'text-base',
     accentText: 'font-black text-[var(--color-accent)]',
-    strong: 'font-black',
+    strong: 'font-black text-[var(--color-accent)]',
     links: 'mt-8 flex flex-wrap justify-center gap-4 md:justify-start',
     iconLink:
       'inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/10 text-[var(--color-paper)] shadow-[0_10px_26px_rgba(0,0,0,0.18),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/15 hover:text-[var(--color-accent-hover)] focus:outline-none focus:ring-2 focus:ring-white/70',
@@ -69,9 +73,9 @@ export const styles = {
     header: 'space-y-4',
     eyebrow: 'text-xs font-black uppercase text-[var(--color-ink)]',
     title:
-      'font-display text-5xl font-normal leading-none text-[var(--color-accent)] [text-shadow:0_0_12px_rgba(255,255,255,0.58),0_0_28px_rgba(255,255,255,0.24)] md:text-7xl',
+      'font-display text-5xl font-normal leading-none text-[var(--color-accent)] [text-shadow:0_0_12px_rgba(255,240,189,0.58),0_0_28px_rgba(255,240,189,0.24)] md:text-7xl',
     divider:
-      'block h-9 w-full select-none object-fill drop-shadow-[0_0_10px_rgba(255,255,255,0.7)] [filter:drop-shadow(0_0_10px_rgba(255,255,255,0.7))_drop-shadow(0_0_24px_rgba(255,255,255,0.32))]',
+      'block h-9 w-full select-none object-fill drop-shadow-[0_0_10px_rgba(255,240,189,0.7)] [filter:drop-shadow(0_0_10px_rgba(255,240,189,0.7))_drop-shadow(0_0_24px_rgba(255,240,189,0.32))]',
   },
 
   projectCard: {
@@ -85,11 +89,11 @@ export const styles = {
       'group flex aspect-video w-full items-center justify-center overflow-hidden rounded-md bg-white/[0.055] text-left shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)]',
       isReversed && 'md:order-2',
     ),
-    mediaImage: 'h-full w-full rounded-md object-cover transition duration-500 group-hover:scale-[1.03]',
+    mediaImage: 'h-full w-full rounded-md object-contain transition duration-500 group-hover:scale-[1.03]',
     content: (isReversed) => cx('space-y-7', isReversed && 'md:order-1 md:text-right'),
     titleButton: (isReversed) => cx('block text-left', isReversed && 'md:ml-auto md:text-right'),
     title:
-      'border-b-2 border-[var(--color-accent)] pb-1 font-display text-5xl font-normal leading-none text-[var(--color-accent)] [text-shadow:0_0_11px_rgba(255,255,255,0.5),0_0_24px_rgba(255,255,255,0.2)] transition hover:text-[var(--color-accent-hover)] md:text-6xl',
+      'font-display text-5xl font-normal leading-none text-[var(--color-accent)] [text-shadow:0_0_11px_rgba(255,240,189,0.5),0_0_24px_rgba(255,240,189,0.2)] transition hover:text-[var(--color-accent-hover)] md:text-6xl',
     body: 'space-y-4',
     role: 'text-2xl font-black uppercase text-[var(--color-accent)]',
     category: 'text-lg font-black text-[var(--color-ink)]',
@@ -106,10 +110,10 @@ export const styles = {
     card: 'group',
     previewButton:
       'mb-4 flex aspect-[4/5] w-full items-center justify-center overflow-hidden rounded-md bg-white/[0.055] text-left shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)]',
-    thumbnail: 'h-full w-full rounded-md object-cover transition duration-500 group-hover:scale-[1.03]',
+    thumbnail: 'h-full w-full rounded-md object-contain transition duration-500 group-hover:scale-[1.03]',
     year: 'text-xs font-black uppercase text-[var(--color-ink)]',
     titleButton: 'mt-1 block text-left',
-    title: 'font-display text-3xl font-normal text-[var(--color-accent)] [text-shadow:0_0_9px_rgba(255,255,255,0.44),0_0_18px_rgba(255,255,255,0.18)] transition hover:text-[var(--color-accent-hover)]',
+    title: 'font-display text-3xl font-normal text-[var(--color-accent)] [text-shadow:0_0_9px_rgba(255,240,189,0.44),0_0_18px_rgba(255,240,189,0.18)] transition hover:text-[var(--color-accent-hover)]',
     description: 'mt-2 text-sm leading-relaxed text-[var(--color-ink)]',
   },
 
@@ -120,7 +124,7 @@ export const styles = {
     image: 'max-h-screen max-w-screen object-contain',
     caption: 'hidden',
     year: 'text-xs font-black uppercase text-[var(--color-paper)]',
-    title: 'mt-1 font-display text-2xl font-normal text-[var(--color-accent)] [text-shadow:0_0_9px_rgba(255,255,255,0.44),0_0_18px_rgba(255,255,255,0.18)]',
+    title: 'mt-1 font-display text-2xl font-normal text-[var(--color-accent)] [text-shadow:0_0_9px_rgba(255,240,189,0.44),0_0_18px_rgba(255,240,189,0.18)]',
   },
 
   detail: {
@@ -130,7 +134,7 @@ export const styles = {
     header: 'grid gap-8 border-b-2 border-[var(--color-accent)] py-10 md:grid-cols-[0.9fr_1.1fr]',
     category: 'text-sm font-black uppercase text-[var(--color-ink)]',
     title:
-      'mt-3 font-display text-5xl font-normal leading-none text-[var(--color-accent)] [text-shadow:0_0_12px_rgba(255,255,255,0.58),0_0_28px_rgba(255,255,255,0.24)] md:text-7xl',
+      'mt-3 font-display text-5xl font-normal leading-none text-[var(--color-accent)] [text-shadow:0_0_12px_rgba(255,240,189,0.58),0_0_28px_rgba(255,240,189,0.24)] md:text-7xl',
     intro: 'space-y-5 md:pt-8',
     description: 'text-xl leading-relaxed text-[var(--color-ink)]',
     role: 'font-black uppercase text-[var(--color-accent)]',

@@ -17,7 +17,10 @@ export function TopNav({ personalInfo, activeRouteId, onNavigate }) {
             <button
               type="button"
               key={id}
-              onClick={() => onNavigate(path)}
+              onClick={(event) => {
+                event.currentTarget.blur();
+                onNavigate(path);
+              }}
               className={styles.nav.link(activeRouteId === id)}
             >
               {label}
