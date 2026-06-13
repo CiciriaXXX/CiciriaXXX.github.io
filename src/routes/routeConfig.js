@@ -11,6 +11,7 @@ export const normalizePath = (path) => {
   if (!path || path === '#') return '/';
   const cleanPath = path.replace(/^#/, '').split('?')[0];
   if (['home', 'tech-art', 'games', '2d-art'].includes(cleanPath)) return `#${cleanPath}`;
+  if (cleanPath.startsWith('project-')) return `#${cleanPath}`;
   return cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
 };
 

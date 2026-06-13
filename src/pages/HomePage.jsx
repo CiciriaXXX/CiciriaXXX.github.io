@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { ArtworkGallery } from '../components/art/ArtworkGallery';
 import { ArtworkLightbox } from '../components/art/ArtworkLightbox';
 import { HeroSection } from '../components/home/HeroSection';
 import { PortfolioSection } from '../components/home/PortfolioSection';
 import { artworks } from '../data/artworks';
 import { sectionsById } from '../data/projects';
-import { scrollToAnchor } from '../routes/scrollToAnchor';
+import { scrollToAnchor, scrollToElementId } from '../routes/scrollToAnchor';
 import { styles } from '../styles/portfolioStyles';
 
 const homeAnchors = ['tech-art', 'games', '2d-art'];
@@ -14,9 +14,14 @@ const homeAnchors = ['tech-art', 'games', '2d-art'];
 export function HomePage({ personalInfo, onNavigate }) {
   const [previewArtwork, setPreviewArtwork] = useState(null);
 
-  // Re-run anchor scrolling after the home page has mounted and section nodes exist.
-  useEffect(() => {
-    const anchor = window.location.hash.slice(1);
+  // Re-run positioning after the home page has mounted and section nodes exist.
+  useLayoutEffect(() => {
+    const anchor = window.location.hash.slice(1).split('?')[0];
+    if (anchor.startsWith('project-')) {
+      scrollToElementId(anchor);
+      return;
+    }
+
     if (homeAnchors.includes(anchor)) scrollToAnchor(anchor);
   }, []);
 

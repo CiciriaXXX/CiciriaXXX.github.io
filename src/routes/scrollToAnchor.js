@@ -12,6 +12,8 @@ const getTargetY = (element) => (
   Math.max(0, element.getBoundingClientRect().top + window.scrollY - navOffset)
 );
 
+const isKnownAnchor = (anchor) => anchorIds.has(anchor) || anchor.startsWith('project-');
+
 // Manual scroll animation so hash updates and fixed-nav offsets stay predictable.
 const animateScroll = (targetY) => {
   if (activeAnimation) window.clearTimeout(activeAnimation);
@@ -38,7 +40,7 @@ const animateScroll = (targetY) => {
 
 // Scrolls to a known home section while accounting for the fixed navigation bar.
 export function scrollToAnchor(anchor, behavior = 'smooth') {
-  if (!anchorIds.has(anchor)) return;
+  if (!isKnownAnchor(anchor)) return;
 
   const element = document.getElementById(anchor);
   if (!element) {
@@ -48,6 +50,14 @@ export function scrollToAnchor(anchor, behavior = 'smooth') {
 
   const targetY = getTargetY(element);
 
+  if (anchor.startsWith('project-') && behavior === 'smooth') {
+    window.setTimeout(() => {
+      const settledElement = document.getElementById(anchor);
+      if (settledElement) animateScroll(getTargetY(settledElement));
+    }, 260);
+    return;
+  }
+
   if (behavior === 'smooth') {
     animateScroll(targetY);
     return;
@@ -56,6 +66,20 @@ export function scrollToAnchor(anchor, behavior = 'smooth') {
   window.scrollTo(0, targetY);
   window.setTimeout(() => window.scrollTo(0, getTargetY(element)), 350);
   window.setTimeout(() => window.scrollTo(0, getTargetY(element)), 900);
+}
+
+export function scrollToElementId(elementId, behavior = 'smooth') {
+  const element = document.getElementById(elementId);
+  if (!element) return false;
+
+  const targetY = getTargetY(element);
+  if (behavior === 'smooth') {
+    animateScroll(targetY);
+    return true;
+  }
+
+  window.scrollTo(0, targetY);
+  return true;
 }
 
 export const scrollAnimationDelay = scrollDuration;

@@ -10,12 +10,15 @@ function fitFrameToImage(event) {
 // Large alternating preview row used on the home page project sections.
 export function ProjectPreviewCard({ project, onOpen }) {
   const isReversed = project.index % 2 === 1;
+  const handleOpen = () => {
+    onOpen(project);
+  };
 
   return (
-    <article className={styles.projectCard.article(isReversed)}>
+    <article id={`project-${project.slug}`} className={styles.projectCard.article(isReversed)}>
       <button
         type="button"
-        onClick={() => onOpen(project)}
+        onClick={handleOpen}
         className={styles.projectCard.mediaButton(isReversed)}
         aria-label={`Open ${project.title}`}
       >
@@ -30,7 +33,7 @@ export function ProjectPreviewCard({ project, onOpen }) {
 
       <div className={styles.projectCard.content(isReversed)}>
         <div>
-          <button type="button" onClick={() => onOpen(project)} className={styles.projectCard.titleButton(isReversed)}>
+          <button type="button" onClick={handleOpen} className={styles.projectCard.titleButton(isReversed)}>
             <h3 className={styles.projectCard.title}>
               {project.title}
             </h3>

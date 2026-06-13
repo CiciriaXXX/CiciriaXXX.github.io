@@ -14,9 +14,13 @@ export function ProjectPage({ project, fallbackPath, onNavigate }) {
     );
   }
 
+  const handleBack = () => {
+    onNavigate(`#project-${project.slug}`);
+  };
+
   return (
     <div className={styles.projectPage.container}>
-      <ProjectDetailView project={project} onBack={() => onNavigate(fallbackPath)} />
+      <ProjectDetailView project={project} onBack={handleBack} />
     </div>
   );
 }
