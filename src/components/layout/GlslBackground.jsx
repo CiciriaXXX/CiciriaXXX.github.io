@@ -16,7 +16,7 @@ const fragmentShaderSource = `
   uniform vec2 iResolution;
   uniform float iTime;
 
-  const int NS = 100;
+  const int MAIN_STARS = 9;
   const float CI = 0.3;
 
   float N21(vec2 p) {
@@ -39,12 +39,11 @@ const fragmentShaderSource = `
     return mix(b, t, lv.y);
   }
 
-  float L(vec2 uv, vec2 ofs, float b, float l) {
-    return smoothstep(
-      0.0,
-      1000.0,
-      b * max(0.1, l) / pow(max(0.0000000000001, length(uv - ofs)), 1.0 / max(0.1, l))
-    );
+  float L(vec2 uv, vec2 ofs, float brightness, float radius) {
+    float distanceToStar = length(uv - ofs);
+    float core = 1.0 - smoothstep(0.0, radius * 0.38, distanceToStar);
+    float halo = 1.0 - smoothstep(0.0, radius, distanceToStar);
+    return brightness * (core + halo * 0.12);
   }
 
   vec2 H12(float s) {
@@ -54,9 +53,10 @@ const fragmentShaderSource = `
 
   void main() {
     vec2 uv = gl_FragCoord.xy / iResolution.xy;
+    float aspect = iResolution.x / iResolution.y;
 
     uv -= 0.5;
-    uv.x *= iResolution.x / iResolution.y;
+    uv.x *= aspect;
 
     vec4 col = vec4(0.0);
 
@@ -68,17 +68,16 @@ const fragmentShaderSource = `
 
     col += mix(blb, p, uv.x - (uv.y * 1.5));
 
-    for (int i = 0; i < NS; i++) {
+    for (int i = 0; i < MAIN_STARS; i++) {
       float fi = float(i);
-      vec2 ofs = H12(fi + 1.0);
-      ofs *= vec2(1.8, 1.1);
+      vec2 ofs = H12(fi * 6.0 + 1.0);
+      ofs *= vec2(aspect * 0.92, 0.9);
 
-      float r = 0.18;
-      if (mod(fi, 10.0) == 0.0) {
-        r = 0.7 + abs(sin(fi / 31.0)) * 0.6;
-      }
-
-      col += vec4(L(uv, ofs, r + (sin(fract(iTime) * 0.5 * fi) + 1.0) * 0.02, 1.0));
+      float brightness = 0.55 + N21(vec2(fi, 4.0)) * 0.25;
+      float radius = 0.0035 + N21(vec2(fi, 8.0)) * 0.005;
+      float twinkle = 0.94 + sin(iTime * 0.7 + fi * 2.17) * 0.06;
+      float star = L(uv, ofs, brightness * twinkle, radius);
+      col.rgb += vec3(star, star * 0.92, star * 0.78);
     }
 
     uv.x += iTime * 0.03;
