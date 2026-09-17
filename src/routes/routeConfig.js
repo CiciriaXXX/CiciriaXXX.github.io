@@ -2,7 +2,7 @@
 export const navRoutes = [
   { id: 'home', path: '#home', label: 'Home' },
   { id: 'tech-art', path: '#tech-art', label: 'Tech Art' },
-  { id: 'game', path: '#games', label: 'Game Projects' },
+  { id: 'game', path: '#games', label: 'Game Jam Projects' },
   { id: '2d-art', path: '#2d-art', label: '2D Art' },
 ];
 

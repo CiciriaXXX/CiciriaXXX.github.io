@@ -41,7 +41,7 @@ export function HomePage({ personalInfo, onNavigate }) {
         <PortfolioSection
           id="games"
           eyebrow="Playable Work"
-          title="Game Projects"
+          title={sectionsById.game.title}
           items={sectionsById.game.projects}
           onOpen={(project) => onNavigate(`/games/${project.slug}`)}
         />

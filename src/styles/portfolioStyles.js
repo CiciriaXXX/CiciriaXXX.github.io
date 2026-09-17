@@ -86,7 +86,7 @@ export const styles = {
         : 'md:grid-cols-[1.15fr_0.85fr] xl:grid-cols-[1.22fr_0.78fr]',
     ),
     mediaButton: (isReversed) => cx(
-      'group flex aspect-video w-full items-center justify-center overflow-hidden rounded-md bg-white/[0.055] text-left shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)]',
+      'group relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-md bg-white/[0.055] text-left shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]',
       isReversed && 'md:order-2',
     ),
     mediaImage: 'h-full w-full rounded-md object-contain transition duration-500 group-hover:scale-[1.03]',
@@ -139,7 +139,7 @@ export const styles = {
     description: 'text-xl leading-relaxed text-[var(--color-ink)]',
     role: 'font-black uppercase text-[var(--color-accent)]',
     externalLink:
-      'inline-flex items-center gap-2 border border-[var(--color-accent)] bg-white/10 px-8 py-3 text-sm font-black uppercase text-[var(--color-accent)] transition hover:border-[var(--color-accent-hover)] hover:text-[var(--color-accent-hover)]',
+      'inline-flex min-h-16 items-center justify-center gap-3 rounded-md border-2 border-[var(--color-accent)] bg-white/10 px-10 py-4 text-lg font-black uppercase text-[var(--color-accent)] transition hover:bg-white/20 hover:border-[var(--color-accent-hover)] hover:text-[var(--color-accent-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]',
     mediaFrame:
       'flex items-center justify-center overflow-hidden rounded-md bg-white/[0.055] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)]',
     mediaImage: 'max-h-[70vh] w-full rounded-md object-contain',

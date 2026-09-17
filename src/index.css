@@ -40,7 +40,7 @@
 
   html {
     min-height: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
     width: 100%;
     background: #00000f;
   }
@@ -48,7 +48,7 @@
   body {
     min-height: 100%;
     margin: 0;
-    overflow-x: hidden;
+    overflow-x: clip;
     width: 100%;
     background: #00000f;
     font-family: var(--font-body);
@@ -57,6 +57,9 @@
 
 /* Cross-component state hooks that are easier to express globally than with component props. */
 @layer components {
+  .overview-label {
+    @apply mb-1 text-xs font-bold uppercase tracking-widest text-white/60;
+  }
   .glsl-background {
     height: 100vh;
     height: 100dvh;
