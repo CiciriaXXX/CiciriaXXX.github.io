@@ -98,7 +98,7 @@ export const projectSections = [
         category: 'Shader & Rendering Studies',
         image: '/rendering-practice/cover.webp?v=user-stills',
         description:
-          'A series of rendering studies that deepened my understanding of shaders after learning the fundamentals of computer graphics. Most began with public tutorials, adapting techniques from Unreal Engine, Unity ShaderLab / HLSL, and Shader Graph, or developing implementations from explanations without complete code. Building on these approaches, I refined colors, lighting, and animated details to explore my own visual preferences and the relationship between technical principles and artistic expression.',
+          'A series of rendering studies to deepen my understanding of shaders after learning the fundamentals of computer graphics. I primarily used Amplify Shader Editor, while most reference tutorials used different tools, such as Unreal Engine, Unity HLSL, and Shader Graph, or provided explanations without complete code. I made technical adjustments to improve the robustness of the effects and better match my aesthetic preferences.',
         details: 'Individual Project',
         completed: 'March–June 2026',
         tech: ['Unity', 'Amplify Shader Editor'],
