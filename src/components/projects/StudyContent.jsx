@@ -32,8 +32,8 @@ export function StudyContent({ section }) {
       {section.blocks.map((block, index) => {
         if (block.type === 'heading') return <h4 key={index} className="!mt-10 border-t border-white/10 pt-5 text-2xl font-bold leading-snug text-[var(--color-accent)] md:text-[28px]">{block.text}</h4>;
         if (block.type === 'image') return (
-          <a key={index} href={block.src} target="_blank" rel="noopener noreferrer" className="block" title="Open full-size diagram">
-            <img src={block.src} alt={block.alt} width={block.width} height={block.height} loading="lazy" decoding="async" className="mx-auto h-auto max-h-[65vh] max-w-full rounded-md object-contain" />
+          <a key={index} href={block.src} target="_blank" rel="noopener noreferrer" className="mx-auto block w-4/5" title="Open full-size diagram">
+            <img src={block.src} alt={block.alt} width={block.width} height={block.height} loading="lazy" decoding="async" className="block h-auto w-full rounded-md" />
           </a>
         );
         if (block.type === 'reference') return <p key={index} className="text-sm leading-7"><a href={block.url} target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent)] underline decoration-white/30 underline-offset-4 hover:decoration-current">{block.label} ↗</a></p>;
