@@ -1,0 +1,757 @@
+[
+  {
+    "id": "geometry",
+    "title": "Geometry Shader: 3D Crosses",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "One of my OSU CS457 assignments (Project 7A), written in GLSL (`#version 330 compatibility`) and tested with Professor Mike Bailey's [glman](https://web.engr.oregonstate.edu/~mjb/glman/) for interactive parameter adjustment."
+      },
+      {
+        "type": "heading",
+        "text": "Technical Notes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Sampling the triangle surface**: The vertex shader passes object-space positions and normals to the geometry shader, which processes one triangle at a time. Sample points are generated with `P = V0 + s * (V1 - V0) + t * (V2 - V0)`, where `s ≥ 0, t ≥ 0, s + t ≤ 1`. The subdivision level is controlled by `2^uLevel`."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Quantizing positions to a grid**: Each XYZ component is snapped using `q(x) = float(int(x * uQuantize)) / uQuantize`. The grid spacing is `1 / uQuantize`, so larger values produce finer quantization. The integer conversion truncates toward zero."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Building 3D crosses from line segments**: Two endpoints are emitted along each of the X, Y, and Z axes around every quantized point. `EmitVertex()` and `EndPrimitive()` produce three independent segments, each of length `2 * uSize`. The endpoints are transformed by the model-view-projection matrix, replacing the triangle surface with a field of spatial crosses."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Preserving the model's lighting and form**: Triangle vertex normals are interpolated with the same s and t values and transformed into view space. Light and view directions are calculated at the cross center. Ambient light, Lambert diffuse shading, and Phong highlights let the line segments retain the original model's sense of volume."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Coloring by depth (ChromaDepth)**: The view-space depth of each cross center is mapped between near and far limits onto a red–green–blue rainbow. This replaces the base color before lighting is applied. glman allows switching between regular and depth-based coloring."
+      }
+    ],
+    "embed": "https://cdnapisec.kaltura.com/p/391241/embedPlaykitJs/uiconf_id/44855082?iframeembed=true&entry_id=1_u4u8zzs3&config%5Bprovider%5D=%7B%22widgetId%22%3A%221_0uwsc7qz%22%7D&config%5Bplayback%5D=%7B%22startTime%22%3A0%7D"
+  },
+  {
+    "id": "scan",
+    "title": "Holographic Character Scan",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Technical Notes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Fresnel rim lighting**: Using a unit normal N and a camera-facing view direction V in the same coordinate space, calculate `rim = pow(1 - saturate(dot(N, V)), power)`, then multiply by color and intensity. Front-facing surfaces remain darker while the silhouette glows; increasing power narrows the rim."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/scan-02.webp",
+        "alt": "Holographic Character Scan: shader implementation diagram",
+        "width": 1337,
+        "height": 404
+      },
+      {
+        "type": "paragraph",
+        "text": "**Scrolling the scan texture**: Sample the scan texture with `uv = (worldPosition - objectWorldPosition).xy * tiling + time * speed` to animate the pattern. Combine it with rim lighting, a detail texture, and an interior color."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/scan-04.webp",
+        "alt": "Holographic Character Scan: shader implementation diagram",
+        "width": 1564,
+        "height": 583
+      },
+      {
+        "type": "paragraph",
+        "text": "**Depth prepass**: First record the nearest surface depth with `ColorMask 0 / ZWrite On`, then add the glow with `Blend SrcAlpha One`. The color pass uses depth testing to reject self-occluded surfaces, such as the chest behind an arm, preventing overlapping glow in those areas."
+      },
+      {
+        "type": "heading",
+        "text": "References"
+      },
+      {
+        "type": "reference",
+        "url": "https://www.bilibili.com/video/BV1eN41127E4",
+        "label": "CS0103: Transparent Rendering & Texture Animation · Kerry · Bilibili"
+      },
+      {
+        "type": "paragraph",
+        "text": "Character model generated with TripoAI."
+      }
+    ],
+    "video": "/rendering-practice/scan.mp4",
+    "poster": "/rendering-practice/scan-poster.webp"
+  },
+  {
+    "id": "matcap-beetle",
+    "title": "MatCap Beetle Material",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Technical Notes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**MatCap sampling**: Transform the normal into view space and map its direction to a 2D texture with `uv = normalVS.xy * 0.5 + 0.5`. Baked shading and highlights respond to surface orientation, creating the appearance of a beetle shell."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Normal mapping**: Transform tangent-space normals into view space before sampling the MatCap, so reflections respond to the shell's surface detail."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Layering two MatCaps**: Adjust the strength of each MatCap, add them together, and multiply by the base-color texture. This separates control over the main shading, additional reflections, and shell color."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/matcap-beetle-04.webp",
+        "alt": "MatCap Beetle Material: shader implementation diagram",
+        "width": 1882,
+        "height": 600
+      },
+      {
+        "type": "paragraph",
+        "text": "**View-dependent color shifts**: Use the Fresnel value to sample a color gradient and multiply it into the material, approximating an iridescent shell. This is a view-driven color effect; it does not calculate optical path differences for thin-film interference."
+      },
+      {
+        "type": "heading",
+        "text": "References"
+      },
+      {
+        "type": "reference",
+        "url": "https://www.bilibili.com/video/BV1mh4y1579u",
+        "label": "CS0104: Iridescent Beetle — MatCap Material · Kerry · Bilibili"
+      },
+      {
+        "type": "heading",
+        "text": "Model"
+      },
+      {
+        "type": "reference",
+        "url": "https://sketchfab.com/3d-models/deer-beetle-low-poly-rebaked-50684afa3323458cbcd013651b662102",
+        "label": "Deer Beetle Low Poly [rebaked] · Idmenthal · Sketchfab"
+      }
+    ],
+    "video": "/rendering-practice/matcap-beetle.mp4",
+    "poster": "/rendering-practice/matcap-beetle-poster.webp"
+  },
+  {
+    "id": "vine",
+    "title": "Vertex Animation: Growing Vines",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Technical Notes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**UV-driven growth**: Arrange UV.y continuously from the root to the tip. Its difference from the growth progress determines when each part becomes visible."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/vine-02.webp",
+        "alt": "Vertex Animation: Growing Vines: shader implementation diagram",
+        "width": 971,
+        "height": 460
+      },
+      {
+        "type": "paragraph",
+        "text": "**Tapering the growing tip**: Feed the difference between UV.y and progress into `smoothstep` to produce a smooth weight. Use it to move vertices inward along their normals, tapering the tip. A separate normal offset controls the overall vine thickness."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Clipping ungrown sections**: Reuse the UV gradient and progress value in the fragment stage to discard the ungrown region, keeping visibility synchronized with the vertex contraction."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/vine-05.webp",
+        "alt": "Vertex Animation: Growing Vines: shader implementation diagram",
+        "width": 656,
+        "height": 598
+      },
+      {
+        "type": "heading",
+        "text": "References"
+      },
+      {
+        "type": "reference",
+        "url": "https://www.bilibili.com/video/BV1Yx4y1R7WG",
+        "label": "CS0105: Tentacles & Vines — Vertex Animation · Kerry · Bilibili"
+      },
+      {
+        "type": "heading",
+        "text": "Textures & Materials"
+      },
+      {
+        "type": "reference",
+        "url": "https://juliovii.itch.io/ftpgrass-dirt",
+        "label": "Free Texture Pack: Grass & Dirt · JulioVII · itch.io"
+      },
+      {
+        "type": "reference",
+        "url": "https://distantlantern.itch.io/allsky-free",
+        "label": "AllSky Free · Distant Lantern · itch.io"
+      }
+    ],
+    "video": "/rendering-practice/vine.mp4",
+    "poster": "/rendering-practice/vine-poster.webp"
+  },
+  {
+    "id": "stencil",
+    "title": "Stencil Buffer: A World Inside a Frame",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Technical Notes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Writing the stencil mask**: Render the window inside the frame first, using `Stencil Replace` to mark the screen pixels that may display the inner scene."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Revealing the scene through the mask**: Render the inner scene and its background only where `Stencil Comp Equal` matches the marker, creating the illusion of looking through the frame into another space."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Controlling render order**: Set the render queues so the window writes to the stencil buffer before the inner scene reads it. This ensures the mask exists when it is needed."
+      },
+      {
+        "type": "heading",
+        "text": "References"
+      },
+      {
+        "type": "reference",
+        "url": "https://www.bilibili.com/video/BV1qh4y117we",
+        "label": "CS0106: Magic Mirror — Stencil & Depth Testing · Kerry · Bilibili"
+      },
+      {
+        "type": "heading",
+        "text": "Model"
+      },
+      {
+        "type": "reference",
+        "url": "https://polyhaven.com/a/fancy_picture_frame_02",
+        "label": "Fancy Picture Frame 02 · Poly Haven"
+      }
+    ],
+    "video": "/rendering-practice/stencil.mp4",
+    "poster": "/rendering-practice/stencil-poster.webp"
+  },
+  {
+    "id": "post-processing",
+    "title": "Post-processing Studies",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Technical Notes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Full-screen post-processing**: In the Built-in Render Pipeline, retrieve the camera color texture through `OnRenderImage` and run a full-screen shader with `Graphics.Blit`, sampling the original image to produce the processed result."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Hue adjustment (HSV)**: Convert RGB to HSV, offset H and wrap it into the 0–1 range, then convert back to RGB to shift the image's overall hue."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Brightness, saturation, and contrast**: Multiply the color by a factor for brightness; use `lerp(grayscale, originalColor, saturation)` to control saturation; scale the difference from mid-gray to adjust contrast."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/post-processing-04.webp",
+        "alt": "Post-processing Studies: shader implementation diagram",
+        "width": 1868,
+        "height": 520
+      },
+      {
+        "type": "paragraph",
+        "text": "**Vignette**: Measure the distance from the screen UV to the center, create a smooth edge mask, and use it to darken the corners."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/post-processing-06.webp",
+        "alt": "Post-processing Studies: shader implementation diagram",
+        "width": 1033,
+        "height": 458
+      },
+      {
+        "type": "paragraph",
+        "text": "**Cracked-screen distortion**: Offset screen UVs with the XY components of a crack normal map, resample the original image, and overlay a crack mask and bright lines to simulate broken glass. I added aspect-ratio correction and scaling around the UV center to keep the cracks proportionate and centered across different screen shapes."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/post-processing-08.webp",
+        "alt": "Post-processing Studies: shader implementation diagram",
+        "width": 900,
+        "height": 643
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/post-processing-09.webp",
+        "alt": "Post-processing Studies: shader implementation diagram",
+        "width": 1056,
+        "height": 546
+      },
+      {
+        "type": "heading",
+        "text": "References"
+      },
+      {
+        "type": "reference",
+        "url": "https://zhuanlan.zhihu.com/p/574690984",
+        "label": "Unity Shader Post-processing: Shattered Screen · robot518 · Zhihu"
+      }
+    ],
+    "video": "/rendering-practice/post-processing.mp4",
+    "poster": "/rendering-practice/post-processing-poster.webp"
+  },
+  {
+    "id": "dissolve",
+    "title": "Directional Dissolve",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Technical Notes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Height-driven direction**: Calculate `h = 1 - (y - minHeight) / (maxHeight - minHeight)` from object-space height, assigning 0 to the top and 1 to the bottom. Lower values disappear first, making the dissolve progress downward."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/dissolve-02.webp",
+        "alt": "Directional Dissolve: shader implementation diagram",
+        "width": 938,
+        "height": 403
+      },
+      {
+        "type": "paragraph",
+        "text": "**Noise-shaped boundaries**: Sample noise with view-space position XY, calculate `n = 1 - Noise.r`, then `field = h + (n - 0.5) * spread`. Noise changes the disappearance order within each height band: bright areas in the source texture dissolve first, while darker areas remain longer. The spread parameter controls the boundary variation and the vertical range of fragments."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Moving the threshold and clipping**: Map progress to a threshold, calculate `d = field - threshold`, and apply `clip(d)`. Values below 0 disappear; values at or above 0 remain. The threshold range covers the noise-perturbed field and leaves room for the glowing edge, keeping the object fully visible at progress 0 and fully dissolved at 1."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/dissolve-05.webp",
+        "alt": "Directional Dissolve: shader implementation diagram",
+        "width": 1722,
+        "height": 772
+      },
+      {
+        "type": "paragraph",
+        "text": "**Extracting and coloring the edge**: Reuse d to calculate `edge = 1 - smoothstep(0, 1, saturate(d / width))`, creating a fading mask in the surviving region `0 ≤ d < width`. Add `edge * edgeColor * emissionIntensity` to the base color so the glow follows the clipped boundary and fades inward. The color intensity is smooth, while surface visibility still uses hard clipping."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/dissolve-07.webp",
+        "alt": "Directional Dissolve: shader implementation diagram",
+        "width": 1271,
+        "height": 447
+      },
+      {
+        "type": "heading",
+        "text": "References"
+      },
+      {
+        "type": "reference",
+        "url": "https://www.bilibili.com/video/BV11M41177dU",
+        "label": "Key Features of Dissolve Shaders · DaDa_Chan · Bilibili"
+      }
+    ],
+    "video": "/rendering-practice/dissolve.mp4",
+    "poster": "/rendering-practice/dissolve-poster.webp"
+  },
+  {
+    "id": "jade",
+    "title": "Jade Material",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Technical Notes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Approximating backlit transmission**: Perturb the direction toward the light L with normal N using `L' = normalize(L + N * distortion)`, then calculate `pow(saturate(dot(V, -L')), power)`. This brightens regions viewed against the light to suggest translucent jade. N, L, and V are all in world space, with V pointing toward the camera."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Controlling transmission with thickness**: Multiply the backlighting term by `1 - ThicknessMap.r`, producing stronger transmission in darker areas of the thickness map and weaker transmission in brighter areas."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/jade-03.webp",
+        "alt": "Jade Material: shader implementation diagram",
+        "width": 1157,
+        "height": 406
+      },
+      {
+        "type": "paragraph",
+        "text": "**Base lighting**: Combine Lambert diffuse shading from `max(dot(N, L), 0)`, an approximation of overhead sky lighting from `N.y * 0.5 + 0.5`, and a constant fill color to control the material's overall values."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/jade-05.webp",
+        "alt": "Jade Material: shader implementation diagram",
+        "width": 682,
+        "height": 508
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/jade-06.webp",
+        "alt": "Jade Material: shader implementation diagram",
+        "width": 792,
+        "height": 270
+      },
+      {
+        "type": "paragraph",
+        "text": "**Environment reflections**: Sample an HDR cubemap with `reflect(-V, N)` and rotate the sampling direction around the vertical axis to adjust the reflected environment. Apply a Fresnel weight to strengthen reflections at grazing angles."
+      },
+      {
+        "type": "heading",
+        "text": "References"
+      },
+      {
+        "type": "reference",
+        "url": "https://zhuanlan.zhihu.com/p/574196980",
+        "label": "Unity Shader Notes 5: Creating Jade · 水月尽 · Zhihu"
+      },
+      {
+        "type": "heading",
+        "text": "Model"
+      },
+      {
+        "type": "reference",
+        "url": "https://sketchfab.com/3d-models/stanford-dragon-vrip-b602a35846e74533b1d9f06034a3b730",
+        "label": "Stanford Dragon (Vrip) · 3D graphics 101 · Sketchfab"
+      }
+    ],
+    "video": "/rendering-practice/jade.mp4",
+    "poster": "/rendering-practice/jade-poster.webp"
+  },
+  {
+    "id": "diamond",
+    "title": "Two-pass Diamond Material",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Technical Notes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Rendering back and front faces separately**: The first pass culls front faces and draws back faces; the second culls back faces and draws front faces. Layering the sampled environment patterns gives the diamond's facets a sense of depth."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Approximating fire and internal reflections**: Back faces sample a cubemap made from dispersion photographs to create colored highlights. A separate environment cubemap is sampled with `reflect(-V, N)` to suggest internal reflections. The colors come from prepared textures, without spectral dispersion calculations or traced refraction."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Adding front-face highlights**: Combine environment reflections and Fresnel rim lighting on the front faces, then additively blend them over the back-face result to emphasize bright facets."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/diamond-04.webp",
+        "alt": "Two-pass Diamond Material: shader implementation diagram",
+        "width": 1338,
+        "height": 1017
+      },
+      {
+        "type": "heading",
+        "text": "References"
+      },
+      {
+        "type": "reference",
+        "url": "https://zhuanlan.zhihu.com/p/1937894026360624395",
+        "label": "Gemstone Material Effects · LeoEric · Zhihu"
+      },
+      {
+        "type": "heading",
+        "text": "Model"
+      },
+      {
+        "type": "reference",
+        "url": "https://sketchfab.com/3d-models/blue-diamond-free-giveaway-618d614891354c1f86f07845080e13e7",
+        "label": "Blue Diamond - Free Giveaway · Kugatsu Tsukai 3D Model Hub · Sketchfab"
+      }
+    ],
+    "video": "/rendering-practice/diamond.mp4",
+    "poster": "/rendering-practice/diamond-poster.webp"
+  },
+  {
+    "id": "glass",
+    "title": "MatCap Glass Material",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Technical Notes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Correcting MatCap coordinates**: Following Ben Golus's approach, construct sampling coordinates from the cross product of the view-space view direction and normal. Reflections respond to both surface orientation and viewing direction, reducing banding where the cup's walls have similar normals. A normal map adds surface detail."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/glass-02.webp",
+        "alt": "MatCap Glass Material: shader implementation diagram",
+        "width": 1459,
+        "height": 375
+      },
+      {
+        "type": "paragraph",
+        "text": "**Estimating apparent thickness**: Smoothly remap `1 - dot(N, V)`, add a thickness texture sampled by height, and clamp to 0–1. The first term emphasizes side edges; the second independently controls the apparent thickness of areas such as the base."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/glass-04.webp",
+        "alt": "MatCap Glass Material: shader implementation diagram",
+        "width": 1618,
+        "height": 737
+      },
+      {
+        "type": "paragraph",
+        "text": "**Distorting the interior texture**: Use the approximate thickness to offset UVs, sample a prepared interior pattern, and blend it with the glass color to suggest refractive distortion. The sampled content is a texture, not the live scene background."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Controlling opacity**: Use the larger of the reflection's R channel and the thickness weight as alpha. This makes reflections, side edges, and the base more visible while keeping the remaining surface more transparent."
+      },
+      {
+        "type": "heading",
+        "text": "References"
+      },
+      {
+        "type": "reference",
+        "url": "https://www.bilibili.com/video/BV15a411D7wZ",
+        "label": "Efficient Glass Rendering: Refraction, Reflection & Thickness · Bu Dao Yao De Yu Tu · Bilibili"
+      },
+      {
+        "type": "reference",
+        "url": "https://tips.orels.sh/perspective-correct-matcaps-unity",
+        "label": "Perspective Correct Matcaps in Unity · orels · orels tips"
+      },
+      {
+        "type": "heading",
+        "text": "Model"
+      },
+      {
+        "type": "reference",
+        "url": "https://sketchfab.com/3d-models/glass-cup-40acfc3e537d4808b1332854f9de0355",
+        "label": "Glass Cup · XC · Sketchfab"
+      },
+      {
+        "type": "reference",
+        "url": "https://sketchfab.com/3d-models/table-1132fa2850a24917892733566bd68e74",
+        "label": "Table · yryabchenko · Sketchfab"
+      }
+    ],
+    "video": "/rendering-practice/glass.mp4",
+    "poster": "/rendering-practice/glass-poster.webp"
+  },
+  {
+    "id": "galaxy",
+    "title": "Galaxy Energy Material",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Technical Notes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Projecting the nebula pattern**: Transform the surface position and object center into view space, then use the XY components of their difference to sample a nebula texture. Perturb the UVs with the view-space normal XY to suggest an interior pattern that shifts with the viewing angle."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/galaxy-02.webp",
+        "alt": "Galaxy Energy Material: shader implementation diagram",
+        "width": 1533,
+        "height": 503
+      },
+      {
+        "type": "paragraph",
+        "text": "**Animating the flow texture**: Construct UVs from world-space position XY relative to the object center, adding a remapped `dot(N, V)` term and a time offset. Multiply the sampled flow texture into the nebula color and add a separate flowing emission layer."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/galaxy-04.webp",
+        "alt": "Galaxy Energy Material: shader implementation diagram",
+        "width": 1715,
+        "height": 510
+      },
+      {
+        "type": "paragraph",
+        "text": "**Fresnel rim glow**: Raise `1 - dot(N, V)` to a power, adjust its intensity, multiply by the rim color, and add it to the nebula result to strengthen the silhouette."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Emphasizing stars**: Raise each RGB component of the nebula color to the fourth power to suppress dark areas and emphasize bright points. Multiply by the flow texture and an intensity factor, then add the result to create moving starlight."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/galaxy-07.webp",
+        "alt": "Galaxy Energy Material: shader implementation diagram",
+        "width": 952,
+        "height": 334
+      },
+      {
+        "type": "heading",
+        "text": "References"
+      },
+      {
+        "type": "reference",
+        "url": "https://www.youtube.com/watch?v=jLUGRGdji2o",
+        "label": "Unity Shader Graph - Galaxy Shader Tutorial · Gabriel Aguiar Prod. · YouTube"
+      },
+      {
+        "type": "heading",
+        "text": "Model"
+      },
+      {
+        "type": "reference",
+        "url": "https://sketchfab.com/3d-models/an-animated-cat-aec25699660043a29595f9572149d1e8",
+        "label": "An Animated Cat · Evil_Katz · Sketchfab"
+      }
+    ],
+    "video": "/rendering-practice/galaxy.mp4",
+    "poster": "/rendering-practice/galaxy-poster.webp"
+  },
+  {
+    "id": "fog",
+    "title": "Distance and Height Fog",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Technical Notes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Distance-based fog**: From the surface-to-camera distance dist, calculate `distanceMask = saturate((dist - start) / (end - start))`. Fog increases gradually from the start distance to its maximum at the end distance."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/fog-02.webp",
+        "alt": "Distance and Height Fog: shader implementation diagram",
+        "width": 923,
+        "height": 326
+      },
+      {
+        "type": "paragraph",
+        "text": "**Height-based restriction**: Calculate `heightMask = saturate((top - y) / (top - bottom))` from world height y, approaching 1 at lower elevations and 0 higher up. Multiply by the distance mask to concentrate fog in distant lowlands."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/fog-04.webp",
+        "alt": "Distance and Height Fog: shader implementation diagram",
+        "width": 1040,
+        "height": 378
+      },
+      {
+        "type": "paragraph",
+        "text": "**Sun-dependent fog color**: Take the dot product of the camera-to-surface direction and the sun direction, remap it to 0–1, and raise it to a power. Use this as the blend weight between the regular fog color and the sun-glow color."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/fog-06.webp",
+        "alt": "Distance and Height Fog: shader implementation diagram",
+        "width": 1223,
+        "height": 304
+      },
+      {
+        "type": "paragraph",
+        "text": "**Blending terrain into fog**: Use `fog = distanceMask * heightMask * intensity` as the weight in `lerp(litTerrainColor, fogColor, fog)`, gradually blending distant lowlands into the fog color."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/fog-08.webp",
+        "alt": "Distance and Height Fog: shader implementation diagram",
+        "width": 1179,
+        "height": 682
+      },
+      {
+        "type": "paragraph",
+        "text": "**Joining sky and terrain**: Create a gradient near the horizon from the vertical component of the sky direction. Blend the sky toward a fog color similar to the terrain's to soften the distant boundary."
+      },
+      {
+        "type": "heading",
+        "text": "References"
+      },
+      {
+        "type": "reference",
+        "url": "https://zhuanlan.zhihu.com/p/666556891",
+        "label": "Height Fog: Basic Principles and Implementation Details · 伊底1D · Zhihu"
+      },
+      {
+        "type": "heading",
+        "text": "Textures & Materials"
+      },
+      {
+        "type": "reference",
+        "url": "https://distantlantern.itch.io/allsky-free",
+        "label": "AllSky Free · Distant Lantern · itch.io"
+      }
+    ],
+    "video": "/rendering-practice/fog.mp4",
+    "poster": "/rendering-practice/fog-poster.webp"
+  },
+  {
+    "id": "foliage",
+    "title": "Billboard Stylized Foliage",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Technical Notes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Expanding leaves from UVs**: In URP / ASE, construct a view-space XY direction from `uv * 2 - 1`, transform it into object space, normalize it, and add it to the original vertex position. This expands leaf clusters to face the camera."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Controlling inflation and expansion**: Calculate `P' = P + LerpAlpha * (normalOS * Inflate + billboardOffset)` to control outward canopy inflation and billboard expansion separately."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/foliage-03.webp",
+        "alt": "Billboard Stylized Foliage: shader implementation diagram",
+        "width": 1368,
+        "height": 497
+      },
+      {
+        "type": "paragraph",
+        "text": "**Preserving overall shading**: Keep the original normals for diffuse lighting, then add highlights, ambient fill, and rim lighting so the expanded leaves retain the canopy's overall volume."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Noise-driven hue variation**: Sample noise with world-space position XY before expansion, calculate `H' = H + (noise + offset) * variety` in HSV, and blend with the original color to control strength. I developed this addition from my painting experience rather than a tutorial, introducing local hue shifts to break up uniform greens and enrich the canopy's color shapes."
+      },
+      {
+        "type": "image",
+        "src": "/rendering-practice/foliage-06.webp",
+        "alt": "Billboard Stylized Foliage: shader implementation diagram",
+        "width": 1513,
+        "height": 915
+      },
+      {
+        "type": "paragraph",
+        "text": "This approach suits the visual language I wanted for stylized foliage better than conventional leaf cards. Its main limitation is changing occlusion as the leaves rotate with the camera. If the texture has too few gaps, entire layers can appear to switch abruptly; adding gaps and reducing the area covered by each card can help."
+      },
+      {
+        "type": "heading",
+        "text": "References"
+      },
+      {
+        "type": "reference",
+        "url": "https://www.youtube.com/watch?v=iASMFba7GeI",
+        "label": "Fluffy stylized trees tutorial, using quadmesh-to-billboards shader in Unity · Pontus Karlsson · YouTube"
+      }
+    ],
+    "video": "/rendering-practice/foliage.mp4",
+    "poster": "/rendering-practice/foliage-poster.webp"
+  }
+]

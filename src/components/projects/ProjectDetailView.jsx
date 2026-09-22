@@ -1,6 +1,7 @@
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { styles } from '../../styles/portfolioStyles';
 import { useFallbackProjectImage } from './imageFallback';
+import { StudyContent } from './StudyContent';
 
 const placeholderSections = [
   { id: 'concept', title: 'Concept & Goals', text: 'The project’s starting point, inspirations, and design goals will be explored here.' },
@@ -22,6 +23,7 @@ function jumpToSection(event, id) {
 
 export function ProjectDetailView({ project, onBack }) {
   const sections = project.breakdown ?? placeholderSections;
+  const descriptionBesideMetadata = project.overviewLayout === 'metadata-description';
   return (
     <article className={styles.detail.root}>
       <button type="button" onClick={onBack} className={styles.detail.backButton}>
@@ -33,11 +35,11 @@ export function ProjectDetailView({ project, onBack }) {
       </header>
       <section aria-labelledby="overview-heading" className="space-y-8">
         <h2 id="overview-heading" className="font-display text-4xl text-[var(--color-accent)]">Overview</h2>
-        <div className="grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className={`grid items-start gap-10 ${descriptionBesideMetadata ? 'md:grid-cols-[minmax(0,0.65fr)_minmax(0,1.35fr)]' : 'lg:grid-cols-[0.85fr_1.15fr]'}`}>
           <div className="min-w-0 space-y-8">
-            <p className={styles.detail.description}>{project.description}</p>
+            {!descriptionBesideMetadata && <p className={styles.detail.description}>{project.description}</p>}
             <dl className="space-y-5 text-base leading-relaxed">
-              {project.completed && <div><dt className="overview-label">Completed</dt><dd>{project.completed}</dd></div>}
+              {project.completed && <div><dt className="overview-label">{project.breakdown ? 'Period' : 'Completed'}</dt><dd>{project.completed}</dd></div>}
               <div><dt className="overview-label">Software</dt><dd>{project.tech.join(' / ')}</dd></div>
               <div>
                 <dt className="overview-label">{project.team ? 'Team & Contributions' : 'Project / Role'}</dt>
@@ -62,7 +64,9 @@ export function ProjectDetailView({ project, onBack }) {
             )}
           </div>
           <div className="min-w-0 space-y-4">
-            {project.videoId ? (
+            {descriptionBesideMetadata ? (
+              <p className={styles.detail.description}>{project.description}</p>
+            ) : project.videoId ? (
               <>
                 <h3 className="overview-label">Walkthrough</h3>
                 <iframe
@@ -86,10 +90,10 @@ export function ProjectDetailView({ project, onBack }) {
           </div>
         </div>
       </section>
-      <section aria-labelledby="breakdown-heading" className="border-t-2 border-[var(--color-accent)] pt-10">
-        <h2 id="breakdown-heading" className="mb-8 font-display text-4xl text-[var(--color-accent)]">Breakdown</h2>
+      <section aria-labelledby={project.hideBreakdownHeading ? undefined : 'breakdown-heading'} aria-label={project.hideBreakdownHeading ? 'Rendering studies' : undefined} className="border-t-2 border-[var(--color-accent)] pt-10">
+        {!project.hideBreakdownHeading && <h2 id="breakdown-heading" className="mb-8 font-display text-4xl text-[var(--color-accent)]">Breakdown</h2>}
         <div className="grid items-start gap-10 md:grid-cols-[220px_minmax(0,1fr)] lg:gap-16">
-          <nav aria-label="Breakdown contents" className="rounded-md border border-white/15 bg-white/5 p-5 md:sticky md:top-28">
+          <nav aria-label="Breakdown contents" className="rounded-md border border-white/15 bg-white/5 p-5 md:sticky md:top-28 md:max-h-[calc(100dvh-9rem)] md:overflow-y-auto">
             <p className="overview-label mb-4">Contents</p>
             <ol className="space-y-4">
               {sections.map((section, index) => {
@@ -108,8 +112,8 @@ export function ProjectDetailView({ project, onBack }) {
             {sections.map((section, index) => (
               <section key={section.id} id={`${project.slug}-${section.id}`} tabIndex={-1} className="min-h-[320px] scroll-mt-28 rounded-md border border-white/15 bg-white/[0.035] p-6 focus-visible:outline focus-visible:outline-[var(--color-accent)] md:p-10">
                 <p className="overview-label mb-4">{String(index + 1).padStart(2, '0')}{!project.breakdown && ' / Coming soon'}</p>
-                <h3 className="mb-6 font-display text-3xl text-[var(--color-accent)]">{section.title}</h3>
-                <p className="max-w-2xl text-lg leading-relaxed text-white/75">{section.text}</p>
+                <h3 className={`mb-6 font-display leading-tight text-[var(--color-accent)] ${section.blocks ? 'text-4xl md:text-5xl' : 'text-3xl'}`}>{section.title}</h3>
+                {section.blocks ? <StudyContent section={section} /> : <p className="max-w-2xl text-lg leading-relaxed text-white/75">{section.text}</p>}
               </section>
             ))}
           </div>

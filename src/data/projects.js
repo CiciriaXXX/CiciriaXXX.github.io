@@ -1,3 +1,5 @@
+import renderingPractice from './renderingPractice.json';
+
 // Project data is grouped by section so the home page and detail routes share one source.
 export const projectSections = [
   {
@@ -89,26 +91,18 @@ export const projectSections = [
     projects: [
       {
         id: 1,
-        slug: 'silhouette-shader',
-        title: 'Silhouette Shader',
-        category: 'Shader',
-        image: '/silh.png',
+        slug: 'rendering-practice',
+        title: 'Rendering Studies',
+        overviewLayout: 'metadata-description',
+        hideBreakdownHeading: true,
+        category: 'Shader & Rendering Studies',
+        image: '/rendering-practice/cover.webp?v=user-stills',
         description:
-          'Automatically generates 3D model contours and occlusions. Users can choose whether to display the model surfaces, laying the foundation for flat rendering or ghost effects.',
-        details: 'Coursework',
-        tech: ['OpenGL', 'GLSL', 'C++'],
-        link: null,
-      },
-      {
-        id: 2,
-        slug: 'rendering-toolkit',
-        title: 'Rendering Toolkit',
-        category: 'Placeholder',
-        image: '/silh.png',
-        description:
-          'A placeholder slot for future tools, shaders, editor utilities, and rendering notes.',
-        details: 'Placeholder Project',
-        tech: ['Unity', 'Shader Graph', 'Tooling'],
+          'A series of rendering studies that deepened my understanding of shaders after learning the fundamentals of computer graphics. Most began with public tutorials, adapting techniques from Unreal Engine, Unity ShaderLab / HLSL, and Shader Graph, or developing implementations from explanations without complete code. Building on these approaches, I refined colors, lighting, and animated details to explore my own visual preferences and the relationship between technical principles and artistic expression.',
+        details: 'Individual Project',
+        completed: 'March–June 2026',
+        tech: ['Unity', 'Amplify Shader Editor'],
+        breakdown: renderingPractice,
         link: null,
       },
     ],
