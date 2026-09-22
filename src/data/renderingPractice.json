@@ -55,7 +55,7 @@
       },
       {
         "type": "paragraph",
-        "text": "**Scrolling the scan texture**: Sample the scan texture with `uv = (worldPosition - objectWorldPosition).xy * tiling + time * speed` to animate the pattern. Combine it with rim lighting, a detail texture, and an interior color."
+        "text": "**Scrolling the scan texture**: Sample the scan texture with `uv = (worldPosition - objectWorldPosition).xy * tiling + time * speed` to animate the pattern."
       },
       {
         "type": "image",
@@ -728,7 +728,7 @@
       },
       {
         "type": "paragraph",
-        "text": "**Noise-driven hue variation**: Sample noise with world-space position XY before expansion, calculate `H' = H + (noise + offset) * variety` in HSV, and blend with the original color to control strength. I developed this addition from my painting experience rather than a tutorial, introducing local hue shifts to break up uniform greens and enrich the canopy's color shapes."
+        "text": "**Noise-driven hue variation**: Sample noise with world-space position XY before expansion, calculate `H' = H + (noise + offset) * variety` in HSV, and blend with the original color to control strength. I developed this addition from my painting experience rather than a tutorial."
       },
       {
         "type": "image",

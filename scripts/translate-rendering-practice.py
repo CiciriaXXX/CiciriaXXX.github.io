@@ -15,7 +15,7 @@ copy = {
 ]),
 'scan': ('Holographic Character Scan', [
 "**Fresnel rim lighting**: Using a unit normal N and a camera-facing view direction V in the same coordinate space, calculate `rim = pow(1 - saturate(dot(N, V)), power)`, then multiply by color and intensity. Front-facing surfaces remain darker while the silhouette glows; increasing power narrows the rim.",
-"**Scrolling the scan texture**: Sample the scan texture with `uv = (worldPosition - objectWorldPosition).xy * tiling + time * speed` to animate the pattern. Combine it with rim lighting, a detail texture, and an interior color.",
+"**Scrolling the scan texture**: Sample the scan texture with `uv = (worldPosition - objectWorldPosition).xy * tiling + time * speed` to animate the pattern.",
 "**Depth prepass**: First record the nearest surface depth with `ColorMask 0 / ZWrite On`, then add the glow with `Blend SrcAlpha One`. The color pass uses depth testing to reject self-occluded surfaces, such as the chest behind an arm, preventing overlapping glow in those areas.",
 "Character model generated with TripoAI."
 ]),
@@ -82,7 +82,7 @@ copy = {
 "**Expanding leaves from UVs**: In URP / ASE, construct a view-space XY direction from `uv * 2 - 1`, transform it into object space, normalize it, and add it to the original vertex position. This expands leaf clusters to face the camera.",
 "**Controlling inflation and expansion**: Calculate `P' = P + LerpAlpha * (normalOS * Inflate + billboardOffset)` to control outward canopy inflation and billboard expansion separately.",
 "**Preserving overall shading**: Keep the original normals for diffuse lighting, then add highlights, ambient fill, and rim lighting so the expanded leaves retain the canopy's overall volume.",
-"**Noise-driven hue variation**: Sample noise with world-space position XY before expansion, calculate `H' = H + (noise + offset) * variety` in HSV, and blend with the original color to control strength. I developed this addition from my painting experience rather than a tutorial, introducing local hue shifts to break up uniform greens and enrich the canopy's color shapes.",
+"**Noise-driven hue variation**: Sample noise with world-space position XY before expansion, calculate `H' = H + (noise + offset) * variety` in HSV, and blend with the original color to control strength. I developed this addition from my painting experience rather than a tutorial.",
 "This approach suits the visual language I wanted for stylized foliage better than conventional leaf cards. Its main limitation is changing occlusion as the leaves rotate with the camera. If the texture has too few gaps, entire layers can appear to switch abruptly; adding gaps and reducing the area covered by each card can help."
 ])}
 headings = {'技术要点':'Technical Notes', '参考':'References', '模型':'Model', '使用模型':'Model', '材质':'Textures & Materials'}
