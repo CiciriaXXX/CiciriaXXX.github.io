@@ -7,20 +7,20 @@ sections = json.loads(path.read_text(encoding='utf-8'))
 copy = {
 'geometry': ('Geometry Shader: 3D Crosses', [
 "One of my OSU CS457 assignments (Project 7A), written in GLSL (`#version 330 compatibility`) and tested with Professor Mike Bailey's [glman](https://web.engr.oregonstate.edu/~mjb/glman/) for interactive parameter adjustment.",
-"**Sampling the triangle surface**: The vertex shader passes object-space positions and normals to the geometry shader, which processes one triangle at a time. Sample points are generated with `P = V0 + s * (V1 - V0) + t * (V2 - V0)`, where `s ≥ 0, t ≥ 0, s + t ≤ 1`. The subdivision level is controlled by `2^uLevel`.",
+"**Sampling the triangle surface**: The vertex shader passes object-space positions and normals to the geometry shader, which processes one triangle at a time. Sample points are generated with `P = V0 + s * (V1 - V0) + t * (V2 - V0)`, where `s ≥ 0, t ≥ 0, s + t ≤ 1`. The number of sampling subdivisions is controlled by `2^uLevel`.",
 "**Quantizing positions to a grid**: Each XYZ component is snapped using `q(x) = float(int(x * uQuantize)) / uQuantize`. The grid spacing is `1 / uQuantize`, so larger values produce finer quantization. The integer conversion truncates toward zero.",
 "**Building 3D crosses from line segments**: Two endpoints are emitted along each of the X, Y, and Z axes around every quantized point. `EmitVertex()` and `EndPrimitive()` produce three independent segments, each of length `2 * uSize`. The endpoints are transformed by the model-view-projection matrix, replacing the triangle surface with a field of spatial crosses.",
 "**Preserving the model's lighting and form**: Triangle vertex normals are interpolated with the same s and t values and transformed into view space. Light and view directions are calculated at the cross center. Ambient light, Lambert diffuse shading, and Phong highlights let the line segments retain the original model's sense of volume.",
 "**Coloring by depth (ChromaDepth)**: The view-space depth of each cross center is mapped between near and far limits onto a red–green–blue rainbow. This replaces the base color before lighting is applied. glman allows switching between regular and depth-based coloring."
 ]),
 'scan': ('Holographic Character Scan', [
-"**Fresnel rim lighting**: Using a unit normal N and a camera-facing view direction V in the same coordinate space, calculate `rim = pow(1 - saturate(dot(N, V)), power)`, then multiply by color and intensity. Front-facing surfaces remain darker while the silhouette glows; increasing power narrows the rim.",
+"**Fresnel rim lighting**: Using a normalized surface normal N and a normalized surface-to-camera direction V in the same coordinate space, calculate `rim = pow(1 - saturate(dot(N, V)), power)`, then multiply by color and intensity. Surfaces whose normals align with the view direction receive less rim lighting, while the silhouette glows; increasing power narrows the rim.",
 "**Scrolling the scan texture**: Sample the scan texture with `uv = (worldPosition - objectWorldPosition).xy * tiling + time * speed` to animate the pattern.",
 "**Depth prepass**: First record the nearest surface depth with `ColorMask 0 / ZWrite On`, then add the glow with `Blend SrcAlpha One`. The color pass uses depth testing to reject self-occluded surfaces, such as the chest behind an arm, preventing overlapping glow in those areas.",
 "Character model generated with TripoAI."
 ]),
 'matcap-beetle': ('MatCap Beetle Material', [
-"**MatCap sampling**: Transform the normal into view space and map its direction to a 2D texture with `uv = normalVS.xy * 0.5 + 0.5`. Baked shading and highlights respond to surface orientation, creating the appearance of a beetle shell.",
+"**MatCap sampling**: Transform the normal into view space and map its direction to a 2D texture with `uv = normalVS.xy * 0.5 + 0.5`. Shading and highlights stored in the MatCap texture respond to surface orientation, creating the appearance of a beetle shell.",
 "**Normal mapping**: Transform tangent-space normals into view space before sampling the MatCap, so reflections respond to the shell's surface detail.",
 "**Layering two MatCaps**: Adjust the strength of each MatCap, add them together, and multiply by the base-color texture. This separates control over the main shading, additional reflections, and shell color.",
 "**View-dependent color shifts**: Use the Fresnel value to sample a color gradient and multiply it into the material, approximating an iridescent shell. This is a view-driven color effect; it does not calculate optical path differences for thin-film interference."
@@ -44,7 +44,7 @@ copy = {
 ]),
 'dissolve': ('Directional Dissolve', [
 "**Height-driven direction**: Calculate `h = 1 - (y - minHeight) / (maxHeight - minHeight)` from object-space height, assigning 0 to the top and 1 to the bottom. Lower values disappear first, making the dissolve progress downward.",
-"**Noise-shaped boundaries**: Sample noise with view-space position XY, calculate `n = 1 - Noise.r`, then `field = h + (n - 0.5) * spread`. Noise changes the disappearance order within each height band: bright areas in the source texture dissolve first, while darker areas remain longer. The spread parameter controls the boundary variation and the vertical range of fragments.",
+"**Noise-shaped boundaries**: Sample noise with view-space position XY, calculate `n = 1 - Noise.r`, then `field = h + (n - 0.5) * spread`. Noise changes the disappearance order within each height band: bright areas in the source texture dissolve first, while darker areas remain longer. The spread parameter controls the boundary variation and the vertical extent of the dissolve transition region.",
 "**Moving the threshold and clipping**: Map progress to a threshold, calculate `d = field - threshold`, and apply `clip(d)`. Values below 0 disappear; values at or above 0 remain. The threshold range covers the noise-perturbed field and leaves room for the glowing edge, keeping the object fully visible at progress 0 and fully dissolved at 1.",
 "**Extracting and coloring the edge**: Reuse d to calculate `edge = 1 - smoothstep(0, 1, saturate(d / width))`, creating a fading mask in the surviving region `0 ≤ d < width`. Add `edge * edgeColor * emissionIntensity` to the base color so the glow follows the clipped boundary and fades inward. The color intensity is smooth, while surface visibility still uses hard clipping."
 ]),
@@ -60,21 +60,21 @@ copy = {
 "**Adding front-face highlights**: Combine environment reflections and Fresnel rim lighting on the front faces, then additively blend them over the back-face result to emphasize bright facets."
 ]),
 'glass': ('MatCap Glass Material', [
-"**Correcting MatCap coordinates**: Following Ben Golus's approach, construct sampling coordinates from the cross product of the view-space view direction and normal. Reflections respond to both surface orientation and viewing direction, reducing banding where the cup's walls have similar normals. A normal map adds surface detail.",
+"**Correcting MatCap coordinates**: Following Ben Golus's approach, construct sampling coordinates from the cross product of the view-space view direction and normal. Reflections respond to both surface orientation and viewing direction, reducing stripe-like artifacts where the cup's walls have similar normals. A normal map adds surface detail.",
 "**Estimating apparent thickness**: Smoothly remap `1 - dot(N, V)`, add a thickness texture sampled by height, and clamp to 0–1. The first term emphasizes side edges; the second independently controls the apparent thickness of areas such as the base.",
 "**Distorting the interior texture**: Use the approximate thickness to offset UVs, sample a prepared interior pattern, and blend it with the glass color to suggest refractive distortion. The sampled content is a texture, not the live scene background.",
 "**Controlling opacity**: Use the larger of the reflection's R channel and the thickness weight as alpha. This makes reflections, side edges, and the base more visible while keeping the remaining surface more transparent."
 ]),
 'galaxy': ('Galaxy Energy Material', [
 "**Projecting the nebula pattern**: Transform the surface position and object center into view space, then use the XY components of their difference to sample a nebula texture. Perturb the UVs with the view-space normal XY to suggest an interior pattern that shifts with the viewing angle.",
-"**Animating the flow texture**: Construct UVs from world-space position XY relative to the object center, adding a remapped `dot(N, V)` term and a time offset. Multiply the sampled flow texture into the nebula color and add a separate flowing emission layer.",
+"**Animating the scrolling texture**: Construct UVs from world-space position XY relative to the object center, adding a remapped `dot(N, V)` term and a time offset. Multiply the sampled scrolling texture into the nebula color and add a separate flowing emission layer.",
 "**Fresnel rim glow**: Raise `1 - dot(N, V)` to a power, adjust its intensity, multiply by the rim color, and add it to the nebula result to strengthen the silhouette.",
-"**Emphasizing stars**: Raise each RGB component of the nebula color to the fourth power to suppress dark areas and emphasize bright points. Multiply by the flow texture and an intensity factor, then add the result to create moving starlight."
+"**Emphasizing stars**: Raise each RGB component of the nebula color to the fourth power to suppress dark areas and emphasize bright points. Multiply by the scrolling texture and an intensity factor, then add the result to create moving starlight."
 ]),
 'fog': ('Distance and Height Fog', [
 "**Distance-based fog**: From the surface-to-camera distance dist, calculate `distanceMask = saturate((dist - start) / (end - start))`. Fog increases gradually from the start distance to its maximum at the end distance.",
 "**Height-based restriction**: Calculate `heightMask = saturate((top - y) / (top - bottom))` from world height y, approaching 1 at lower elevations and 0 higher up. Multiply by the distance mask to concentrate fog in distant lowlands.",
-"**Sun-dependent fog color**: Take the dot product of the camera-to-surface direction and the sun direction, remap it to 0–1, and raise it to a power. Use this as the blend weight between the regular fog color and the sun-glow color.",
+"**Sun-dependent fog color**: Take the dot product of the camera-to-surface direction and the direction toward the sun, remap it to 0–1, and raise it to a power. Use this as the blend weight between the regular fog color and the sun-glow color.",
 "**Blending terrain into fog**: Use `fog = distanceMask * heightMask * intensity` as the weight in `lerp(litTerrainColor, fogColor, fog)`, gradually blending distant lowlands into the fog color.",
 "**Joining sky and terrain**: Create a gradient near the horizon from the vertical component of the sky direction. Blend the sky toward a fog color similar to the terrain's to soften the distant boundary."
 ]),
@@ -83,7 +83,7 @@ copy = {
 "**Controlling inflation and expansion**: Calculate `P' = P + LerpAlpha * (normalOS * Inflate + billboardOffset)` to control outward canopy inflation and billboard expansion separately.",
 "**Preserving overall shading**: Keep the original normals for diffuse lighting, then add highlights, ambient fill, and rim lighting so the expanded leaves retain the canopy's overall volume.",
 "**Noise-driven hue variation**: Sample noise with world-space position XY before expansion, calculate `H' = H + (noise + offset) * variety` in HSV, and blend with the original color to control strength. I developed this addition from my painting experience rather than a tutorial.",
-"This approach suits the visual language I wanted for stylized foliage better than conventional leaf cards. Its main limitation is changing occlusion as the leaves rotate with the camera. If the texture has too few gaps, entire layers can appear to switch abruptly; adding gaps and reducing the area covered by each card can help."
+"This approach suits the visual language I wanted for stylized foliage better than conventional leaf cards. Its main limitation is visible popping as the leaf cards change their occlusion order when they rotate with the camera. This is more noticeable when the texture has too few gaps; adding gaps and reducing the area covered by each card can help."
 ])}
 headings = {'技术要点':'Technical Notes', '参考':'References', '模型':'Model', '使用模型':'Model', '材质':'Textures & Materials'}
 references = {

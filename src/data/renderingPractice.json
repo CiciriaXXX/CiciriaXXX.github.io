@@ -13,7 +13,7 @@
       },
       {
         "type": "paragraph",
-        "text": "**Sampling the triangle surface**: The vertex shader passes object-space positions and normals to the geometry shader, which processes one triangle at a time. Sample points are generated with `P = V0 + s * (V1 - V0) + t * (V2 - V0)`, where `s ≥ 0, t ≥ 0, s + t ≤ 1`. The subdivision level is controlled by `2^uLevel`."
+        "text": "**Sampling the triangle surface**: The vertex shader passes object-space positions and normals to the geometry shader, which processes one triangle at a time. Sample points are generated with `P = V0 + s * (V1 - V0) + t * (V2 - V0)`, where `s ≥ 0, t ≥ 0, s + t ≤ 1`. The number of sampling subdivisions is controlled by `2^uLevel`."
       },
       {
         "type": "paragraph",
@@ -44,7 +44,7 @@
       },
       {
         "type": "paragraph",
-        "text": "**Fresnel rim lighting**: Using a unit normal N and a camera-facing view direction V in the same coordinate space, calculate `rim = pow(1 - saturate(dot(N, V)), power)`, then multiply by color and intensity. Front-facing surfaces remain darker while the silhouette glows; increasing power narrows the rim."
+        "text": "**Fresnel rim lighting**: Using a normalized surface normal N and a normalized surface-to-camera direction V in the same coordinate space, calculate `rim = pow(1 - saturate(dot(N, V)), power)`, then multiply by color and intensity. Surfaces whose normals align with the view direction receive less rim lighting, while the silhouette glows; increasing power narrows the rim."
       },
       {
         "type": "image",
@@ -95,7 +95,7 @@
       },
       {
         "type": "paragraph",
-        "text": "**MatCap sampling**: Transform the normal into view space and map its direction to a 2D texture with `uv = normalVS.xy * 0.5 + 0.5`. Baked shading and highlights respond to surface orientation, creating the appearance of a beetle shell."
+        "text": "**MatCap sampling**: Transform the normal into view space and map its direction to a 2D texture with `uv = normalVS.xy * 0.5 + 0.5`. Shading and highlights stored in the MatCap texture respond to surface orientation, creating the appearance of a beetle shell."
       },
       {
         "type": "paragraph",
@@ -331,7 +331,7 @@
       },
       {
         "type": "paragraph",
-        "text": "**Noise-shaped boundaries**: Sample noise with view-space position XY, calculate `n = 1 - Noise.r`, then `field = h + (n - 0.5) * spread`. Noise changes the disappearance order within each height band: bright areas in the source texture dissolve first, while darker areas remain longer. The spread parameter controls the boundary variation and the vertical range of fragments."
+        "text": "**Noise-shaped boundaries**: Sample noise with view-space position XY, calculate `n = 1 - Noise.r`, then `field = h + (n - 0.5) * spread`. Noise changes the disappearance order within each height band: bright areas in the source texture dissolve first, while darker areas remain longer. The spread parameter controls the boundary variation and the vertical extent of the dissolve transition region."
       },
       {
         "type": "paragraph",
@@ -494,7 +494,7 @@
       },
       {
         "type": "paragraph",
-        "text": "**Correcting MatCap coordinates**: Following Ben Golus's approach, construct sampling coordinates from the cross product of the view-space view direction and normal. Reflections respond to both surface orientation and viewing direction, reducing banding where the cup's walls have similar normals. A normal map adds surface detail."
+        "text": "**Correcting MatCap coordinates**: Following Ben Golus's approach, construct sampling coordinates from the cross product of the view-space view direction and normal. Reflections respond to both surface orientation and viewing direction, reducing stripe-like artifacts where the cup's walls have similar normals. A normal map adds surface detail."
       },
       {
         "type": "image",
@@ -575,7 +575,7 @@
       },
       {
         "type": "paragraph",
-        "text": "**Animating the flow texture**: Construct UVs from world-space position XY relative to the object center, adding a remapped `dot(N, V)` term and a time offset. Multiply the sampled flow texture into the nebula color and add a separate flowing emission layer."
+        "text": "**Animating the scrolling texture**: Construct UVs from world-space position XY relative to the object center, adding a remapped `dot(N, V)` term and a time offset. Multiply the sampled scrolling texture into the nebula color and add a separate flowing emission layer."
       },
       {
         "type": "image",
@@ -590,7 +590,7 @@
       },
       {
         "type": "paragraph",
-        "text": "**Emphasizing stars**: Raise each RGB component of the nebula color to the fourth power to suppress dark areas and emphasize bright points. Multiply by the flow texture and an intensity factor, then add the result to create moving starlight."
+        "text": "**Emphasizing stars**: Raise each RGB component of the nebula color to the fourth power to suppress dark areas and emphasize bright points. Multiply by the scrolling texture and an intensity factor, then add the result to create moving starlight."
       },
       {
         "type": "image",
@@ -653,7 +653,7 @@
       },
       {
         "type": "paragraph",
-        "text": "**Sun-dependent fog color**: Take the dot product of the camera-to-surface direction and the sun direction, remap it to 0–1, and raise it to a power. Use this as the blend weight between the regular fog color and the sun-glow color."
+        "text": "**Sun-dependent fog color**: Take the dot product of the camera-to-surface direction and the direction toward the sun, remap it to 0–1, and raise it to a power. Use this as the blend weight between the regular fog color and the sun-glow color."
       },
       {
         "type": "image",
@@ -739,7 +739,7 @@
       },
       {
         "type": "paragraph",
-        "text": "This approach suits the visual language I wanted for stylized foliage better than conventional leaf cards. Its main limitation is changing occlusion as the leaves rotate with the camera. If the texture has too few gaps, entire layers can appear to switch abruptly; adding gaps and reducing the area covered by each card can help."
+        "text": "This approach suits the visual language I wanted for stylized foliage better than conventional leaf cards. Its main limitation is visible popping as the leaf cards change their occlusion order when they rotate with the camera. This is more noticeable when the texture has too few gaps; adding gaps and reducing the area covered by each card can help."
       },
       {
         "type": "heading",
