@@ -14,7 +14,7 @@ export const cycleOfDarkness = {
   title: "Cycle of Darkness",
   lang: "en",
   category: "Top-Down Pixel Art Action Roguelike",
-  image: '/cycle-of-darkness/walkthrough-poster.jpg',
+  image: '/cycle-of-darkness/cover.jpg',
   previewVideo: '/previews/cycle-of-darkness.mp4',
   walkthroughVideo: '/cycle-of-darkness/walkthrough.mp4',
   walkthroughPoster: '/cycle-of-darkness/walkthrough-poster.jpg',
