@@ -1,0 +1,254 @@
+[
+  {
+    "id": "attack-crystal",
+    "state": "on_approach",
+    "width": 57,
+    "height": 82,
+    "sampleFrames": 11,
+    "durationMs": 1100,
+    "prefab": "Assets/Resources/Decorates/BuffCrystal_Attack/ent_buff_crystal_attack.prefab",
+    "clip": "Assets/Resources/Decorates/BuffCrystal_Attack/Animations/on_approach.anim",
+    "sources": [
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_Attack/ent_buff_crystal_attack.prefab",
+        "sha256": "7db797dbf1324d42f9de6cce3f2829f3980b0156666e21d31ff3db0f377b7688"
+      },
+      {
+        "path": "Assets/Art/Template/Prefabs/decorate_template.prefab",
+        "sha256": "f0856243ea28d6d2c114f83c18b474224f488fae0c0cb60d62d9658b02dd4989"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_Attack/Animations/FX.ase",
+        "sha256": "a04f766da7c91cb4e7998155b66d386e7aa159c67c3ae429b19afeb115684db3"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_Attack/Animations/FX.ase.meta",
+        "sha256": "658a4cc3554028dbd6443dbc15bcd83b01b80361d6c7cfe7cb3a7a399416e68f"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_Attack/Animations/model.controller",
+        "sha256": "b6d701b1c2eeb086d0b88e78da6938ce3bd8897eff556ba1e0ccb831c2ec6322"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_Attack/Animations/on_approach.anim",
+        "sha256": "1729e4bac965f0588f3d8badd0d892d2d4e85661ae1b5587a83da0f1deb67337"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_Attack/Animations/底座.ase",
+        "sha256": "c585d66f046f2b216d104daab8cad530e71987aa5c0f36392d0534baecb535e4"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_Attack/Animations/底座.ase.meta",
+        "sha256": "c43f08ec489e770f16c81029feaa4064d0d9617dcfe35ede8dbfb1dbdd39428e"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_Attack/Animations/水晶.ase",
+        "sha256": "84467d788be623378597df74af974a91b86e5e0d567b55359920109ac71e5c16"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_Attack/Animations/水晶.ase.meta",
+        "sha256": "dd2ec15b3afbb27c9e429ccf232498e175a06dbd307f277b83ec1e4faa19d67f"
+      }
+    ]
+  },
+  {
+    "id": "attack-speed-crystal",
+    "state": "on_approach",
+    "width": 57,
+    "height": 92,
+    "sampleFrames": 11,
+    "durationMs": 1100,
+    "prefab": "Assets/Resources/Decorates/BuffCrystal_AttackSpeed/ent_buff_crystal_attack_speed.prefab",
+    "clip": "Assets/Resources/Decorates/BuffCrystal_AttackSpeed/Animations/on_approach.anim",
+    "sources": [
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_AttackSpeed/ent_buff_crystal_attack_speed.prefab",
+        "sha256": "e6a133deade42bde669fcab386c56a885166ab016c5f342d71b855b308c0ca96"
+      },
+      {
+        "path": "Assets/Art/Template/Prefabs/decorate_template.prefab",
+        "sha256": "f0856243ea28d6d2c114f83c18b474224f488fae0c0cb60d62d9658b02dd4989"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_AttackSpeed/Animations/fx.ase",
+        "sha256": "775a3dc2fcf794bfd6a8274d209bebb2dcdde31700cce14a7dc741165edcdf02"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_AttackSpeed/Animations/fx.ase.meta",
+        "sha256": "d7db495692cf928ebca5d693d1e496700eee5437ddd0608eaae0ba3e7d18215a"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_AttackSpeed/Animations/model.controller",
+        "sha256": "124fcf3d3da46d337299fdb62cb8dd44b7017b0999f0426faa4e67d6891a638e"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_AttackSpeed/Animations/on_approach.anim",
+        "sha256": "4c005092a10beec1914f91cf6348b8728adea91e40920f0b575cdfb390a4b3d3"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_AttackSpeed/Animations/底座.ase",
+        "sha256": "00bca4be194c5e0c43e826b549b3e4f6254bf42dbf238352ef3670de0a3c1b8f"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_AttackSpeed/Animations/底座.ase.meta",
+        "sha256": "f04ced9855ea8da0044ede655c3b829668f179defbe51efbf54743157053b035"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_AttackSpeed/Animations/水晶.ase",
+        "sha256": "a9f7bfce274bc28a88a0468811c8ba02f65915a8f36b4274bc8171f988cac2d6"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_AttackSpeed/Animations/水晶.ase.meta",
+        "sha256": "26e74517d172d0f55140b0d8f721b3a0bafb0d4264a6a786057c25e169b837b9"
+      }
+    ]
+  },
+  {
+    "id": "shield-crystal",
+    "state": "on_approach",
+    "width": 67,
+    "height": 83,
+    "sampleFrames": 11,
+    "durationMs": 1100,
+    "prefab": "Assets/Resources/Decorates/BuffCrystal_Shield/ent_buff_crystal_shield.prefab",
+    "clip": "Assets/Resources/Decorates/BuffCrystal_Shield/Animations/on_approach.anim",
+    "sources": [
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_Shield/ent_buff_crystal_shield.prefab",
+        "sha256": "ab08c1013178fec46df7f85ed5ec576f3104443674b0509c226c4e69541c38b7"
+      },
+      {
+        "path": "Assets/Art/Template/Prefabs/decorate_template.prefab",
+        "sha256": "f0856243ea28d6d2c114f83c18b474224f488fae0c0cb60d62d9658b02dd4989"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_Shield/Animations/fx.ase",
+        "sha256": "3f46f14bf0c963b26c42255dcfe4adcfdcebc17b3252876ee940902673421621"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_Shield/Animations/fx.ase.meta",
+        "sha256": "93a67d32caaf68b390ea83fa3dc782e59816c3b0eef040661b52a31d064bb743"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_Shield/Animations/model.controller",
+        "sha256": "d33998061552a9f2e8a6169ead65b8512216d6e1db8a955bf3a55080800362c7"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_Shield/Animations/on_approach.anim",
+        "sha256": "ecccd2af1493ceb4ed1770f9f9e63f091f6b33288eedb0858198e003d44025ee"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_Shield/Animations/底座.ase",
+        "sha256": "0682e06e280768992186ce42f51def914efe0fdd27eec7c23ef5fc3c1e4c58b1"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_Shield/Animations/底座.ase.meta",
+        "sha256": "b5ddc5860b770c5642c120f2bee464eaa6d30e6fda54175b0d73185f1d966cd1"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_Shield/Animations/水晶.ase",
+        "sha256": "040343608a76dac0e375267c34b873d182591607b4a5f621c41fa8a1e0d40b79"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BuffCrystal_Shield/Animations/水晶.ase.meta",
+        "sha256": "79da7f49b639b9c33da8da58680dd8bc4ea9068438f87529ad0c6fdcdc3c16ff"
+      }
+    ]
+  },
+  {
+    "id": "bomb-flower",
+    "state": "on_dead",
+    "width": 133,
+    "height": 134,
+    "sampleFrames": 180,
+    "durationMs": 3000,
+    "prefab": "Assets/Resources/Decorates/BombFlower/ent_decroate_bomb_flower.prefab",
+    "clip": "Assets/Resources/Decorates/BombFlower/Animations/on_dead.anim",
+    "sources": [
+      {
+        "path": "Assets/Resources/Decorates/BombFlower/ent_decroate_bomb_flower.prefab",
+        "sha256": "0669123c4c3333e03d82063fb5567365b5a87296dd19741fed749df01b4d443b"
+      },
+      {
+        "path": "Assets/Art/Effects/Shield_02/circle2.png",
+        "sha256": "682897a6dee88d4336cf50d523f060b214aef20a46208da38ed9355b3b5d906a"
+      },
+      {
+        "path": "Assets/Art/Effects/Shield_02/circle2.png.meta",
+        "sha256": "282adf543b2c99973c3890e5f53ced19a35c437a6130a1c24f352aedcbff3e4b"
+      },
+      {
+        "path": "Assets/Art/Template/Prefabs/decorate_template.prefab",
+        "sha256": "f0856243ea28d6d2c114f83c18b474224f488fae0c0cb60d62d9658b02dd4989"
+      },
+      {
+        "path": "Assets/Art/Textures/light.psd",
+        "sha256": "386b9b3c8f731ee4122621d529c12d5346f1630dffe2c13f9c44f4e434f00905"
+      },
+      {
+        "path": "Assets/Art/Textures/light.psd.meta",
+        "sha256": "6c4846cb1288027b11f3502b894c8a261a9b18a15dfc3f7f3bad39d83c80fb25"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BombFlower/Animations/BombFlower.png",
+        "sha256": "e95e0af35f3ed1b9a5e9e570b90d98e20281b1ace97c02a3613db2ac531cc2da"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BombFlower/Animations/BombFlower.png.meta",
+        "sha256": "c693a576eac7e37452e7e6cd91537d144b383b479c29180af733acd21477d86b"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BombFlower/Animations/model.controller",
+        "sha256": "4ee8c6620ee92ffbb6ff7e5bc82a98e525b1dee96a3b65f1ed38b0ea641c7a9b"
+      },
+      {
+        "path": "Assets/Resources/Decorates/BombFlower/Animations/on_dead.anim",
+        "sha256": "b604730cac558575b42d26321bb70c5d12b353f26d427656ffa530a42d192e93"
+      }
+    ]
+  },
+  {
+    "id": "spawner-box",
+    "state": "idle",
+    "width": 68,
+    "height": 59,
+    "sampleFrames": 15,
+    "durationMs": 900,
+    "prefab": "Assets/Resources/Decorates/WoodenBox_Spawner/ent_decroate_wooden_box_spawner.prefab",
+    "clip": "Assets/Resources/Decorates/WoodenBox_Spawner/Animations/idle.anim",
+    "sources": [
+      {
+        "path": "Assets/Resources/Decorates/WoodenBox_Spawner/ent_decroate_wooden_box_spawner.prefab",
+        "sha256": "1e183011a11f636ab21846d5f93c839888817814bc0ea7259b78338f02820cc6"
+      },
+      {
+        "path": "Assets/Art/Template/Prefabs/decorate_template.prefab",
+        "sha256": "f0856243ea28d6d2c114f83c18b474224f488fae0c0cb60d62d9658b02dd4989"
+      },
+      {
+        "path": "Assets/Resources/Decorates/WoodenBox/Animations/woodenbox.png",
+        "sha256": "d5a78be4974ff39d30deac4556b42c66e2b924335e0428c98e3ecbeb3110dd3c"
+      },
+      {
+        "path": "Assets/Resources/Decorates/WoodenBox/Animations/woodenbox.png.meta",
+        "sha256": "ea89ab72adeb9566991a641533cb1a0b7642832249957423a19fac90c58b063c"
+      },
+      {
+        "path": "Assets/Resources/Decorates/WoodenBox_Spawner/Animations/box_spawner_shaking_63x59.ase",
+        "sha256": "3dbd5411d5a29e99ad17ceda9c781151e657368b367732d3176891e071b229dc"
+      },
+      {
+        "path": "Assets/Resources/Decorates/WoodenBox_Spawner/Animations/box_spawner_shaking_63x59.ase.meta",
+        "sha256": "48e02c023e1b4a7404cf2c2d65cdb022332308c6f9c22210a1d4a51aac890d25"
+      },
+      {
+        "path": "Assets/Resources/Decorates/WoodenBox_Spawner/Animations/idle.anim",
+        "sha256": "1444bec13d82d062fdf2aa6134c5e253de44e5e8a36dd1032f8a09d1e7a77e61"
+      },
+      {
+        "path": "Assets/Resources/Decorates/WoodenBox_Spawner/Animations/model.controller",
+        "sha256": "3745e6eac308d576cd7b1f1359b713524f959141e073d9cbe6ff04a3d4df7891"
+      }
+    ]
+  }
+]
