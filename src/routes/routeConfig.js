@@ -2,6 +2,7 @@
 export const navRoutes = [
   { id: 'home', path: '#home', label: 'Home' },
   { id: 'tech-art', path: '#tech-art', label: 'Tech Art' },
+  { id: 'long-term', path: '#long-term', label: 'Long-Term Projects' },
   { id: 'game', path: '#games', label: 'Game Jam Projects' },
   { id: '2d-art', path: '#2d-art', label: '2D Art' },
 ];
@@ -10,7 +11,7 @@ export const navRoutes = [
 export const normalizePath = (path) => {
   if (!path || path === '#') return '/';
   const cleanPath = path.replace(/^#/, '').split('?')[0];
-  if (['home', 'tech-art', 'games', '2d-art'].includes(cleanPath)) return `#${cleanPath}`;
+  if (['home', 'tech-art', 'long-term', 'games', '2d-art'].includes(cleanPath)) return `#${cleanPath}`;
   if (cleanPath.startsWith('project-')) return `#${cleanPath}`;
   return cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
 };
@@ -18,6 +19,7 @@ export const normalizePath = (path) => {
 // Maps the current route to the navigation item that should appear active.
 export const getActiveRouteId = (path) => {
   if (path === '#home') return 'home';
+  if (path === '#long-term' || path.startsWith('/long-term')) return 'long-term';
   if (path === '#games' || path.startsWith('/games')) return 'game';
   if (path === '#tech-art' || path.startsWith('/tech-art') || path.startsWith('/graphics')) return 'tech-art';
   if (path === '#2d-art' || path.startsWith('/2d-art') || path.startsWith('/art')) return '2d-art';

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { normalizePath } from './routeConfig';
 import { scrollAnimationDelay, scrollToAnchor } from './scrollToAnchor';
 
-const homeSectionIds = ['home', 'tech-art', 'games', '2d-art'];
+const homeSectionIds = ['home', 'tech-art', 'long-term', 'games', '2d-art'];
 
 // Reads the current hash route and normalizes it before React state sees it.
 const readPath = () => normalizePath(window.location.hash.slice(1));

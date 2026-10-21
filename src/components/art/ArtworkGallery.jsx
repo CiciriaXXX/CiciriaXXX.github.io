@@ -1,33 +1,21 @@
 import { styles } from '../../styles/portfolioStyles';
 import { SectionHeader } from '../home/SectionHeader';
 
-function fitFrameToImage(event) {
-  const { naturalWidth, naturalHeight, parentElement } = event.currentTarget;
-  if (!naturalWidth || !naturalHeight || !parentElement) return;
-  parentElement.style.aspectRatio = `${naturalWidth} / ${naturalHeight}`;
-}
-
-// 2D art grid; thumbnails crop to fill their preview frame and open the lightbox.
 export function ArtworkGallery({ artworks, onPreview }) {
   return (
     <section id="2d-art" className={styles.artwork.section}>
-      <SectionHeader eyebrow="Illustration / Fan Work / Sketches" title="2D Art" />
+      <SectionHeader eyebrow="Illustration / Graphic Design / Character Design" title="2D Art" />
       <div className={styles.artwork.grid}>
         {artworks.map((artwork) => (
           <article key={artwork.id} className={styles.artwork.card}>
-            <button
-              type="button"
-              onClick={() => onPreview(artwork)}
-              className={styles.artwork.previewButton}
-              aria-label={`Preview ${artwork.title}`}
-            >
-              <img src={artwork.src} alt={artwork.title} onLoad={fitFrameToImage} className={styles.artwork.thumbnail} />
+            <button type="button" onClick={() => onPreview(artwork)}
+              className="mb-4 block aspect-square w-full overflow-hidden rounded-md bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)]"
+              aria-label={`Open ${artwork.title} gallery`}>
+              <img src={artwork.cover} alt="" loading="lazy" className="h-full w-full object-contain transition duration-500 group-hover:scale-[1.03]" />
             </button>
-            <p className={styles.artwork.year}>{artwork.year}</p>
             <button type="button" onClick={() => onPreview(artwork)} className={styles.artwork.titleButton}>
               <h3 className={styles.artwork.title}>{artwork.title}</h3>
             </button>
-            <p className={styles.artwork.description}>{artwork.description}</p>
           </article>
         ))}
       </div>

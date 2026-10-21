@@ -1,3 +1,7 @@
+import { ProjectMedia } from './ProjectMedia';
+
+const mediaTypes = new Set(['animation-gallery', 'interaction-animations', 'animation-comparisons', 'annotated-diagrams', 'pixel-icons', 'movement-comparison', 'room-gallery', 'pending-media', 'process-steps', 'release-chart']);
+
 // The imported note is structured data, never executable HTML.
 function InlineText({ text }) {
   return text.split(/(`[^`]+`|\*\*[^*]+\*\*|\[[^\]]+\]\(https?:\/\/[^)]+\))/g).map((part, index) => {
@@ -11,7 +15,7 @@ function InlineText({ text }) {
 
 export function StudyContent({ section }) {
   return (
-    <div className="space-y-6 text-base leading-8 text-white/80 md:text-lg" lang="en">
+    <div className="space-y-6 text-base leading-8 text-white/80 md:text-lg" lang={section.lang ?? 'en'}>
       {section.embed && (
         <iframe
           src={section.embed}
@@ -30,6 +34,13 @@ export function StudyContent({ section }) {
         </video>
       )}
       {section.blocks.map((block, index) => {
+        if (block.type === 'code') return <figure key={index} className="source-excerpt"><figcaption>{block.caption} <span>C#</span></figcaption><pre><code>{block.code.split(/(\/\/[^\n]*|\b(?:var|float|if|else|return|true|false|private|public|override|void)\b|\b\d+(?:\.\d+)?f?\b)/g).map((token, i) => <span key={i} className={token.startsWith('//') ? 'code-comment' : /^(var|float|if|else|return|true|false|private|public|override|void)$/.test(token) ? 'code-keyword' : /^\d/.test(token) ? 'code-number' : undefined}>{token}</span>)}</code></pre></figure>;
+        if (mediaTypes.has(block.type)) return <ProjectMedia key={index} block={block} />;
+        if (block.type === 'list') return (
+          <ul key={index} className="list-disc space-y-5 pl-5 marker:text-[var(--color-accent)]">
+            {block.items.map((item, itemIndex) => <li key={itemIndex} className="pl-1"><InlineText text={item} /></li>)}
+          </ul>
+        );
         if (block.type === 'heading') return <h4 key={index} className="!mt-10 border-t border-white/10 pt-5 text-2xl font-bold leading-snug text-[var(--color-accent)] md:text-[28px]">{block.text}</h4>;
         if (block.type === 'image') return (
           <a key={index} href={block.src} target="_blank" rel="noopener noreferrer" className="mx-auto block w-4/5" title="Open full-size diagram">

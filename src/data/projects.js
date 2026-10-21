@@ -1,7 +1,15 @@
 import renderingPractice from './renderingPractice.json';
+import { sisterhoodPasture } from './sisterhoodPasture';
+import { cycleOfDarkness } from './cycleOfDarkness';
 
 // Project data is grouped by section so the home page and detail routes share one source.
 export const projectSections = [
+  {
+    id: 'long-term',
+    path: '/long-term',
+    title: 'Long-Term Projects',
+    projects: [sisterhoodPasture, cycleOfDarkness],
+  },
   {
     id: 'game',
     path: '/games',
@@ -90,6 +98,27 @@ export const projectSections = [
     title: 'Tech Art',
     projects: [
       {
+        id: 2,
+        slug: 'a-great-big-tree',
+        title: 'A Great Big Tree',
+        previewVideo: '/previews/a-great-big-tree.mp4',
+        category: 'First-Person Narrative Exploration',
+        image: '/a-great-big-tree/cover.png',
+        description:
+          'A first-person exploration game based on the paintings of my grandfather, Peng Rongxin, and my memories of him. Players enter the world of his paintings from an exhibition gallery, interacting with the world while listening to narration about his life.',
+        details: 'Individual Project',
+        tech: ['Unity'],
+        completed: 'August–October 2026',
+        jam: 'Tripothon S1',
+        solo: true,
+        videoId: 'WkL9iV9cpEk',
+        link: 'https://ceramicwitch.itch.io/the-great-big-tree',
+        breakdown: [
+          { id: 'rendering', title: 'Rendering', text: 'Rendering breakdown coming soon.' },
+          { id: 'design', title: 'Design', text: 'Design breakdown coming soon.' },
+        ],
+      },
+      {
         id: 1,
         slug: 'rendering-practice',
         title: 'Rendering Studies',
@@ -111,7 +140,7 @@ export const projectSections = [
 
 // Fast lookup table for detail routes such as /games/time-loop-forest.
 export const projectsBySlug = projectSections
-  .flatMap((section) => section.projects.map((project) => ({ ...project, sectionId: section.id })))
+  .flatMap((section) => section.projects.map((project) => ({ ...project, sectionId: section.id, sectionPath: section.path })))
   .reduce((index, project) => ({ ...index, [project.slug]: project }), {});
 
 // Section lookup table used by the home page renderer.

@@ -107,6 +107,7 @@
     @apply mb-1 text-xs font-bold uppercase tracking-widest text-white/60;
   }
   .glsl-background {
+    visibility: hidden;
     height: 100vh;
     height: 100dvh;
     min-height: 100svh;
@@ -126,18 +127,8 @@
   }
 }
 
-@media (max-width: 767px), (prefers-reduced-motion: reduce) {
-  html,
-  body {
-    background:
-      radial-gradient(circle at 74% 20%, rgba(26, 55, 85, 0.58), transparent 38%),
-      linear-gradient(155deg, #030718 0%, #07233b 48%, #2a2147 100%);
-  }
-
-  .glsl-background {
-    display: none;
-  }
-
+/* Fallback behind the opaque WebGL canvas, independent of screen size. */
+@layer components {
   .mobile-static-background {
     background:
       radial-gradient(circle at 73% 14%, rgba(255, 240, 189, 0.28) 0 1px, transparent 2px),

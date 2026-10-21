@@ -1,5 +1,5 @@
 // Anchors that participate in the home page's smooth scrolling navigation.
-const anchorIds = new Set(['home', 'tech-art', 'games', '2d-art']);
+const anchorIds = new Set(['home', 'tech-art', 'long-term', 'games', '2d-art']);
 const navOffset = 112;
 const scrollDuration = 520;
 

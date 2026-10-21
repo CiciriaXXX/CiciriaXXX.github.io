@@ -8,11 +8,11 @@ import { useHashRoute } from './routes/useHashRoute';
 // Converts the current hash route into a project lookup when the user opens a detail page.
 function getProjectRoute(path) {
   const [, sectionPath, slug] = path.split('/');
-  if (!slug || !['games', 'tech-art', 'graphics'].includes(sectionPath)) return null;
+  if (!slug || !['games', 'tech-art', 'graphics', 'long-term'].includes(sectionPath)) return null;
 
   return {
     project: projectsBySlug[slug],
-    fallbackPath: sectionPath === 'games' ? '#games' : '#tech-art',
+    fallbackPath: sectionPath === 'graphics' ? '#tech-art' : `#${sectionPath}`,
   };
 }
 

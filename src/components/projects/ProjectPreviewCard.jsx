@@ -43,7 +43,7 @@ export function ProjectPreviewCard({ project, onOpen }) {
           alt={project.title}
           onLoad={fitFrameToImage}
           onError={useFallbackProjectImage}
-          className={styles.projectCard.mediaImage}
+          className={`${styles.projectCard.mediaImage} ${project.pixelArt ? '[image-rendering:pixelated]' : ''}`}
         />
         {previewing && (
           <video
@@ -73,7 +73,7 @@ export function ProjectPreviewCard({ project, onOpen }) {
         <div className={styles.projectCard.body}>
           <p className={styles.projectCard.role}>{project.details}</p>
           <p className={styles.projectCard.category}>{project.category}</p>
-          <p className={styles.projectCard.description}>{project.description}</p>
+          <p className={styles.projectCard.description}>{project.previewDescription ?? project.description}</p>
         </div>
 
       </div>

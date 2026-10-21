@@ -13,14 +13,12 @@ export function HeroSection({ personalInfo }) {
           <p className={styles.hero.subtitle}>Shichun Xu</p>
           <div className={styles.hero.body}>
             <p>
-              <span className={styles.hero.accentText}>Tech Artist and Game Developer</span>{' '}
-              making small games, rendering experiments, and character-driven visual work.
+              <span className={styles.hero.accentText}>Tech Artist and Game Developer</span>
             </p>
             <p className={styles.hero.bodySmall}>
-              Also work across <span className={styles.hero.strong}>programming</span>,{' '}
-              <span className={styles.hero.strong}>gameplay design</span>, and{' '}
-              <span className={styles.hero.strong}>2D art</span>.
+              {personalInfo.bio}
             </p>
+            <p className={styles.hero.bodySmall}>{personalInfo.creativeApproach}</p>
           </div>
           <div className={styles.hero.links}>
             <a className={styles.hero.iconLink} href={personalInfo.links.itch} aria-label="Open Itch.io">

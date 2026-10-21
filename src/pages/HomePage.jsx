@@ -8,7 +8,7 @@ import { sectionsById } from '../data/projects';
 import { scrollToAnchor, scrollToElementId } from '../routes/scrollToAnchor';
 import { styles } from '../styles/portfolioStyles';
 
-const homeAnchors = ['tech-art', 'games', '2d-art'];
+const homeAnchors = ['tech-art', 'long-term', 'games', '2d-art'];
 
 // Home page composes the hero, project sections, 2D gallery, and artwork preview overlay.
 export function HomePage({ personalInfo, onNavigate }) {
@@ -36,6 +36,14 @@ export function HomePage({ personalInfo, onNavigate }) {
           title="Tech Art"
           items={sectionsById['tech-art'].projects}
           onOpen={(project) => onNavigate(`/tech-art/${project.slug}`)}
+        />
+
+        <PortfolioSection
+          id="long-term"
+          eyebrow="Independent / Studio Work"
+          title={sectionsById['long-term'].title}
+          items={sectionsById['long-term'].projects}
+          onOpen={(project) => onNavigate(`/long-term/${project.slug}`)}
         />
 
         <PortfolioSection

@@ -99,7 +99,7 @@ const fragmentShaderSource = `
 // Keep the background intentionally cheaper than the foreground UI: FPS is capped while resolution stays crisp.
 const targetFrameMs = 1000 / 15;
 const renderScale = 0.8;
-const staticBackgroundQuery = '(max-width: 767px), (prefers-reduced-motion: reduce)';
+const maxRenderPixels = 1_000_000;
 
 function createShader(gl, type, source) {
   const shader = gl.createShader(type);
@@ -138,15 +138,20 @@ export function GlslBackground() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const staticBackground = window.matchMedia(staticBackgroundQuery).matches;
-    if (staticBackground) return undefined;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    const gl = canvas.getContext('webgl', { antialias: false, alpha: false });
+    const gl = canvas.getContext('webgl', { antialias: false, alpha: false, powerPreference: 'low-power' });
     if (!gl) return undefined;
 
     let animationFrameId = 0;
     let lastRenderedAt = 0;
-    const program = createProgram(gl);
+    let program;
+    try {
+      program = createProgram(gl);
+    } catch {
+      // Leave the CSS fallback visible if this device cannot compile the shader.
+      return undefined;
+    }
     const positionLocation = gl.getAttribLocation(program, 'aPosition');
     const resolutionLocation = gl.getUniformLocation(program, 'iResolution');
     const timeLocation = gl.getUniformLocation(program, 'iTime');
@@ -161,7 +166,10 @@ export function GlslBackground() {
     );
 
     const resize = () => {
-      const pixelRatio = Math.min(window.devicePixelRatio || 1, 1) * renderScale;
+      const pixelRatio = Math.min(
+        Math.min(window.devicePixelRatio || 1, 1) * renderScale,
+        Math.sqrt(maxRenderPixels / Math.max(1, window.innerWidth * window.innerHeight)),
+      );
       const width = Math.max(1, Math.floor(window.innerWidth * pixelRatio));
       const height = Math.max(1, Math.floor(window.innerHeight * pixelRatio));
 
@@ -179,18 +187,15 @@ export function GlslBackground() {
       gl.enableVertexAttribArray(positionLocation);
       gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
       gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
-      gl.uniform1f(timeLocation, (now - startedAt) / 1000);
+      gl.uniform1f(timeLocation, reducedMotion.matches ? 0 : (now - startedAt) / 1000);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
+      canvas.style.visibility = 'visible';
     };
 
     const render = (now) => {
-      if (document.hidden) {
-        animationFrameId = window.requestAnimationFrame(render);
-        return;
-      }
+      if (document.hidden || reducedMotion.matches) return;
 
       if (now - lastRenderedAt >= targetFrameMs) {
-        resize();
         drawFrame(now);
         lastRenderedAt = now;
       }
@@ -198,13 +203,25 @@ export function GlslBackground() {
       animationFrameId = window.requestAnimationFrame(render);
     };
 
-    resize();
-    drawFrame(startedAt);
-
-    animationFrameId = window.requestAnimationFrame(render);
+    const restart = () => {
+      window.cancelAnimationFrame(animationFrameId);
+      if (document.hidden) return;
+      resize();
+      const now = window.performance.now();
+      drawFrame(now);
+      lastRenderedAt = now;
+      if (!reducedMotion.matches) animationFrameId = window.requestAnimationFrame(render);
+    };
+    window.addEventListener('resize', restart);
+    document.addEventListener('visibilitychange', restart);
+    reducedMotion.addEventListener('change', restart);
+    restart();
 
     return () => {
       window.cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('resize', restart);
+      document.removeEventListener('visibilitychange', restart);
+      reducedMotion.removeEventListener('change', restart);
       gl.deleteBuffer(positionBuffer);
       gl.deleteProgram(program);
     };
