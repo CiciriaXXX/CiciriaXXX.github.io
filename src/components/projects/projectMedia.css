@@ -44,7 +44,6 @@
 .process-steps { display: grid; grid-template-columns: repeat(auto-fit,minmax(120px,1fr)); gap: 12px; font-size: 15px; }
 .process-steps li { padding: 16px; border-top: 1px solid rgb(255 240 189 / 35%); background: rgb(255 255 255 / 3%); }
 .process-steps span { display: block; margin-bottom: 8px; color: var(--color-accent); font-size: 12px; }
-section[id^='cycle-of-darkness-'] { border: 0; border-radius: 0; background: transparent; padding: 0 0 48px; min-height: 0; border-bottom: 1px solid rgb(255 255 255 / 15%); }
 .source-excerpt { margin-block: 28px; }
 .source-excerpt figcaption { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 10px; font-size: 14px; color: rgb(255 255 255 / 65%); }
 .source-excerpt pre { padding: 20px 24px; overflow-x: auto; border-left: 2px solid rgb(255 240 189 / 45%); background: rgb(0 0 0 / 18%); font-size: 14px; line-height: 1.7; tab-size: 4; }

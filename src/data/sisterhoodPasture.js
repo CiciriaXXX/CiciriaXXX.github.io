@@ -7,7 +7,7 @@ export const sisterhoodPasture = {
   id: 1,
   slug: 'the-sisterhood-pasture',
   title: 'The Sisterhood Pasture: Cozy Folklore Farming',
-  category: 'Studio Project / Pixel-Art Life Simulation',
+  category: 'Life Simulation',
   image: '/the-sisterhood-pasture/cover.jpg',
   overviewImage: '/the-sisterhood-pasture/store-screenshot.jpg',
   overviewImageAlt: 'Official Steam screenshot showing farming and the pixel-art interface in The Sisterhood Pasture.',
@@ -60,7 +60,7 @@ export const sisterhoodPasture = {
       blocks: responsibilities(
         "**Interface production and acceptance:** Handled UX improvements, UI artwork, interface animation, and functional acceptance checks across most interfaces. Checked selected, unavailable, and locked states, confirmation and cancellation flows, and consistency between visual feedback and the underlying operation.",
         "**Illustration and environment assets:** Produced selected character and promotional illustrations, props, icons, wallpaper, flooring, and furniture under the lead artist’s style guidelines. Assisted in defining Rule Tile specifications for ground and decoration assets.",
-        "**Clothing recoloring tool:** Developed a plugin that replaces designated palette entries while preserving transparency and the sprite’s light-to-dark relationships. Used it to produce clothing color variants.",
+        "**Clothing recoloring tool:** Developed a plugin to batch-replace one specified color with another, helping produce clothing color variants.",
         "**Pixel-animation R&D:** Investigated the use of Spine for 2D pixel-art animation.",
       ),
     },

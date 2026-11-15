@@ -1,0 +1,55 @@
+/* Common typography for project prose, captions, and code. */
+.study-content { min-width: 0; font-size: 16px; line-height: 1.8; overflow-wrap: anywhere; }
+.study-content > :not([hidden]) ~ :not([hidden]) { margin-top: 20px; }
+.study-list { padding-left: 20px; }
+.study-list > li { padding-left: 0; }
+.study-list > li + li { margin-top: 12px; }
+.study-content figure { min-width: 0; }
+.study-content figcaption { margin-top: 6px; font-size: 13px; line-height: 1.5; }
+.study-content .study-note { color: rgb(255 255 255 / 60%); font-size: 13px; line-height: 1.6; }
+.technical-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; }
+.technical-panel { border-top: 1px solid rgb(255 255 255 / 15%); padding-top: 18px; }
+.technical-panel > :is(h4,h5,h6) { margin-bottom: 18px; color: var(--color-accent); font-size: 28px; font-weight: bold; line-height: 1.3; scroll-margin-top: 112px; }
+.technical-panel > :is(h4,h5,h6):focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
+.technical-panel-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
+.technical-panel-media { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 12px; align-items: start; }
+.technical-panel-media img { aspect-ratio: 1.9; object-fit: contain; background: rgb(0 0 0 / 12%); }
+.technical-panel-media-compact { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.technical-panel-media-portrait { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.technical-panel-media-portrait img { aspect-ratio: 0.78; }
+.technical-panel-media-peonies-reference { grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.75fr); align-items: center; }
+.technical-panel-media-peonies-reference img { aspect-ratio: auto; }
+.technical-panel-media-model-comparison { grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.75fr); gap: 20px; }
+.technical-panel-media-model-comparison img { height: 260px; aspect-ratio: auto; object-fit: contain; }
+.technical-panel-media-model-comparison figcaption { font-size: 12px; }
+[data-project="a-great-big-tree"] img,
+[data-project="a-great-big-tree"] a:has(> img) { border-radius: 0; background: transparent; }
+.technical-panel-media > .study-video:only-child { grid-column: 1 / -1; }
+.technical-panel-media > .study-figure:only-child:not(.study-video) { grid-column: 1 / -1; width: min(100%, 520px); justify-self: center; }
+.technical-panel-media > .study-figure:only-child:not(.study-video) img { aspect-ratio: auto; }
+.technical-panel > .study-content { margin-top: 0; }
+.study-content > :not([hidden]) + details:not([hidden]) { margin-top: 0; }
+.study-content details { border: 0; border-radius: 0; padding: 0; background: transparent; }
+.study-content summary { font-size: 13px; line-height: 1.6; }
+.study-content details[open] { padding-bottom: 12px; }
+.study-content details[open] > div { padding: 0 12px; }
+.study-content .source-excerpt { margin-block: 18px; }
+.study-content .source-excerpt pre { font-size: 12px; line-height: 1.6; padding: 14px 16px; }
+.study-figure-source { margin-inline: auto; }
+.study-figure-source img { max-width: 100%; height: auto; }
+@media (max-width: 639px) {
+  .technical-intro { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .study-content { font-size: 15px; }
+  .technical-panel-media { gap: 12px 8px; }
+  .technical-panel-media-model-comparison { gap: 10px; }
+  .technical-panel-media-model-comparison img { height: 140px; }
+  .technical-panel-media-peonies-reference { grid-template-columns: minmax(0, 1fr); }
+  .technical-panel-media-peonies-reference > .study-figure:first-child { width: min(100%, 435px); justify-self: center; }
+  .technical-panel-media-compact, .technical-panel-media-portrait { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .technical-panel > :is(h4,h5,h6) { font-size: 24px; }
+  .study-content details[open] > div { padding: 0; }
+}
+
+.study-content > .study-heading { margin-top: 32px; padding-top: 20px; border-top: 1px solid rgb(255 255 255 / 15%); color: var(--color-accent); font-size: 32px; font-weight: bold; line-height: 1.35; scroll-margin-top: 112px; }
+.study-heading:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
+@media (max-width: 639px) { .study-content > .study-heading { font-size: 28px; } }

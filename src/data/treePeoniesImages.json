@@ -1,0 +1,44 @@
+{
+  "painting-reference": {
+    "src": "/a-great-big-tree/peonies/painting-reference-preview.webp",
+    "fullSrc": "/a-great-big-tree/peonies/painting-reference.webp",
+    "width": 435,
+    "height": 584
+  },
+  "graph-petals": {
+    "src": "/a-great-big-tree/peonies/graph-petals-preview.webp",
+    "fullSrc": "/a-great-big-tree/peonies/graph-petals.webp",
+    "width": 947,
+    "height": 672
+  },
+  "graph-single-stamen": {
+    "src": "/a-great-big-tree/peonies/graph-single-stamen-preview.webp",
+    "fullSrc": "/a-great-big-tree/peonies/graph-single-stamen.webp",
+    "width": 860,
+    "height": 581
+  },
+  "graph-stamens": {
+    "src": "/a-great-big-tree/peonies/graph-stamens-preview.webp",
+    "fullSrc": "/a-great-big-tree/peonies/graph-stamens.webp",
+    "width": 1655,
+    "height": 545
+  },
+  "graph-leaves": {
+    "src": "/a-great-big-tree/peonies/graph-leaves-preview.webp",
+    "fullSrc": "/a-great-big-tree/peonies/graph-leaves.webp",
+    "width": 611,
+    "height": 422
+  },
+  "graph-stem": {
+    "src": "/a-great-big-tree/peonies/graph-stem-preview.webp",
+    "fullSrc": "/a-great-big-tree/peonies/graph-stem.webp",
+    "width": 1022,
+    "height": 431
+  },
+  "final-render": {
+    "src": "/a-great-big-tree/peonies/final-render-preview.webp",
+    "fullSrc": "/a-great-big-tree/peonies/final-render.webp",
+    "width": 1226,
+    "height": 644
+  }
+}

@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Locally installed asset-processing tools
+/output/tree-body-review/tools/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

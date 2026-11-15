@@ -1,0 +1,170 @@
+{
+  "reflection": [
+    {
+      "type": "paragraph",
+      "text": "**Outline depth**: The outline expands the tree in screen space while retaining the original mesh depth. Its expanded pixels can overlap the branches and trunk in the mirrored view."
+    },
+    {
+      "type": "code",
+      "caption": "TreeOutlineRendererFeature.cs · reflection-camera exclusion",
+      "language": "C#",
+      "code": "Camera camera = renderingData.cameraData.camera;\nif (camera != null && camera.cameraType == CameraType.Reflection)\n    return;"
+    },
+    {
+      "type": "code",
+      "caption": "PlanarReflection.cs · camera setup (selected lines)",
+      "language": "C#",
+      "code": "_reflectionCamera.cameraType = CameraType.Reflection;\n_reflectionCamera.cullingMask = _reflectionMask;\n_reflectionCamera.clearFlags = _reflectSkybox\n    ? CameraClearFlags.Skybox : CameraClearFlags.SolidColor;\n_reflectionCamera.backgroundColor = Color.black;\n\n_reflectionCamera.worldToCameraMatrix =\n    sourceCamera.worldToCameraMatrix * reflectionMatrix;\nVector4 clipPlane = CameraSpacePlane(\n    _reflectionCamera, planePosition, planeNormal, 1.0f);\n_reflectionCamera.projectionMatrix =\n    _reflectionCamera.CalculateObliqueMatrix(clipPlane);"
+    },
+    {
+      "type": "paragraph",
+      "text": "**Handling the mirrored camera**: Reverse culling during the reflection render, then restore the previous state in `finally`. A rendering guard prevents the reflection camera from triggering another capture."
+    },
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-detail-normal-preview.webp",
+      "width": 1387,
+      "height": 759,
+      "alt": "ASE nodes mapping world XZ position and time to the scrolling water normal texture.",
+      "caption": "ASE · world-space detail normal and scrolling speed.",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-detail-normal.webp"
+    },
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-distance-distortion-preview.webp",
+      "width": 876,
+      "height": 367,
+      "alt": "ASE nodes dividing small-distortion strength by clip-space W.",
+      "caption": "ASE · distance-scaled reflection distortion.",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-distance-distortion.webp"
+    },
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-reflection-uv-preview.webp",
+      "width": 904,
+      "height": 670,
+      "alt": "ASE nodes adding the scaled normal XY components to normalized screen UVs.",
+      "caption": "ASE · reflection UV offset.",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-reflection-uv.webp"
+    },
+    {
+      "type": "paragraph",
+      "text": "**Accumulating the smear**: Combine 12 texture samples, giving less weight to samples farther from the original UV. `_PigmentBleed` controls color spread, while `_SmearStrength` blends the filtered result with the original reflection."
+    },
+    {
+      "type": "code",
+      "caption": "PlanarReflection.cs · render, filter, and bind (excerpt)",
+      "language": "C#",
+      "code": "RenderPipeline.SubmitRenderRequest(_reflectionCamera, request);\nGL.invertCulling = previousInvertCulling;\n\nRenderTexture textureForWater = _reflectionTexture;\nif (_smearOn\n    && _smearedReflectionTexture != null\n    && TryGetSmearMaterial(out Material smearMaterial))\n{\n    ApplyWatercolorSmear(\n        _reflectionTexture, _smearedReflectionTexture, smearMaterial);\n    textureForWater = _smearedReflectionTexture;\n}\n\n_waterRenderer.GetPropertyBlock(_propertyBlock);\n_propertyBlock.SetTexture(ReflectionTextureId, textureForWater);\n_waterRenderer.SetPropertyBlock(_propertyBlock);"
+    },
+    {
+      "type": "code",
+      "caption": "WatercolorReflection.shader · directional accumulation (loop body excerpt)",
+      "language": "HLSL",
+      "code": "float Progress = (float)SampleIndex / (SampleCount - 1.0);\nfloat JitterNoise = Hash21(\n    BrushCell + float2(SampleIndex * 1.73, SampleIndex * 0.37)) * 2.0 - 1.0;\n\nfloat2 SampleUV = UV + float2(\n    JitterNoise * HorizontalSpan * (0.25 + Progress * 0.75),\n    VerticalSpan * Progress);\n\nfloat ValidSample = IsInsideTexture(SampleUV);\nfloat SampleWeight = lerp(1.0, 0.12, Progress) * ValidSample;\nhalf4 SampledColor = SAMPLE_TEXTURE2D(\n    _MainTex, sampler_MainTex, saturate(SampleUV));\n\nWeightedColor += SampledColor * SampleWeight;\nTotalWeight += SampleWeight;\nPigmentColor = max(PigmentColor,\n    lerp(RawReflection, SampledColor, ValidSample));"
+    },
+    {
+      "type": "paragraph",
+      "text": "**Controlling the sample offsets**: `VerticalSpan` sets streak length and direction; `HorizontalSpan` sets sideways jitter, both in texels. Ignore samples outside the texture to avoid stretching border colors."
+    }
+  ],
+  "color": [
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-refraction-preview.webp",
+      "width": 981,
+      "height": 449,
+      "alt": "ASE scene-color sample with a UV offset from the detail normal.",
+      "caption": "ASE · distorted scene-color sampling.",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-refraction.webp"
+    },
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-depth-reconstruction-preview.webp",
+      "width": 1098,
+      "height": 445,
+      "alt": "ASE world-height differences calculated from regular scene depth and the separate foam depth.",
+      "caption": "ASE · separate depth inputs for color and shoreline foam.",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-depth-reconstruction.webp"
+    },
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-shallow-mask-preview.webp",
+      "width": 1024,
+      "height": 196,
+      "alt": "ASE exponential decay from negative water depth divided by depth range.",
+      "caption": "ASE · exponential shallow-water mask.",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-shallow-mask.webp"
+    },
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-fresnel-preview.webp",
+      "width": 1427,
+      "height": 778,
+      "alt": "ASE Fresnel calculation using a constant world-up vector and the view direction.",
+      "caption": "ASE · artist-controlled Fresnel with a fixed up vector.",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-fresnel.webp"
+    },
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-composition-preview.webp",
+      "width": 1500,
+      "height": 681,
+      "alt": "ASE final color network combining deep color, reflection, refracted scene color, and foam.",
+      "caption": "ASE · final surface composition.",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-composition.webp"
+    }
+  ],
+  "foam": [
+    {
+      "type": "paragraph",
+      "text": "Use a render-queue cutoff of 2449 to exclude grass at 2450."
+    },
+    {
+      "type": "code",
+      "caption": "FoamDepthRendererFeature.cs · render-queue filter (excerpt)",
+      "language": "C#",
+      "code": "var queueRange = new RenderQueueRange\n{\n    lowerBound = 0,\n    upperBound = Mathf.Clamp(settings.maximumRenderQueue, 0, 5000)\n};\n\nvar filteringSettings = new FilteringSettings(queueRange);"
+    },
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-foam-preview.webp",
+      "width": 2020,
+      "height": 755,
+      "alt": "ASE shoreline foam network combining filtered water depth, a sine band, time, and noise dissolve.",
+      "caption": "ASE · range, frequency, motion, and breakup controls for foam.",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-foam.webp"
+    }
+  ],
+  "motion": [
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-wave-preview.webp",
+      "width": 1384,
+      "height": 558,
+      "alt": "ASE Gerstner displacement and the tangent-binormal cross product used to calculate a wave normal.",
+      "caption": "ASE · geometric displacement and wave-normal calculation.",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-wave.webp"
+    },
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-gerstner-preview.webp",
+      "width": 259,
+      "height": 410,
+      "alt": "Gerstner-wave function computing displacement and tangent and binormal derivatives.",
+      "caption": "ASE custom expression · one directional Gerstner wave.",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-gerstner.webp"
+    }
+  ]
+}

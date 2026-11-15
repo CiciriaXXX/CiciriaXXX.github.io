@@ -1,0 +1,180 @@
+{
+  "painting-reference": {
+    "src": "/a-great-big-tree/tree/painting-reference-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/painting-reference.webp",
+    "width": 649,
+    "height": 549,
+    "srcSet": "/a-great-big-tree/tree/painting-reference-small.webp 480w, /a-great-big-tree/tree/painting-reference-preview.webp 649w",
+    "sizes": "auto, 50vw"
+  },
+  "model-silhouette": {
+    "src": "/a-great-big-tree/tree/model-silhouette-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/model-silhouette.webp",
+    "width": 1021,
+    "height": 560,
+    "srcSet": "/a-great-big-tree/tree/model-silhouette-small.webp 480w, /a-great-big-tree/tree/model-silhouette-preview.webp 960w",
+    "sizes": "auto, 50vw"
+  },
+  "model-branches": {
+    "src": "/a-great-big-tree/tree/model-branches-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/model-branches.webp",
+    "width": 1255,
+    "height": 741,
+    "srcSet": "/a-great-big-tree/tree/model-branches-small.webp 480w, /a-great-big-tree/tree/model-branches-preview.webp 960w",
+    "sizes": "auto, 50vw"
+  },
+  "model-sculpt": {
+    "src": "/a-great-big-tree/tree/model-sculpt-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/model-sculpt.webp",
+    "width": 1850,
+    "height": 1032,
+    "srcSet": "/a-great-big-tree/tree/model-sculpt-small.webp 480w, /a-great-big-tree/tree/model-sculpt-preview.webp 960w",
+    "sizes": "auto, 50vw"
+  },
+  "model-roots": {
+    "src": "/a-great-big-tree/tree/model-roots-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/model-roots.webp",
+    "width": 1397,
+    "height": 823,
+    "srcSet": "/a-great-big-tree/tree/model-roots-small.webp 480w, /a-great-big-tree/tree/model-roots-preview.webp 960w",
+    "sizes": "auto, 50vw"
+  },
+  "root-uv-seam": {
+    "src": "/a-great-big-tree/tree/root-uv-seam-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/root-uv-seam.webp",
+    "width": 1230,
+    "height": 630,
+    "srcSet": "/a-great-big-tree/tree/root-uv-seam-small.webp 480w, /a-great-big-tree/tree/root-uv-seam-preview.webp 960w",
+    "sizes": "auto, 50vw"
+  },
+  "graph-geometry-roots": {
+    "src": "/a-great-big-tree/tree/graph-geometry-roots-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/graph-geometry-roots.webp",
+    "width": 1947,
+    "height": 1035
+  },
+  "vertex-wind-mask": {
+    "src": "/a-great-big-tree/tree/vertex-wind-mask-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/vertex-wind-mask.webp",
+    "width": 709,
+    "height": 734,
+    "srcSet": "/a-great-big-tree/tree/vertex-wind-mask-small.webp 464w, /a-great-big-tree/tree/vertex-wind-mask-preview.webp 709w",
+    "sizes": "auto, 50vw"
+  },
+  "hatch-diffuse-only": {
+    "src": "/a-great-big-tree/tree/hatch-diffuse-only-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/hatch-diffuse-only.webp",
+    "width": 575,
+    "height": 679,
+    "srcSet": "/a-great-big-tree/tree/hatch-diffuse-only-small.webp 406w, /a-great-big-tree/tree/hatch-diffuse-only-preview.webp 575w",
+    "sizes": "auto, 50vw"
+  },
+  "hatch-subtraction-lit": {
+    "src": "/a-great-big-tree/tree/hatch-subtraction-lit-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/hatch-subtraction-lit.webp",
+    "width": 559,
+    "height": 655,
+    "srcSet": "/a-great-big-tree/tree/hatch-subtraction-lit-small.webp 410w, /a-great-big-tree/tree/hatch-subtraction-lit-preview.webp 559w",
+    "sizes": "auto, 50vw"
+  },
+  "hatch-subtraction-unlit": {
+    "src": "/a-great-big-tree/tree/hatch-subtraction-unlit-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/hatch-subtraction-unlit.webp",
+    "width": 564,
+    "height": 832,
+    "srcSet": "/a-great-big-tree/tree/hatch-subtraction-unlit-small.webp 325w, /a-great-big-tree/tree/hatch-subtraction-unlit-preview.webp 564w",
+    "sizes": "auto, 50vw"
+  },
+  "hatch-multiply-lit": {
+    "src": "/a-great-big-tree/tree/hatch-multiply-lit-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/hatch-multiply-lit.webp",
+    "width": 512,
+    "height": 684,
+    "srcSet": "/a-great-big-tree/tree/hatch-multiply-lit-small.webp 359w, /a-great-big-tree/tree/hatch-multiply-lit-preview.webp 512w",
+    "sizes": "auto, 50vw"
+  },
+  "hatch-multiply-unlit": {
+    "src": "/a-great-big-tree/tree/hatch-multiply-unlit-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/hatch-multiply-unlit.webp",
+    "width": 564,
+    "height": 832,
+    "srcSet": "/a-great-big-tree/tree/hatch-multiply-unlit-small.webp 325w, /a-great-big-tree/tree/hatch-multiply-unlit-preview.webp 564w",
+    "sizes": "auto, 50vw"
+  },
+  "outline-object-space": {
+    "src": "/a-great-big-tree/tree/outline-object-space-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/outline-object-space.webp",
+    "width": 627,
+    "height": 453,
+    "srcSet": "/a-great-big-tree/tree/outline-object-space-small.webp 480w, /a-great-big-tree/tree/outline-object-space-preview.webp 627w",
+    "sizes": "auto, 50vw"
+  },
+  "outline-clip-space": {
+    "src": "/a-great-big-tree/tree/outline-clip-space-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/outline-clip-space.webp",
+    "width": 664,
+    "height": 445,
+    "srcSet": "/a-great-big-tree/tree/outline-clip-space-small.webp 480w, /a-great-big-tree/tree/outline-clip-space-preview.webp 664w",
+    "sizes": "auto, 50vw"
+  },
+  "graph-composition": {
+    "src": "/a-great-big-tree/tree/graph-composition-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/graph-composition.webp",
+    "width": 1674,
+    "height": 806
+  },
+  "graph-outline": {
+    "src": "/a-great-big-tree/tree/graph-outline-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/graph-outline.webp",
+    "width": 1868,
+    "height": 737
+  },
+  "graph-blocking": {
+    "src": "/a-great-big-tree/tree/graph-blocking-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/graph-blocking.webp",
+    "width": 1523,
+    "height": 423
+  },
+  "graph-moss": {
+    "src": "/a-great-big-tree/tree/graph-moss-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/graph-moss.webp",
+    "width": 1131,
+    "height": 248
+  },
+  "graph-hatch-blend": {
+    "src": "/a-great-big-tree/tree/graph-hatch-blend-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/graph-hatch-blend.webp",
+    "width": 1256,
+    "height": 1071
+  },
+  "graph-hatch-weight": {
+    "src": "/a-great-big-tree/tree/graph-hatch-weight-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/graph-hatch-weight.webp",
+    "width": 968,
+    "height": 214
+  },
+  "graph-lightness": {
+    "src": "/a-great-big-tree/tree/graph-lightness-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/graph-lightness.webp",
+    "width": 1648,
+    "height": 260
+  },
+  "graph-diffuse": {
+    "src": "/a-great-big-tree/tree/graph-diffuse-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/graph-diffuse.webp",
+    "width": 998,
+    "height": 340
+  },
+  "graph-hatch-uv": {
+    "src": "/a-great-big-tree/tree/graph-hatch-uv-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/graph-hatch-uv.webp",
+    "width": 760,
+    "height": 140
+  },
+  "graph-wind": {
+    "src": "/a-great-big-tree/tree/graph-wind-preview.webp",
+    "fullSrc": "/a-great-big-tree/tree/graph-wind.webp",
+    "width": 1913,
+    "height": 888
+  }
+}

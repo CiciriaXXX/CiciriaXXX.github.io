@@ -1,6 +1,8 @@
 import renderingPractice from './renderingPractice.json';
 import { sisterhoodPasture } from './sisterhoodPasture';
 import { cycleOfDarkness } from './cycleOfDarkness';
+import { treeBreakdown } from './treeBreakdown';
+import { escapeExeBreakdown } from './escapeExe';
 
 // Project data is grouped by section so the home page and detail routes share one source.
 export const projectSections = [
@@ -20,7 +22,7 @@ export const projectSections = [
         slug: 'textrix-veritatis',
         title: 'Textrix Veritatis',
         previewVideo: '/previews/textrix-veritatis.mp4?v=start239',
-        category: 'Educational Puzzle Game',
+        category: 'Educational Puzzle',
         image: '/textrix-veritatis.png',
         description: 'Weave threads of logic into formal proofs in an alternate 1880s London. An educational puzzle game that turns propositional natural deduction into a hands-on craft.',
         details: 'Artist / Game Designer',
@@ -39,7 +41,7 @@ export const projectSections = [
         slug: 'clipping-mask',
         title: 'Clipping Mask',
         previewVideo: '/previews/clipping-mask.mp4?v=start75',
-        category: 'Puzzle Platformer',
+        category: 'Platformer',
         image: '/clipping-mask.png',
         description: 'Switch between two layers through a clipping mask to uncover paths and dodge obstacles. Use collision quirks at the moment of switching to pull off otherwise impossible jumps.',
         details: 'Artist / Core Mechanics & Level Designer',
@@ -58,7 +60,7 @@ export const projectSections = [
         slug: 'escape-exe',
         title: 'Escape.exe',
         previewVideo: '/previews/escape-exe.mp4?v=start46',
-        category: 'Click Point Adventure',
+        category: 'Point-and-Click Adventure',
         image: '/EndRoom.png',
         description:
           'A traditional point-and-click escape room game infused with meta elements, offering players a surprising and unexpected experience.',
@@ -72,16 +74,18 @@ export const projectSections = [
         ],
         videoId: 'gocr3YPA7HE',
         link: 'https://ceramicwitch.itch.io/escapeexe',
+        breakdownTitle: 'Breakdown',
+        breakdown: escapeExeBreakdown,
       },
       {
         id: 1,
         slug: 'time-loop-forest',
         title: 'Time Loop Forest',
         previewVideo: '/previews/time-loop-forest.mp4?v=midpoint',
-        category: 'Puzzle',
+        category: 'Narrative Puzzle',
         image: '/timeloopforest.png',
         description:
-          'A mini-game combining card-flipping memory and path exploration, submitted for GMTK 2025.',
+          'My first independently developed game: a story-driven puzzle combining card-flipping memory and path exploration across repeated loops with limited moves.',
         details: 'Individual Project',
         tech: ['Unity'],
         completed: 'August 2025',
@@ -105,25 +109,21 @@ export const projectSections = [
         category: 'First-Person Narrative Exploration',
         image: '/a-great-big-tree/cover.png',
         description:
-          'A first-person exploration game based on the paintings of my grandfather, Peng Rongxin, and my memories of him. Players enter the world of his paintings from an exhibition gallery, interacting with the world while listening to narration about his life.',
+          'A first-person exploration game based on my grandfather Peng Rongxin’s xin fencai paintings—overglaze enamel paintings on porcelain plaques. Players enter the world of his paintings from an exhibition gallery, interacting with the world while listening to narration about his life.',
         details: 'Individual Project',
         tech: ['Unity'],
         completed: 'August–October 2026',
-        jam: 'Tripothon S1',
         solo: true,
         videoId: 'WkL9iV9cpEk',
         link: 'https://ceramicwitch.itch.io/the-great-big-tree',
-        breakdown: [
-          { id: 'rendering', title: 'Rendering', text: 'Rendering breakdown coming soon.' },
-          { id: 'design', title: 'Design', text: 'Design breakdown coming soon.' },
-        ],
+        breakdown: treeBreakdown,
       },
       {
         id: 1,
         slug: 'rendering-practice',
+        breakdownTitle: 'Individual Studies',
         title: 'Rendering Studies',
         overviewLayout: 'metadata-description',
-        hideBreakdownHeading: true,
         category: 'Shader & Rendering Studies',
         image: '/rendering-practice/cover.webp?v=user-stills',
         description:

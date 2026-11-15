@@ -1,0 +1,206 @@
+{
+  "music-reference": {
+    "src": "/a-great-big-tree/figures/music-reference-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/music-reference.webp",
+    "width": 397,
+    "height": 383
+  },
+  "listener-model": {
+    "src": "/a-great-big-tree/figures/listener-model-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/listener-model.webp",
+    "width": 539,
+    "height": 770
+  },
+  "long-dress-model": {
+    "src": "/a-great-big-tree/figures/long-dress-model-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/long-dress-model.webp",
+    "width": 376,
+    "height": 941
+  },
+  "guitar-model": {
+    "src": "/a-great-big-tree/figures/guitar-model-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/guitar-model.webp",
+    "width": 626,
+    "height": 596
+  },
+  "gathering-reference": {
+    "src": "/a-great-big-tree/figures/gathering-reference-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/gathering-reference.webp",
+    "width": 520,
+    "height": 440
+  },
+  "umbrella-model": {
+    "src": "/a-great-big-tree/figures/umbrella-model-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/umbrella-model.webp",
+    "width": 729,
+    "height": 967
+  },
+  "floral-dress-model": {
+    "src": "/a-great-big-tree/figures/floral-dress-model-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/floral-dress-model.webp",
+    "width": 393,
+    "height": 1014
+  },
+  "orange-dress-model": {
+    "src": "/a-great-big-tree/figures/orange-dress-model-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/orange-dress-model.webp",
+    "width": 664,
+    "height": 671
+  },
+  "clapping-model": {
+    "src": "/a-great-big-tree/figures/clapping-model-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/clapping-model.webp",
+    "width": 710,
+    "height": 963
+  },
+  "conversation-reference": {
+    "src": "/a-great-big-tree/figures/conversation-reference-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/conversation-reference.webp",
+    "width": 326,
+    "height": 306
+  },
+  "seated-floral-model": {
+    "src": "/a-great-big-tree/figures/seated-floral-model-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/seated-floral-model.webp",
+    "width": 831,
+    "height": 853
+  },
+  "seated-purple-model": {
+    "src": "/a-great-big-tree/figures/seated-purple-model-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/seated-purple-model.webp",
+    "width": 610,
+    "height": 736
+  },
+  "walking-reference": {
+    "src": "/a-great-big-tree/figures/walking-reference-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/walking-reference.webp",
+    "width": 401,
+    "height": 375
+  },
+  "black-white-dress-model": {
+    "src": "/a-great-big-tree/figures/black-white-dress-model-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/black-white-dress-model.webp",
+    "width": 577,
+    "height": 1024
+  },
+  "yellow-shirt-model": {
+    "src": "/a-great-big-tree/figures/yellow-shirt-model-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/yellow-shirt-model.webp",
+    "width": 702,
+    "height": 1057
+  },
+  "cattle-reference": {
+    "src": "/a-great-big-tree/figures/cattle-reference-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/cattle-reference.webp",
+    "width": 460,
+    "height": 265
+  },
+  "cattle-outline": {
+    "src": "/a-great-big-tree/figures/cattle-outline-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/cattle-outline.webp",
+    "width": 1114,
+    "height": 748
+  },
+  "cattle-diffuse": {
+    "src": "/a-great-big-tree/figures/cattle-diffuse-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/cattle-diffuse.webp",
+    "width": 1168,
+    "height": 752
+  },
+  "cattle-noise": {
+    "src": "/a-great-big-tree/figures/cattle-noise-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/cattle-noise.webp",
+    "width": 1148,
+    "height": 751
+  },
+  "cattle-ink-edge": {
+    "src": "/a-great-big-tree/figures/cattle-ink-edge-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/cattle-ink-edge.webp",
+    "width": 1073,
+    "height": 719
+  },
+  "cattle-final": {
+    "src": "/a-great-big-tree/figures/cattle-final-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/cattle-final.webp",
+    "width": 1077,
+    "height": 705
+  },
+  "swan-final": {
+    "src": "/a-great-big-tree/figures/swan-final-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/swan-final.webp",
+    "width": 828,
+    "height": 815
+  },
+  "graph-animal-composition": {
+    "src": "/a-great-big-tree/figures/graph-animal-composition-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/graph-animal-composition.webp",
+    "width": 1285,
+    "height": 723
+  },
+  "graph-animal-lighting": {
+    "src": "/a-great-big-tree/figures/graph-animal-lighting-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/graph-animal-lighting.webp",
+    "width": 1140,
+    "height": 352
+  },
+  "graph-animal-outline": {
+    "src": "/a-great-big-tree/figures/graph-animal-outline-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/graph-animal-outline.webp",
+    "width": 1098,
+    "height": 714
+  },
+  "graph-animal-ink-edge": {
+    "src": "/a-great-big-tree/figures/graph-animal-ink-edge-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/graph-animal-ink-edge.webp",
+    "width": 1231,
+    "height": 265
+  },
+  "graph-character-composition": {
+    "src": "/a-great-big-tree/figures/graph-character-composition-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/graph-character-composition.webp",
+    "width": 1001,
+    "height": 825
+  },
+  "graph-character-edge": {
+    "src": "/a-great-big-tree/figures/graph-character-edge-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/graph-character-edge.webp",
+    "width": 1188,
+    "height": 554
+  },
+  "graph-character-height": {
+    "src": "/a-great-big-tree/figures/graph-character-height-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/graph-character-height.webp",
+    "width": 929,
+    "height": 409
+  },
+  "graph-character-reveal": {
+    "src": "/a-great-big-tree/figures/graph-character-reveal-preview.webp",
+    "fullSrc": "/a-great-big-tree/figures/graph-character-reveal.webp",
+    "width": 1284,
+    "height": 299
+  },
+  "music-models": {
+    "src": "/a-great-big-tree/figures/music-models.svg",
+    "fullSrc": "/a-great-big-tree/figures/music-models.svg",
+    "width": 2150,
+    "height": 1000
+  },
+  "gathering-models": {
+    "src": "/a-great-big-tree/figures/gathering-models.svg",
+    "fullSrc": "/a-great-big-tree/figures/gathering-models.svg",
+    "width": 2869,
+    "height": 1000
+  },
+  "conversation-models": {
+    "src": "/a-great-big-tree/figures/conversation-models.svg",
+    "fullSrc": "/a-great-big-tree/figures/conversation-models.svg",
+    "width": 1803,
+    "height": 1000
+  },
+  "walking-models": {
+    "src": "/a-great-big-tree/figures/walking-models.svg",
+    "fullSrc": "/a-great-big-tree/figures/walking-models.svg",
+    "width": 1227,
+    "height": 1000
+  }
+}

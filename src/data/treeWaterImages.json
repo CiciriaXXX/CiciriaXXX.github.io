@@ -1,0 +1,140 @@
+{
+  "painting-reference": {
+    "src": "/a-great-big-tree/water/painting-reference-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/painting-reference.webp",
+    "width": 1343,
+    "height": 331,
+    "srcSet": "/a-great-big-tree/water/painting-reference-small.webp 480w, /a-great-big-tree/water/painting-reference-preview.webp 960w",
+    "sizes": "auto, 50vw"
+  },
+  "reflection-base": {
+    "src": "/a-great-big-tree/water/reflection-base-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/reflection-base.webp",
+    "width": 1526,
+    "height": 692,
+    "srcSet": "/a-great-big-tree/water/reflection-base-small.webp 480w, /a-great-big-tree/water/reflection-base-preview.webp 960w",
+    "sizes": "auto, 50vw"
+  },
+  "reflection-ripples": {
+    "src": "/a-great-big-tree/water/reflection-ripples-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/reflection-ripples.webp",
+    "width": 1597,
+    "height": 708,
+    "srcSet": "/a-great-big-tree/water/reflection-ripples-small.webp 480w, /a-great-big-tree/water/reflection-ripples-preview.webp 960w",
+    "sizes": "auto, 50vw"
+  },
+  "outline-artifact": {
+    "src": "/a-great-big-tree/water/outline-artifact-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/outline-artifact.webp",
+    "width": 1068,
+    "height": 629,
+    "srcSet": "/a-great-big-tree/water/outline-artifact-small.webp 480w, /a-great-big-tree/water/outline-artifact-preview.webp 960w",
+    "sizes": "auto, 50vw"
+  },
+  "reflection-smear": {
+    "src": "/a-great-big-tree/water/reflection-smear-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/reflection-smear.webp",
+    "width": 1584,
+    "height": 725,
+    "srcSet": "/a-great-big-tree/water/reflection-smear-small.webp 480w, /a-great-big-tree/water/reflection-smear-preview.webp 960w",
+    "sizes": "auto, 50vw"
+  },
+  "depth-color": {
+    "src": "/a-great-big-tree/water/depth-color-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/depth-color.webp",
+    "width": 1710,
+    "height": 780,
+    "srcSet": "/a-great-big-tree/water/depth-color-small.webp 480w, /a-great-big-tree/water/depth-color-preview.webp 960w",
+    "sizes": "auto, 50vw"
+  },
+  "fresnel-composite": {
+    "src": "/a-great-big-tree/water/fresnel-composite-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/fresnel-composite.webp",
+    "width": 1509,
+    "height": 736,
+    "srcSet": "/a-great-big-tree/water/fresnel-composite-small.webp 480w, /a-great-big-tree/water/fresnel-composite-preview.webp 960w",
+    "sizes": "auto, 50vw"
+  },
+  "foam-camera-depth": {
+    "src": "/a-great-big-tree/water/foam-camera-depth-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/foam-camera-depth.webp",
+    "width": 1319,
+    "height": 716,
+    "srcSet": "/a-great-big-tree/water/foam-camera-depth-small.webp 480w, /a-great-big-tree/water/foam-camera-depth-preview.webp 960w",
+    "sizes": "auto, 50vw"
+  },
+  "foam-filtered-depth": {
+    "src": "/a-great-big-tree/water/foam-filtered-depth-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/foam-filtered-depth.webp",
+    "width": 1272,
+    "height": 698,
+    "srcSet": "/a-great-big-tree/water/foam-filtered-depth-small.webp 480w, /a-great-big-tree/water/foam-filtered-depth-preview.webp 960w",
+    "sizes": "auto, 50vw"
+  },
+  "graph-composition": {
+    "src": "/a-great-big-tree/water/graph-composition-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/graph-composition.webp",
+    "width": 1500,
+    "height": 681
+  },
+  "graph-reflection-uv": {
+    "src": "/a-great-big-tree/water/graph-reflection-uv-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/graph-reflection-uv.webp",
+    "width": 904,
+    "height": 670
+  },
+  "graph-distance-distortion": {
+    "src": "/a-great-big-tree/water/graph-distance-distortion-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/graph-distance-distortion.webp",
+    "width": 876,
+    "height": 367
+  },
+  "graph-detail-normal": {
+    "src": "/a-great-big-tree/water/graph-detail-normal-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/graph-detail-normal.webp",
+    "width": 1387,
+    "height": 759
+  },
+  "graph-fresnel": {
+    "src": "/a-great-big-tree/water/graph-fresnel-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/graph-fresnel.webp",
+    "width": 1427,
+    "height": 778
+  },
+  "graph-refraction": {
+    "src": "/a-great-big-tree/water/graph-refraction-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/graph-refraction.webp",
+    "width": 981,
+    "height": 449
+  },
+  "graph-shallow-mask": {
+    "src": "/a-great-big-tree/water/graph-shallow-mask-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/graph-shallow-mask.webp",
+    "width": 1024,
+    "height": 196
+  },
+  "graph-depth-reconstruction": {
+    "src": "/a-great-big-tree/water/graph-depth-reconstruction-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/graph-depth-reconstruction.webp",
+    "width": 1098,
+    "height": 445
+  },
+  "graph-foam": {
+    "src": "/a-great-big-tree/water/graph-foam-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/graph-foam.webp",
+    "width": 2020,
+    "height": 755
+  },
+  "graph-wave": {
+    "src": "/a-great-big-tree/water/graph-wave-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/graph-wave.webp",
+    "width": 1384,
+    "height": 558
+  },
+  "graph-gerstner": {
+    "src": "/a-great-big-tree/water/graph-gerstner-preview.webp",
+    "fullSrc": "/a-great-big-tree/water/graph-gerstner.webp",
+    "width": 259,
+    "height": 410
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "interval": [
+    {
+      "type": "code",
+      "caption": "Ray–box intersection",
+      "language": "HLSL",
+      "code": "float2 IntersectBox(float3 OriginWS, float3 DirectionWS, float OpaqueDistance)\n{\n    float3 OriginOS = TransformWorldToObject(OriginWS);\n    float3 DirectionOS = mul((float3x3)UNITY_MATRIX_I_M, DirectionWS);\n    if (any((abs(DirectionOS) < 1e-7) & (abs(OriginOS) > 0.5))) return 0;\n    float3 InverseDirection = (step(0, DirectionOS) * 2 - 1) / max(abs(DirectionOS), 1e-7);\n    float3 PlaneA = (-0.5 - OriginOS) * InverseDirection;\n    float3 PlaneB = ( 0.5 - OriginOS) * InverseDirection;\n    float3 NearFace = min(PlaneA,PlaneB), FarFace = max(PlaneA,PlaneB);\n    float Enter = max(0, max(NearFace.x, max(NearFace.y, NearFace.z)));\n    float Leave = min(OpaqueDistance, min(FarFace.x, min(FarFace.y, FarFace.z)));\n    return float2(Enter,Leave);\n}"
+    },
+    {
+      "type": "code",
+      "caption": "Clipping the ray interval to scene depth (excerpt)",
+      "language": "HLSL",
+      "code": "float2 UV = GetNormalizedScreenSpaceUV(Input.positionCS);\nfloat RawDepth = SampleSceneDepth(UV);\n#if !UNITY_REVERSED_Z\n    RawDepth = lerp(UNITY_NEAR_CLIP_VALUE, 1, RawDepth);\n#endif\nfloat3 OpaqueWS = ComputeWorldSpacePosition(UV, RawDepth, UNITY_MATRIX_I_VP);\nfloat3 DirectionWS = -GetWorldSpaceNormalizeViewDir(Input.positionWS);\n// Project the ray origin onto the camera plane for orthographic views.\nfloat3 OriginWS = GetCameraPositionWS();\nif (unity_OrthoParams.w > 0.5)\n    OriginWS = Input.positionWS - DirectionWS * dot(Input.positionWS - OriginWS, DirectionWS);\nfloat OpaqueDistance = max(0, dot(OpaqueWS - OriginWS, DirectionWS));\nfloat2 Interval = IntersectBox(OriginWS, DirectionWS, OpaqueDistance);\nif (Interval.y <= Interval.x) return 0;"
+    }
+  ],
+  "dissolve": [
+    {
+      "type": "code",
+      "caption": "Scrolling noise and directional dissolution (excerpt)",
+      "language": "HLSL",
+      "code": "float3 Frequency = max(_NoiseScale, 1e-6) * float3(1, max(_NoiseVerticalScale, 1e-4), 1);\n\nfloat3 SamplePositionOS = TransformWorldToObject(SamplePositionWS);\nfloat AlongZ = smoothstep(0, 1, SamplePositionOS.z + 0.5);\nfloat Dissolve = lerp(saturate(_DissolveNegativeZ), saturate(_DissolvePositiveZ), AlongZ);\nfloat Noise = SAMPLE_TEXTURE3D_LOD(_Noise3D, sampler_Linear_Mirror,\n    (SamplePositionWS - _NoiseScroll.xyz * _Time.y) * Frequency, 0).r;\n// At dissolve=0 all nonnegative noise values survive, so that face stays solid.\nfloat Threshold = Dissolve - max(_DissolveSoftness, 0.001);\nfloat Shape = smoothstep(Threshold, Dissolve, Noise);"
+    }
+  ],
+  "height": [
+    {
+      "type": "code",
+      "caption": "Fading density near the top (excerpt)",
+      "language": "HLSL",
+      "code": "float TopMetresPerUnit = rcp(max(length(UNITY_MATRIX_I_M[1].xyz), 1e-6));\n\nfloat BelowTop = max(0, 0.5 - SamplePositionOS.y) * TopMetresPerUnit;\nfloat HeightFade = _TopFadeHeight <= 0 ? 1 : smoothstep(0, _TopFadeHeight, BelowTop);"
+    }
+  ],
+  "edge": [
+    {
+      "type": "code",
+      "caption": "Edge weighting and color composition (excerpt)",
+      "language": "HLSL",
+      "code": "float Edge = Dissolve <= 0 ? 0 :\n    1 - smoothstep(0, max(_EdgeWidth, 0.001), max(0, Noise - Threshold));\n// Weight edge colour by visible front-to-back contribution, not sample count.\nEdgeContribution += Edge * exp(-OpticalDepth) * (1 - exp(-PointDensity));\n\nfloat EdgeWeight = saturate(EdgeContribution / max(Opacity, 1e-5)) * saturate(_EdgeStrength);\nreturn half4(lerp(_FogColor.rgb, _EdgeColor.rgb, EdgeWeight), Opacity * saturate(_FogColor.a));"
+    }
+  ],
+  "accumulation": [
+    {
+      "type": "code",
+      "caption": "Step length, optical depth, and early termination (excerpt)",
+      "language": "HLSL",
+      "code": "int Count = clamp((int)_Samples, 8, 128);\nfloat StepLength = (Interval.y - Interval.x) / Count;\n\nfloat PointDensity = Shape * max(_Density, 0) * HeightFade * Remaining * StepLength;\nOpticalDepth += PointDensity;\nif (OpticalDepth > 4.60517) break; // Less than one percent transmittance remains.\n\nfloat Opacity = 1 - exp(-OpticalDepth);"
+    }
+  ]
+}

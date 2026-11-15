@@ -1,0 +1,931 @@
+[
+  {
+    "web": "/cycle-of-darkness/animations/elite/draft/anticipation_attack_horizontal.gif",
+    "kind": "source-animation",
+    "sha256": "1a60445b34e6ee13ac3311d10a0b7d9ff06087f1a1a16f20e7efeffd80bd413d",
+    "width": 100,
+    "height": 100,
+    "frames": 1,
+    "durationMs": [
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/elite/draft/anticipation_attack_vertical.gif",
+    "kind": "source-animation",
+    "sha256": "e04b0c7b344d0b4759ecdcb42b3a62168e0894f6c86af076044e670de3b71837",
+    "width": 100,
+    "height": 100,
+    "frames": 6,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/elite/draft/attack_horizontal.gif",
+    "kind": "source-animation",
+    "sha256": "2c57e1679956f95d51ecd56c747387c8acdeba8c52bf62b3d4937ef81b331ee8",
+    "width": 100,
+    "height": 100,
+    "frames": 9,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/elite/draft/attack_vertical.gif",
+    "kind": "source-animation",
+    "sha256": "e04b0c7b344d0b4759ecdcb42b3a62168e0894f6c86af076044e670de3b71837",
+    "width": 100,
+    "height": 100,
+    "frames": 6,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/elite/draft/dead.gif",
+    "kind": "source-animation",
+    "sha256": "ba0b9ce2c99623e338f82c5be6c27545e128a13ecd61586d3c27aa0783d3059c",
+    "width": 100,
+    "height": 100,
+    "frames": 6,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/elite/draft/idle.gif",
+    "kind": "source-animation",
+    "sha256": "075af1ac66435527cfbf00ce253b67d3579ff6f6bec2d3b1dc55d6302a8551c7",
+    "width": 100,
+    "height": 100,
+    "frames": 4,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/elite/draft/move.gif",
+    "kind": "source-animation",
+    "sha256": "ef3144100f3c84c75d5f3b012f32a4df268bdb0da91acf0305620ab32d789eea",
+    "width": 100,
+    "height": 100,
+    "frames": 5,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/elite/draft/sprint.gif",
+    "kind": "source-animation",
+    "sha256": "c192f6d7b28ce6f7dc9cacfb6bdb4667d5c5fcf99ad9571cbba74dbc86cbe097",
+    "width": 100,
+    "height": 100,
+    "frames": 5,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/elite/final/all.gif",
+    "kind": "source-animation",
+    "sha256": "e60a82af3d8cb2ff3aded93082c5103cc60a344403d670219c5803dbf88ca584",
+    "width": 100,
+    "height": 100,
+    "frames": 43,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/elite/final/attack_horizontal.gif",
+    "kind": "source-animation",
+    "sha256": "8da24292e0d677bc82fbe2e7f28ac608f0bfd114ccf7dc718714738ab6744fe9",
+    "width": 100,
+    "height": 100,
+    "frames": 7,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/elite/final/attack_horizontal_anticipation.png",
+    "kind": "source-animation",
+    "sha256": "6e9d0d0465226432dfb382813399fc1372925d04bdf0cf294a35183346abb043",
+    "width": 100,
+    "height": 100,
+    "frames": 1,
+    "durationMs": [
+      0
+    ],
+    "loop": null
+  },
+  {
+    "web": "/cycle-of-darkness/animations/elite/final/attack_vertical.gif",
+    "kind": "source-animation",
+    "sha256": "ea9baff0e7ab11517acd440be0772db686740bf93049453baf814c100ddceab3",
+    "width": 100,
+    "height": 100,
+    "frames": 6,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/elite/final/attack_vertical_anticipation.gif",
+    "kind": "source-animation",
+    "sha256": "d6c2416a2ee5ba1a797b88f326eb2fcb4e39caea387a3eccf4b35feb3f16ff9c",
+    "width": 100,
+    "height": 100,
+    "frames": 8,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/elite/final/dead.gif",
+    "kind": "source-animation",
+    "sha256": "fb3b918595486c73693769c4e8c4a1eafd53cd42a64f29ff9d5a16e28e60cbcf",
+    "width": 100,
+    "height": 100,
+    "frames": 10,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/elite/final/idle.gif",
+    "kind": "source-animation",
+    "sha256": "2b20206e5fe2895f912d844a04ead44bcc98c1b2af790b431d92807c9fe56c61",
+    "width": 100,
+    "height": 100,
+    "frames": 7,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/elite/final/move.gif",
+    "kind": "source-animation",
+    "sha256": "8fe5c623fa38aeadb2b23dcb850ed9beb95bee56e3403fc3a435e3ab2de6e537",
+    "width": 100,
+    "height": 100,
+    "frames": 8,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/elite/final/run.gif",
+    "kind": "source-animation",
+    "sha256": "f1137c5412e024e2efe9d342095f31eeaf87cee818395533051c658e6b1b349b",
+    "width": 100,
+    "height": 100,
+    "frames": 5,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/draft/anticipation_attack_1.gif",
+    "kind": "source-animation",
+    "sha256": "377867638dc8854101093c155efd0b4a4fcb38a650d2109fa434ea2db593340e",
+    "width": 180,
+    "height": 84,
+    "frames": 7,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/draft/anticipation_attack_2.gif",
+    "kind": "source-animation",
+    "sha256": "45e9de8cd6928621b628f0cec08a80e83651e9be6bb80f90808b16b6ba50bf7b",
+    "width": 180,
+    "height": 84,
+    "frames": 6,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/draft/anticipation_attack_3.gif",
+    "kind": "source-animation",
+    "sha256": "7d071e7573da620cb829a3514c8636b93d9d964a6208c236e8ee06de8f5bc9a6",
+    "width": 180,
+    "height": 84,
+    "frames": 6,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/draft/attack_1.gif",
+    "kind": "source-animation",
+    "sha256": "99b3596d40b206f103322a5e6a328564e9a54ccc28502f07b78269e78ddc8180",
+    "width": 180,
+    "height": 84,
+    "frames": 4,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/draft/attack_2.gif",
+    "kind": "source-animation",
+    "sha256": "434ecd78cf22927134ed07e1c307d190b5354eb875efac0bb3bc9a61ddc4f5b8",
+    "width": 180,
+    "height": 84,
+    "frames": 4,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/draft/attack_3.gif",
+    "kind": "source-animation",
+    "sha256": "4cb21c19ed32221db3607dd6fd1832cc781400481fc2fd6fd41d8b2c5c02c8c4",
+    "width": 180,
+    "height": 84,
+    "frames": 8,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/draft/dead.gif",
+    "kind": "source-animation",
+    "sha256": "1f6e8c85138c1d4aea20499118279d3d5733fb1bcd2d4247cf89666fcb7c3b00",
+    "width": 180,
+    "height": 84,
+    "frames": 11,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/draft/idle.gif",
+    "kind": "source-animation",
+    "sha256": "d71daec3ad4cfb718441568e04c28e7da68b57facf133e73f557e60dd227a547",
+    "width": 180,
+    "height": 84,
+    "frames": 8,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/draft/move.gif",
+    "kind": "source-animation",
+    "sha256": "d3584b2ebc5a11bd1d1274e84b50dd82d1fe588bd5ac7926a4b02e73f4c853c4",
+    "width": 180,
+    "height": 84,
+    "frames": 8,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/final/all.gif",
+    "kind": "source-animation",
+    "sha256": "c4d392dbb574fcc88c9a8777920074b40c1f5a9f6f4fc8a869088529825cfb78",
+    "width": 200,
+    "height": 84,
+    "frames": 72,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/final/anticipation_attack_1.gif",
+    "kind": "source-animation",
+    "sha256": "45064b7510171788ff0fda98a11cba39e631cd01cd13e47a9cf84738bee39e19",
+    "width": 180,
+    "height": 84,
+    "frames": 8,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/final/anticipation_attack_2.gif",
+    "kind": "source-animation",
+    "sha256": "a9259c40ef879a56bc6188797261134808b1eeea37d72b272faa2f9557c22618",
+    "width": 180,
+    "height": 84,
+    "frames": 8,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/final/anticipation_attack_3.gif",
+    "kind": "source-animation",
+    "sha256": "7fceaad1312361bde0301cd1aac7884770f928c734c76e86613097768dd8c588",
+    "width": 180,
+    "height": 84,
+    "frames": 9,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/final/attack_1.gif",
+    "kind": "source-animation",
+    "sha256": "f2fde7456c21347aa3ee234f85ad99d8389dede560fa9947bf840d1d44aaf8c9",
+    "width": 180,
+    "height": 84,
+    "frames": 4,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/final/attack_2.gif",
+    "kind": "source-animation",
+    "sha256": "deea175840ecce3bc525f7b2670f8309a8b53f1b53376a9c1382913a25ce404c",
+    "width": 180,
+    "height": 84,
+    "frames": 4,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/final/attack_3.gif",
+    "kind": "source-animation",
+    "sha256": "1667ccdf6c3f272bb01895ca508341ac5786c5254af835b92070280d3043b35c",
+    "width": 180,
+    "height": 84,
+    "frames": 8,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/final/dead.gif",
+    "kind": "source-animation",
+    "sha256": "2275f830316df29f9bbfc911ffaa94be654a93bce1b9c1c94bc03845dfb9e76b",
+    "width": 200,
+    "height": 84,
+    "frames": 12,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/final/idle.gif",
+    "kind": "source-animation",
+    "sha256": "7a099210626a485b50e5cf22c1bcafdab0f3220cade55fe2ab34d461314e96bb",
+    "width": 180,
+    "height": 84,
+    "frames": 9,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/animations/giant/final/move.gif",
+    "kind": "source-animation",
+    "sha256": "53639eb6d2527765533067b0e7f3110c274b08a7936e368bd7bc63e95345dbad",
+    "width": 180,
+    "height": 84,
+    "frames": 8,
+    "durationMs": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "loop": 0
+  },
+  {
+    "web": "/cycle-of-darkness/icons/icon_item_ice_armor.png",
+    "kind": "author-icon",
+    "sha256": "9265ee2ab47d789a0400077757cc9e384246dd54de102985209ead19c5085fb2",
+    "width": 32,
+    "height": 32,
+    "frames": 1,
+    "durationMs": [
+      0
+    ],
+    "loop": null
+  },
+  {
+    "web": "/cycle-of-darkness/icons/icon_item_ice_belt.png",
+    "kind": "author-icon",
+    "sha256": "666548c84dc135c62c2efd444c86187b122a96a1bb94b32346937879b53a571f",
+    "width": 32,
+    "height": 32,
+    "frames": 1,
+    "durationMs": [
+      0
+    ],
+    "loop": null
+  },
+  {
+    "web": "/cycle-of-darkness/icons/icon_item_ice_crown.png",
+    "kind": "author-icon",
+    "sha256": "c216a82b70897610c6ba726cc258c5ad59698e3b701e52ce32ffd9c9670698b5",
+    "width": 32,
+    "height": 32,
+    "frames": 1,
+    "durationMs": [
+      0
+    ],
+    "loop": null
+  },
+  {
+    "web": "/cycle-of-darkness/icons/icon_item_ice_legendsword.png",
+    "kind": "author-icon",
+    "sha256": "1fe258c2dc3d8e84ac9ef42680068d8fa8af0d28c4fcb42262caa1d4160927ce",
+    "width": 32,
+    "height": 32,
+    "frames": 1,
+    "durationMs": [
+      0
+    ],
+    "loop": null
+  },
+  {
+    "web": "/cycle-of-darkness/icons/icon_item_ice_nacklace.png",
+    "kind": "author-icon",
+    "sha256": "cd73feac468bd36df2bc4045ab34c7e6a1fd1aa61cd8b150104b1c1b449bfc72",
+    "width": 32,
+    "height": 32,
+    "frames": 1,
+    "durationMs": [
+      0
+    ],
+    "loop": null
+  },
+  {
+    "web": "/cycle-of-darkness/icons/icon_item_ice_shoe.png",
+    "kind": "author-icon",
+    "sha256": "04ae2afd1ef63887c5932b6e46dac3b6511a617debae2134372a319fa6e03baf",
+    "width": 32,
+    "height": 32,
+    "frames": 1,
+    "durationMs": [
+      0
+    ],
+    "loop": null
+  },
+  {
+    "web": "/cycle-of-darkness/screenshots/elite-fsm.png",
+    "kind": "original-screenshot",
+    "sha256": "c02c282dc4cdf68f1c0ec7571b92aa0a7e97e582a666765175eee4bcec855cc1",
+    "width": 1409,
+    "height": 481,
+    "frames": 1,
+    "durationMs": [
+      0
+    ],
+    "loop": null
+  },
+  {
+    "web": "/cycle-of-darkness/screenshots/giant-fsm.png",
+    "kind": "original-screenshot",
+    "sha256": "9e5b4c0e38c3ca4bf9588a4171856f645b3c7f1c0a4e366d0dfe62d8f8b6983d",
+    "width": 1463,
+    "height": 486,
+    "frames": 1,
+    "durationMs": [
+      0
+    ],
+    "loop": null
+  },
+  {
+    "web": "/cycle-of-darkness/screenshots/jellyfish-fsm.png",
+    "kind": "original-screenshot",
+    "sha256": "05eb8e6fe275a445f8d72f2897c3378f7bb9d50a67cb9890831007226a35b155",
+    "width": 649,
+    "height": 428,
+    "frames": 1,
+    "durationMs": [
+      0
+    ],
+    "loop": null
+  },
+  {
+    "web": "/cycle-of-darkness/screenshots/chase-config.png",
+    "kind": "original-screenshot",
+    "sha256": "734ef48fd9d125581e0a70d136d24e39db7935e66bf62fe22dc24b292bd965db",
+    "width": 354,
+    "height": 381,
+    "frames": 1,
+    "durationMs": [
+      0
+    ],
+    "loop": null
+  },
+  {
+    "web": "/cycle-of-darkness/screenshots/flee-config.png",
+    "kind": "original-screenshot",
+    "sha256": "cb88a5ff177be45c3978b9d5f0e9843de7b35bafe38c98a11946bbc813649505",
+    "width": 351,
+    "height": 295,
+    "frames": 1,
+    "durationMs": [
+      0
+    ],
+    "loop": null
+  },
+  {
+    "web": "/cycle-of-darkness/screenshots/elite-horizontal.png",
+    "kind": "original-screenshot",
+    "sha256": "848b8a69179d0e05715080c826a1b86456250bd6f8bba1de0fae3a9901251a43",
+    "width": 1057,
+    "height": 213,
+    "frames": 1,
+    "durationMs": [
+      0
+    ],
+    "loop": null
+  },
+  {
+    "web": "/cycle-of-darkness/screenshots/elite-vertical.png",
+    "kind": "original-screenshot",
+    "sha256": "e1149b4854f7ac0405921a3a72cb30887513c0bd5c88858934dc0fe74cc41c3c",
+    "width": 935,
+    "height": 203,
+    "frames": 1,
+    "durationMs": [
+      0
+    ],
+    "loop": null
+  },
+  {
+    "web": "/cycle-of-darkness/screenshots/giant-attack-1.png",
+    "kind": "original-screenshot",
+    "sha256": "2e75dd4c862d8f4823c456f50bda42899ac788bb41886dcbb82648fc827c7b6f",
+    "width": 769,
+    "height": 175,
+    "frames": 1,
+    "durationMs": [
+      0
+    ],
+    "loop": null
+  },
+  {
+    "web": "/cycle-of-darkness/screenshots/giant-attack-2.png",
+    "kind": "original-screenshot",
+    "sha256": "6ce5d1b94bbcd7efb14becf0d795fa8b2cf6d9dbb5a8a11c46232b19c14e9f8b",
+    "width": 840,
+    "height": 127,
+    "frames": 1,
+    "durationMs": [
+      0
+    ],
+    "loop": null
+  },
+  {
+    "web": "/cycle-of-darkness/screenshots/giant-attack-3.png",
+    "kind": "original-screenshot",
+    "sha256": "9ad92c470479220d2297a3b662dfcdb9778f30a184deb1341ff2ed3e6938e28b",
+    "width": 810,
+    "height": 155,
+    "frames": 1,
+    "durationMs": [
+      0
+    ],
+    "loop": null
+  }
+]

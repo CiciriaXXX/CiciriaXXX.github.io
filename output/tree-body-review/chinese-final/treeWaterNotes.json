@@ -1,0 +1,170 @@
+{
+  "reflection": [
+    {
+      "type": "paragraph",
+      "text": "**描边在镜像视图中的遮挡问题**：描边在屏幕空间中外扩树木，但保留原网格的深度。外扩后的像素可能在镜像视图中覆盖树枝和树干。"
+    },
+    {
+      "type": "code",
+      "caption": "TreeOutlineRendererFeature.cs · 排除反射相机",
+      "language": "C#",
+      "code": "Camera camera = renderingData.cameraData.camera;\nif (camera != null && camera.cameraType == CameraType.Reflection)\n    return;"
+    },
+    {
+      "type": "code",
+      "caption": "PlanarReflection.cs · 相机设置（节选）",
+      "language": "C#",
+      "code": "_reflectionCamera.cameraType = CameraType.Reflection;\n_reflectionCamera.cullingMask = _reflectionMask;\n_reflectionCamera.clearFlags = _reflectSkybox\n    ? CameraClearFlags.Skybox : CameraClearFlags.SolidColor;\n_reflectionCamera.backgroundColor = Color.black;\n\n_reflectionCamera.worldToCameraMatrix =\n    sourceCamera.worldToCameraMatrix * reflectionMatrix;\nVector4 clipPlane = CameraSpacePlane(\n    _reflectionCamera, planePosition, planeNormal, 1.0f);\n_reflectionCamera.projectionMatrix =\n    _reflectionCamera.CalculateObliqueMatrix(clipPlane);"
+    },
+    {
+      "type": "paragraph",
+      "text": "**修正镜像剔除并防止递归渲染**：渲染反射时反转剔除方向，再在 `finally` 中恢复原状态。通过渲染保护，避免反射相机再次触发反射捕获。"
+    },
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-detail-normal-preview.webp",
+      "width": 1387,
+      "height": 759,
+      "alt": "ASE nodes mapping world XZ position and time to the scrolling water normal texture.",
+      "caption": "ASE · 世界空间细节法线与滚动速度",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-detail-normal.webp"
+    },
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-distance-distortion-preview.webp",
+      "width": 876,
+      "height": 367,
+      "alt": "ASE nodes dividing small-distortion strength by clip-space W.",
+      "caption": "ASE · 随距离衰减的反射扭曲",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-distance-distortion.webp"
+    },
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-reflection-uv-preview.webp",
+      "width": 904,
+      "height": 670,
+      "alt": "ASE nodes adding the scaled normal XY components to normalized screen UVs.",
+      "caption": "ASE · 反射 UV 偏移",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-reflection-uv.webp"
+    },
+    {
+      "type": "paragraph",
+      "text": "**加权采样并调节晕染强度**：合并 12 次纹理采样，距离原始 UV 越远的采样权重越低。`_PigmentBleed` 控制颜色扩散，`_SmearStrength` 则控制滤波结果与原始反射的混合。"
+    },
+    {
+      "type": "code",
+      "caption": "PlanarReflection.cs · 渲染、滤波与绑定（节选）",
+      "language": "C#",
+      "code": "RenderPipeline.SubmitRenderRequest(_reflectionCamera, request);\nGL.invertCulling = previousInvertCulling;\n\nRenderTexture textureForWater = _reflectionTexture;\nif (_smearOn\n    && _smearedReflectionTexture != null\n    && TryGetSmearMaterial(out Material smearMaterial))\n{\n    ApplyWatercolorSmear(\n        _reflectionTexture, _smearedReflectionTexture, smearMaterial);\n    textureForWater = _smearedReflectionTexture;\n}\n\n_waterRenderer.GetPropertyBlock(_propertyBlock);\n_propertyBlock.SetTexture(ReflectionTextureId, textureForWater);\n_waterRenderer.SetPropertyBlock(_propertyBlock);"
+    },
+    {
+      "type": "code",
+      "caption": "WatercolorReflection.shader · 定向累积（循环体节选）",
+      "language": "HLSL",
+      "code": "float Progress = (float)SampleIndex / (SampleCount - 1.0);\nfloat JitterNoise = Hash21(\n    BrushCell + float2(SampleIndex * 1.73, SampleIndex * 0.37)) * 2.0 - 1.0;\n\nfloat2 SampleUV = UV + float2(\n    JitterNoise * HorizontalSpan * (0.25 + Progress * 0.75),\n    VerticalSpan * Progress);\n\nfloat ValidSample = IsInsideTexture(SampleUV);\nfloat SampleWeight = lerp(1.0, 0.12, Progress) * ValidSample;\nhalf4 SampledColor = SAMPLE_TEXTURE2D(\n    _MainTex, sampler_MainTex, saturate(SampleUV));\n\nWeightedColor += SampledColor * SampleWeight;\nTotalWeight += SampleWeight;\nPigmentColor = max(PigmentColor,\n    lerp(RawReflection, SampledColor, ValidSample));"
+    },
+    {
+      "type": "paragraph",
+      "text": "**控制采样偏移**：`VerticalSpan` 设置条纹长度和方向，`HorizontalSpan` 设置横向扰动，两者均以纹素为单位。忽略纹理范围外的采样，避免拉伸边缘颜色。"
+    }
+  ],
+  "color": [
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-refraction-preview.webp",
+      "width": 981,
+      "height": 449,
+      "alt": "ASE scene-color sample with a UV offset from the detail normal.",
+      "caption": "ASE · 扭曲后的场景颜色采样",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-refraction.webp"
+    },
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-depth-reconstruction-preview.webp",
+      "width": 1098,
+      "height": 445,
+      "alt": "ASE world-height differences calculated from regular scene depth and the separate foam depth.",
+      "caption": "ASE · 颜色与岸边浮沫使用独立的深度输入",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-depth-reconstruction.webp"
+    },
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-shallow-mask-preview.webp",
+      "width": 1024,
+      "height": 196,
+      "alt": "ASE exponential decay from negative water depth divided by depth range.",
+      "caption": "ASE · 指数浅水遮罩",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-shallow-mask.webp"
+    },
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-fresnel-preview.webp",
+      "width": 1427,
+      "height": 778,
+      "alt": "ASE Fresnel calculation using a constant world-up vector and the view direction.",
+      "caption": "ASE · 使用固定向上向量的可调 Fresnel",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-fresnel.webp"
+    },
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-composition-preview.webp",
+      "width": 1500,
+      "height": 681,
+      "alt": "ASE final color network combining deep color, reflection, refracted scene color, and foam.",
+      "caption": "ASE · 最终水面颜色合成",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-composition.webp"
+    }
+  ],
+  "foam": [
+    {
+      "type": "paragraph",
+      "text": "将渲染队列上限设为 2449，以排除位于队列 2450 的草。"
+    },
+    {
+      "type": "code",
+      "caption": "FoamDepthRendererFeature.cs · 渲染队列筛选（节选）",
+      "language": "C#",
+      "code": "var queueRange = new RenderQueueRange\n{\n    lowerBound = 0,\n    upperBound = Mathf.Clamp(settings.maximumRenderQueue, 0, 5000)\n};\n\nvar filteringSettings = new FilteringSettings(queueRange);"
+    },
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-foam-preview.webp",
+      "width": 2020,
+      "height": 755,
+      "alt": "ASE shoreline foam network combining filtered water depth, a sine band, time, and noise dissolve.",
+      "caption": "ASE · 浮沫范围、频率、运动与破碎控制",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-foam.webp"
+    }
+  ],
+  "motion": [
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-wave-preview.webp",
+      "width": 1384,
+      "height": 558,
+      "alt": "ASE Gerstner displacement and the tangent-binormal cross product used to calculate a wave normal.",
+      "caption": "ASE · 几何位移与波浪法线计算",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-wave.webp"
+    },
+    {
+      "type": "figure",
+      "src": "/a-great-big-tree/water/graph-gerstner-preview.webp",
+      "width": 259,
+      "height": 410,
+      "alt": "Gerstner-wave function computing displacement and tangent and binormal derivatives.",
+      "caption": "ASE 自定义表达式 · 单个定向 Gerstner 波",
+      "naturalSize": true,
+      "fullSrc": "/a-great-big-tree/water/graph-gerstner.webp"
+    }
+  ]
+}

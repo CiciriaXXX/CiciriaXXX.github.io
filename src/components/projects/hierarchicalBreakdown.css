@@ -1,0 +1,30 @@
+/* Shared article and contents rhythm for every project breakdown. */
+.breakdown-tree a { display: block; color: var(--color-accent); font-size: 14px; line-height: 1.5; padding-block: 4px; overflow-wrap: anywhere; }
+.breakdown-tree a:hover { text-decoration: underline; }
+.breakdown-tree a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+.breakdown-tree-roots > li + li { margin-top: 14px; }
+.breakdown-tree-roots > li > a { font-weight: bold; }
+.breakdown-tree-children { margin-top: 5px; padding-left: 12px; border-left: 1px solid rgb(255 255 255 / 16%); }
+.breakdown-tree-children .breakdown-tree-children a, .breakdown-block-links a { color: rgb(255 255 255 / 70%); font-size: 12px; }
+.breakdown-topic { min-width: 0; }
+.breakdown-topic > :is(h3,h4,h5,h6) { color: var(--color-accent); scroll-margin-top: 112px; line-height: 1.35; margin-bottom: 18px; overflow-wrap: anywhere; }
+.breakdown-topic > :is(h3,h4,h5,h6):focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
+.breakdown-depth-0 { padding-bottom: 32px; }
+.breakdown-depth-0 + .breakdown-depth-0 { padding-top: 32px; border-top: 2px solid rgb(255 240 189 / 45%); }
+.project-article-heading, .breakdown-depth-0 > h3 { font-family: var(--font-display, inherit); font-size: 40px; font-weight: normal; line-height: 1.1; color: var(--color-accent); overflow-wrap: anywhere; }
+.project-article-heading { font-size: 48px; }
+.breakdown-depth-1 { margin-top: 24px; padding-top: 24px; border-top: 1px solid rgb(255 255 255 / 16%); }
+.breakdown-depth-1 > h4 { font-size: 32px; font-weight: bold; }
+.breakdown-depth-2 { margin-top: 24px; }
+.breakdown-depth-2 > h5 { font-size: 28px; font-weight: bold; }
+.breakdown-summary { max-width: 65ch; color: rgb(255 255 255 / 75%); font-size: 16px; line-height: 1.8; }
+@media (max-width: 639px) {
+  .breakdown-depth-1 > h4 { font-size: 28px; }
+  .breakdown-depth-2 > h5 { font-size: 24px; }
+  .breakdown-depth-0 { padding-bottom: 24px; }
+  .breakdown-depth-0 + .breakdown-depth-0 { padding-top: 24px; }
+}
+@media (min-width: 768px) {
+  .project-article-heading, .breakdown-depth-0 > h3 { font-size: 48px; }
+  .project-article-heading { font-size: 60px; }
+}

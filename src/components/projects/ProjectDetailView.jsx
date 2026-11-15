@@ -1,8 +1,8 @@
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { styles } from '../../styles/portfolioStyles';
 import { useFallbackProjectImage } from './imageFallback';
-import { StudyContent } from './StudyContent';
 import { PendingMedia } from './ProjectMedia';
+import { HierarchicalBreakdown } from './HierarchicalBreakdown';
 
 const placeholderSections = [
   { id: 'concept', title: 'Concept & Goals', text: 'The project’s starting point, inspirations, and design goals will be explored here.' },
@@ -27,7 +27,7 @@ export function ProjectDetailView({ project, onBack }) {
   const descriptionBesideMetadata = project.overviewLayout === 'metadata-description';
   const chinese = project.lang === 'zh-CN';
   return (
-    <article lang={project.lang ?? 'en'} className={`${styles.detail.root} ${chinese ? 'project-chinese' : ''}`}>
+    <article data-project={project.slug ?? project.id} lang={project.lang ?? 'en'} className={`${styles.detail.root} ${chinese ? 'project-chinese' : ''}`}>
       <button type="button" onClick={onBack} className={styles.detail.backButton}>
         <ArrowLeft size={16} /> {chinese ? '返回项目' : 'Back to projects'}
       </button>
@@ -36,7 +36,7 @@ export function ProjectDetailView({ project, onBack }) {
         <h1 className={styles.detail.title}>{project.title}</h1>
       </header>
       <section aria-labelledby="overview-heading" className="space-y-8">
-        <h2 id="overview-heading" className="font-display text-4xl text-[var(--color-accent)]">{chinese ? '项目概览' : 'Overview'}</h2>
+        <h2 id="overview-heading" className="project-article-heading">{chinese ? '项目概览' : 'Overview'}</h2>
         <div className={`grid items-start gap-10 ${descriptionBesideMetadata ? 'md:grid-cols-[minmax(0,0.65fr)_minmax(0,1.35fr)]' : 'lg:grid-cols-[0.85fr_1.15fr]'}`}>
           <div className="min-w-0 space-y-8">
             {!descriptionBesideMetadata && <p className={styles.detail.description}>{project.description}</p>}
@@ -111,34 +111,9 @@ export function ProjectDetailView({ project, onBack }) {
         </div>
         {project.disclosure && <p className="border-l-2 border-[var(--color-accent)] bg-white/5 px-5 py-4 text-sm leading-7 text-white/75">{project.disclosure}</p>}
       </section>
-      <section aria-labelledby={project.hideBreakdownHeading ? undefined : 'breakdown-heading'} aria-label={project.hideBreakdownHeading ? 'Rendering studies' : undefined} className="border-t-2 border-[var(--color-accent)] pt-10">
-        {!project.hideBreakdownHeading && <h2 id="breakdown-heading" className="mb-8 font-display text-4xl text-[var(--color-accent)]">{project.breakdownTitle ?? 'Breakdown'}</h2>}
-        <div className="grid items-start gap-10 md:grid-cols-[220px_minmax(0,1fr)] lg:gap-16">
-          <nav aria-label={chinese ? '拆解目录' : 'Breakdown contents'} className="rounded-md border border-white/15 bg-white/5 p-5 md:sticky md:top-28 md:max-h-[calc(100dvh-9rem)] md:overflow-y-auto">
-            <p className="overview-label mb-4">{chinese ? '目录' : 'Contents'}</p>
-            <ol className="space-y-4">
-              {sections.map((section, index) => {
-                const id = `${project.slug}-${section.id}`;
-                return (
-                  <li key={section.id}>
-                    <a href={`#${project.sectionPath}/${project.slug}`} onClick={(event) => jumpToSection(event, id)} className="block text-sm leading-relaxed text-[var(--color-accent)] hover:underline focus-visible:underline">
-                      <span className="mr-2 opacity-50">{String(index + 1).padStart(2, '0')}</span>{section.title}
-                    </a>
-                  </li>
-                );
-              })}
-            </ol>
-          </nav>
-          <div className="min-w-0 space-y-10">
-            {sections.map((section, index) => (
-              <section key={section.id} id={`${project.slug}-${section.id}`} tabIndex={-1} className="min-h-[320px] scroll-mt-28 rounded-md border border-white/15 bg-white/[0.035] p-6 focus-visible:outline focus-visible:outline-[var(--color-accent)] md:p-10">
-                <p className="overview-label mb-4">{String(index + 1).padStart(2, '0')}{!project.breakdown && ' / Coming soon'}</p>
-                <h3 className={`mb-6 font-display leading-tight text-[var(--color-accent)] ${section.blocks ? 'text-4xl md:text-5xl' : 'text-3xl'}`}>{section.title}</h3>
-                {section.blocks ? <StudyContent section={section} /> : <p className="max-w-2xl text-lg leading-relaxed text-white/75">{section.text}</p>}
-              </section>
-            ))}
-          </div>
-        </div>
+      <section aria-labelledby="breakdown-heading" className="border-t-2 border-[var(--color-accent)] pt-10">
+        <h2 id="breakdown-heading" className="project-article-heading mb-8">{project.breakdownTitle ?? 'Breakdown'}</h2>
+        <HierarchicalBreakdown project={project} sections={sections} jumpToSection={jumpToSection} />
       </section>
     </article>
   );

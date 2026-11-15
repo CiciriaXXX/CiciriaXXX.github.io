@@ -1,0 +1,56 @@
+{
+  "underside": {
+    "src": "/a-great-big-tree/underwater/underside-preview.webp",
+    "fullSrc": "/a-great-big-tree/underwater/underside.webp",
+    "width": 1450,
+    "height": 871
+  },
+  "waterline": {
+    "src": "/a-great-big-tree/underwater/waterline-preview.webp",
+    "fullSrc": "/a-great-big-tree/underwater/waterline.webp",
+    "width": 1480,
+    "height": 846
+  },
+  "turbidity": {
+    "src": "/a-great-big-tree/underwater/turbidity-preview.webp",
+    "fullSrc": "/a-great-big-tree/underwater/turbidity.webp",
+    "width": 1469,
+    "height": 890
+  },
+  "graph-grazing-correction": {
+    "src": "/a-great-big-tree/underwater/graph-grazing-correction-preview.webp",
+    "fullSrc": "/a-great-big-tree/underwater/graph-grazing-correction.webp",
+    "width": 1566,
+    "height": 384
+  },
+  "graph-composition": {
+    "src": "/a-great-big-tree/underwater/graph-composition-preview.webp",
+    "fullSrc": "/a-great-big-tree/underwater/graph-composition.webp",
+    "width": 900,
+    "height": 583
+  },
+  "reflection-last": {
+    "src": "/a-great-big-tree/underwater/reflection-last-preview.webp",
+    "fullSrc": "/a-great-big-tree/underwater/reflection-last.webp",
+    "width": 955,
+    "height": 391
+  },
+  "shallow-last": {
+    "src": "/a-great-big-tree/underwater/shallow-last-preview.webp",
+    "fullSrc": "/a-great-big-tree/underwater/shallow-last.webp",
+    "width": 947,
+    "height": 448
+  },
+  "grazing-before": {
+    "src": "/a-great-big-tree/underwater/grazing-before-preview.webp",
+    "fullSrc": "/a-great-big-tree/underwater/grazing-before.webp",
+    "width": 1217,
+    "height": 628
+  },
+  "grazing-after": {
+    "src": "/a-great-big-tree/underwater/grazing-after-preview.webp",
+    "fullSrc": "/a-great-big-tree/underwater/grazing-after.webp",
+    "width": 1238,
+    "height": 587
+  }
+}

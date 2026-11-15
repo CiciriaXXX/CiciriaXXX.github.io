@@ -1,0 +1,58 @@
+{
+  "checkItem": {
+    "source": "Assets/Script/Interactive/Interactive.cs",
+    "startLine": 17,
+    "endLine": 26,
+    "sha256": "dfc1cbd5c0be8946fe25789adb432621da8bb0bd82132e731b6a19517c4b2dc6",
+    "code": "public virtual void CheckItem(ItemName itemName)\n{ \n    if (itemName == requireItem && !isDone)\n    {\n        isDone = true;\n        OnClickAction();\n        PlayDialogue(correctItemDialogue);\n        EventHandler.CallItemUsedEvent(itemName);\n    }\n}"
+  },
+  "placeBook": {
+    "source": "Assets/Script/Interactive/PlaceBook.cs",
+    "startLine": 31,
+    "endLine": 35,
+    "sha256": "27b008ae90d5c4eb39f0317f2cc002befb5c1b3950f458416883991dced646ad",
+    "code": "protected override void OnClickAction()\n{ \n    bugBook.SetActive(true);\n    AudioManager.instance.PlaySFX(bookPlaceAudio);\n}"
+  },
+  "itemEvent": {
+    "source": "Assets/Script/Tools/EventHandler.cs",
+    "startLine": 16,
+    "endLine": 20,
+    "sha256": "f87d8da684fc8488037184b3c8d4213eb158e422ebd0b8635ec3839384f5cf56",
+    "code": "public static event Action<ItemName> ItemUsedEvent;\npublic static void CallItemUsedEvent(ItemName itemName)\n{\n    ItemUsedEvent?.Invoke(itemName);\n}"
+  },
+  "uiLifecycle": {
+    "source": "Assets/Script/Inventory/UI/InventoryUI.cs",
+    "startLine": 16,
+    "endLine": 23,
+    "sha256": "45df26262729f0d5e1a51e2cb9183e729889b35077ae44afa47cb14c261cb3c1",
+    "code": "private void OnEnable()\n{\n    EventHandler.UpdateUIEvent += OnUpdateUIEvent;\n}\nprivate void OnDisable()\n{\n    EventHandler.UpdateUIEvent -= OnUpdateUIEvent;\n}"
+  },
+  "savable": {
+    "source": "Assets/Script/SaveLoad/ISavable.cs",
+    "startLine": 3,
+    "endLine": 13,
+    "sha256": "638698c34b1ae4ea42b5ed4b693d8bd3db80ce2def458907663836554ddad983",
+    "code": "public interface ISavable\n{\n    void SavableRegister()\n    {\n        SaveLoadManager.instance.Register(this);\n    }\n\n    GameSaveData GenerateSaveData();\n\n    void RestoreGameData(GameSaveData saveData);\n}"
+  },
+  "collectSave": {
+    "source": "Assets/Script/SaveLoad/SaveLoadManager.cs",
+    "startLine": 78,
+    "endLine": 82,
+    "sha256": "163f3935d6be4cc9d943646bfd51e3d4bc859e8ac275a160c76624f7a848026d",
+    "code": "_saveDataDict.Clear();\nforeach (var savable in _savableList)\n{\n    _saveDataDict.Add(savable.GetType().Name, savable.GenerateSaveData());\n}"
+  },
+  "inventorySave": {
+    "source": "Assets/Script/Inventory/Logic/InventoryManager.cs",
+    "startLine": 132,
+    "endLine": 142,
+    "sha256": "b92f5a8525473a0c4c8136741305f42540584be4b680eace7d30bb0b1a32d1d5",
+    "code": "public GameSaveData GenerateSaveData()\n{\n    GameSaveData saveData = new GameSaveData();\n    saveData.ItemList = itemList;\n    return saveData;\n}\n\npublic void RestoreGameData(GameSaveData saveData)\n{\n   itemList = saveData.ItemList;\n}"
+  },
+  "singleton": {
+    "source": "Assets/Script/Tools/Singleton.cs",
+    "startLine": 6,
+    "endLine": 22,
+    "sha256": "e778b149cebd083e785b4327c7a551b792d300496e55268b563c1dda957bf005",
+    "code": "public class Singleton<T> : MonoBehaviour where T : Singleton<T>\n{\n    private static T _instance;\n    public static T instance => _instance;\n\n    protected virtual void Awake()\n    {\n        if (_instance != null)\n        {\n            Destroy(gameObject);\n        }\n        else\n        {\n            _instance = (T)this;\n        }\n    }\n}"
+  }
+}

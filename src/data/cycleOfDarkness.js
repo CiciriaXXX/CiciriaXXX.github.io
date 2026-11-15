@@ -13,7 +13,7 @@ export const cycleOfDarkness = {
   slug: 'cycle-of-darkness',
   title: "Cycle of Darkness",
   lang: "en",
-  category: "Top-Down Pixel Art Action Roguelike",
+  category: "Action Roguelike",
   image: '/cycle-of-darkness/cover.jpg',
   previewVideo: '/previews/cycle-of-darkness.mp4',
   walkthroughVideo: '/cycle-of-darkness/walkthrough.mp4',
@@ -77,7 +77,7 @@ export const cycleOfDarkness = {
         p("The team's programmer handled room selection, connections, and the runtime framework."),
         h("Design Notes for Twelve Rooms"),
         p("I wanted repeat runs to reward more than combat skill: familiarity with layouts and interactables could help players find faster or safer approaches. These examples show design intentions and experiments. Their effectiveness still depended on tuning layouts, enemies, and buffs together, which remained unfinished when development ended."),
-        p("Orange enemy markers indicate the second wave; blue markers indicate the third. These colors only identify waves. Numbered markers correspond to the notes below, not a verified optimal route."),
+        p("Orange enemy markers indicate the second wave; blue markers indicate the third."),
         { type: 'room-gallery', items: [
           room(1, [
             point(74, 61, "Circle to the lower right and detonate the bomb flower to hit the three ranged enemies behind the fence. Nearby minor enemies may also be drawn in."),
@@ -124,7 +124,6 @@ export const cycleOfDarkness = {
           ]),
           room(12, [], "This room uses a long, narrow layout to add variety to the room shapes. With suitable positioning, players can use exploding enemies to defeat ranged enemies."),
         ] },
-        p("The repetition in scene assembly led me to consider using procedural content generation (PCG) to automate part of the process, but this idea was neither implemented nor evaluated before the project ended."),
       ],
     },
     {
@@ -153,7 +152,6 @@ export const cycleOfDarkness = {
           ],
           source: 'https://steamdb.info/stats/releases/?tagid=42804',
           accessed: '2026-10-20',
-          note: "SteamDB counts releases under the Action Roguelike tag, which spans several styles of gameplay and may overlap with other tags or change over time. These figures show growth in supply, not demand, sales, or profitability, and are not limited to pixel art melee games.",
         },
         p("Frame-by-frame pixel animation also cost more time than expected. Melee wind-ups, strikes, hits and reactions, recovery, and movement need readable motion and smooth transitions. Each new enemy or move added drawing and integration work. Art suited to separate parts can reuse bones and interpolation through tools such as [Spine](https://esotericsoftware.com/spine-in-depth), and pixel art can use these methods too. We tried tools including PixelOver, but the results fell short of our expectations."),
       ],

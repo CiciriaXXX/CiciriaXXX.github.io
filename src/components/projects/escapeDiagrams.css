@@ -1,0 +1,41 @@
+.escape-diagram { container-type: inline-size; margin: 0; }
+.escape-diagram-canvas { border: 1px solid rgb(182 194 255 / 20%); border-radius: 10px; padding: 22px; background: rgb(8 15 35 / 60%); font-family: system-ui, sans-serif; }
+.escape-diagram .escape-diagram-label { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; color: #e9dcaf; font-size: 11px; font-weight: 650; letter-spacing: .07em; line-height: 1.6; }
+.escape-diagram-label > span { margin-left: auto; color: #abb6cc; font-size: 11px; font-weight: 400; letter-spacing: 0; }
+.escape-layer { padding: 16px; border: 1px solid #536486; border-radius: 8px; }
+.escape-layer-rooms { border-style: dashed; border-color: #858079; }
+.escape-node-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.escape-node-grid-three, .escape-branches { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.escape-node { display: flex; align-items: flex-start; gap: 10px; min-width: 0; padding: 14px 12px; border: 1px solid #3e5074; border-radius: 7px; background: #1a2944; }
+.escape-node > svg { flex: 0 0 auto; color: #b6c7ef; }
+.escape-node strong { display: block; color: #f0f3fb; font-size: 13px; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
+.escape-node span { display: block; margin-top: 5px; color: #bbc7dc; font-size: 11px; line-height: 1.6; overflow-wrap: anywhere; }
+.escape-node-accent { border-color: #bcab70; background: #34352f; }
+.escape-node-accent > svg { color: #f2dda0; }
+.escape-chain { display: grid; grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr) 24px minmax(0, 1fr); align-items: center; gap: 6px; }
+.escape-arrow { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #c3b680; }
+.escape-arrow > span, .escape-down > span { font-size: 11px; line-height: 1.5; color: #c3cce0; }
+.escape-down { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 0; color: #c3b680; }
+.escape-branches { border-top: 1px dashed #697d9f; padding-top: 14px; }
+.escape-event-branches { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; border-top: 1px solid #697d9f; padding-top: 14px; }
+.escape-event-publish { display: grid; grid-template-columns: minmax(0, 1fr) 65px minmax(0, 1.2fr); align-items: center; gap: 8px; }
+.escape-event-branches > div { min-width: 0; }
+.escape-diagram .escape-diagram-note { margin: 18px 8px 0; font-size: 12px; line-height: 1.7; color: #a6b5d0; }
+.escape-save-sources { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.escape-save-sources > span { padding: 6px 10px; border: 1px solid #526583; border-radius: 5px; font-size: 12px; color: #e2e8f6; }
+.escape-room-cycle { border-top: 1px solid #3e5074; margin-top: 22px; padding-top: 20px; }
+.escape-diagram > figcaption { color: #b9c3d6; }
+@container (max-width: 590px) {
+  .escape-diagram-canvas { padding: 15px; }
+  .escape-chain, .escape-event-publish { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .escape-arrow { flex-direction: row; justify-content: center; padding: 3px; }
+  .escape-arrow > svg { transform: rotate(90deg); }
+  .escape-node-grid-three, .escape-branches { grid-template-columns: minmax(0, 1fr); }
+  .escape-node strong { font-size: 14px; }
+  .escape-node span { font-size: 12px; }
+}
+@container (max-width: 380px) {
+  .escape-node-grid, .escape-event-branches { grid-template-columns: minmax(0, 1fr); }
+  .escape-layer { padding: 12px; }
+  .escape-diagram-label > span { margin-left: 0; flex-basis: 100%; }
+}

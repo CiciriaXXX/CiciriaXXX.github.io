@@ -24,7 +24,7 @@ export const artworks = [
       image('commission-sheet', 'Commissioned Character Sheet', '2025', 'A commissioned collage illustration featuring the client’s characters in scenes from everyday life.', 'png'),
       image('spotlight', 'Spotlight Study', '2025', 'A painting exercise exploring the effect of a spotlight on a character.', 'png'),
       image('red-haired-character', 'Character Commission', '2024', 'A character illustration commissioned to convey a mysterious, reserved mood. I used dramatic blue environmental lighting to contrast with the character’s red hair.'),
-      image('rain-water', 'Rain Water', '2021', 'A solar-term postcard for Beijing Normal University’s White Dove Youth Volunteer Association. The association sends these postcards to volunteers and students interested in volunteering. This illustration celebrates Rain Water (Yushui).'),
+      image('rain-water-corrected', 'Rain Water', '2021', 'A solar-term postcard for Beijing Normal University’s White Dove Youth Volunteer Association. The association sends these postcards to volunteers and students interested in volunteering. This illustration celebrates Rain Water (Yushui).'),
       image('grain-rain', 'Grain Rain', '2020', 'A solar-term postcard for Beijing Normal University’s White Dove Youth Volunteer Association, celebrating Grain Rain (Guyu). The postcards are sent to volunteers and students interested in volunteering.'),
     ],
     cover: '/artworks/covers/character-illustration.jpg',

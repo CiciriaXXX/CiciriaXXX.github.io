@@ -1,0 +1,26 @@
+{
+  "painting-reference": {
+    "src": "/a-great-big-tree/leaves/painting-reference-preview.webp",
+    "fullSrc": "/a-great-big-tree/leaves/painting-reference.webp",
+    "width": 594,
+    "height": 674
+  },
+  "graph-leaf-shape": {
+    "src": "/a-great-big-tree/leaves/graph-leaf-shape-preview.webp",
+    "fullSrc": "/a-great-big-tree/leaves/graph-leaf-shape.webp",
+    "width": 1381,
+    "height": 996
+  },
+  "graph-leaf-color": {
+    "src": "/a-great-big-tree/leaves/graph-leaf-color-preview.webp",
+    "fullSrc": "/a-great-big-tree/leaves/graph-leaf-color.webp",
+    "width": 1777,
+    "height": 830
+  },
+  "color-overlay": {
+    "src": "/a-great-big-tree/leaves/color-overlay-preview.webp",
+    "fullSrc": "/a-great-big-tree/leaves/color-overlay.webp",
+    "width": 867,
+    "height": 602
+  }
+}

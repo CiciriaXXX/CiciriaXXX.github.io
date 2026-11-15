@@ -1,0 +1,32 @@
+{
+  "painting-reference": {
+    "src": "/a-great-big-tree/grass/painting-reference-preview.webp",
+    "fullSrc": "/a-great-big-tree/grass/painting-reference.webp",
+    "width": 1790,
+    "height": 162
+  },
+  "grass-prefab": {
+    "src": "/a-great-big-tree/grass/grass-prefab-preview.webp",
+    "fullSrc": "/a-great-big-tree/grass/grass-prefab.webp",
+    "width": 789,
+    "height": 465
+  },
+  "graph-color-shadow": {
+    "src": "/a-great-big-tree/grass/graph-color-shadow-preview.webp",
+    "fullSrc": "/a-great-big-tree/grass/graph-color-shadow.webp",
+    "width": 1141,
+    "height": 845
+  },
+  "graph-terrain-color": {
+    "src": "/a-great-big-tree/grass/graph-terrain-color-preview.webp",
+    "fullSrc": "/a-great-big-tree/grass/graph-terrain-color.webp",
+    "width": 1328,
+    "height": 265
+  },
+  "graph-wind": {
+    "src": "/a-great-big-tree/grass/graph-wind-preview.webp",
+    "fullSrc": "/a-great-big-tree/grass/graph-wind.webp",
+    "width": 1729,
+    "height": 510
+  }
+}
